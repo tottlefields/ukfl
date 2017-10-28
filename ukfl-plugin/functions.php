@@ -13,9 +13,10 @@
 */
 
 
-register_post_type( 'ukfl_team',
-		apply_filters( 'ukfl_register_post_type_team',
-				array(
+// Our custom post type function
+function create_posttypes() {
+
+	$args = array(
 						'labels' => array(
 								'name' 					=> __( 'Teams', 'ukfl' ),
 								'singular_name' 		=> __( 'Team', 'ukfl' ),
@@ -46,6 +47,41 @@ register_post_type( 'ukfl_team',
 						//'show_in_rest' 			=> true,
 						//'rest_controller_class' => 'SP_REST_Posts_Controller',
 						//'rest_base' 			=> 'teams',
-				)
-				)
-		);
+				);
+
+	register_post_type('ukfl_team', $args);
+
+/*	register_taxonomy('dog-breeds', array('shows'),
+			array(
+					'hierarchical' => false,
+					'label' => 'Dog Breeds',
+					'singular_label' => 'Dog Breed',
+					'rewrite' => true
+			)
+	);
+
+
+	$args = array(
+			'label' => __('Show Entries'),
+			'labels' => array(
+					'add_new_item' => 'Add Entry',
+					'edit_item' => 'Edit Entry',
+					'view_item' => 'View Entries'
+			),
+			'singular_label' => __('Show Entry'),
+			'public' => true,
+			'show_ui' => true,
+			'capability_type' => 'post',
+			'hierarchical' => false,
+			'rewrite' => true,
+			'supports' => array('title', 'author'),
+			'exclude_from_search' => true,
+			'has_archive' => false,
+			'menu_icon' => 'dashicons-awards',
+			'show_in_nav_menus' => false
+	);
+
+	register_post_type('entries', $args);*/
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttypes' );
