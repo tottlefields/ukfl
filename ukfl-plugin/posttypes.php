@@ -91,29 +91,22 @@ function club_team_orderby($sql){
 
 
 //Set up admin tables for teams/clubs
-add_filter('manage_posts_columns', 'ukfl_club_custom_columns');
-add_action('manage_posts_custom_columns', 'ukfl_club_show_columns');
+add_filter( 'manage_posts_columns', 'ukfl_club_custom_columns' );
+add_action( 'manage_posts_custom_column' , 'ukfl_club_show_columns', 10, 2 );
+
 function ukfl_club_custom_columns($defaults) {
 	global $wp_query;
 	if (is_ukfl_club()){
 		$defaults['club_logo'] = 'Club Logo';
-		$defaults['team_captain'] = 'Team Captain';
+		$defaults['author'] = 'Team Captain';
+		return $defaults;
 	}
 	return $defaults;
 }
-function ukfl_club_show_columns($name){
-	global $post;
-	switch ($name) {
-		case 'team_captain':
-			echo $post->post_author;
-			break;
+function ukfl_club_show_columns($column, $post_id){
+	switch ($column) {
 		case 'club_logo':
-			if($has_post_thumbnail($post->ID)) echo get_the_post_thumbnail($post->ID);
+			echo get_the_post_thumbnail($post_id, 'thumbnail');
 			break;
 	}
 }
-
-
-
-
-?>
