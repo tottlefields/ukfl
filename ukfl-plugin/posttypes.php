@@ -6,16 +6,16 @@ function register_custom_posttypes() {
 
 	$club_args = array(
 			'labels' => array(
-					'name' 			=> __( 'Clubs', 'ukfl' ),
+					'name' 				=> __( 'Clubs', 'ukfl' ),
 					'singular_name' 	=> __( 'Club', 'ukfl' ),
 					'add_new_item' 		=> __( 'Add New Club', 'ukfl' ),
 					'edit_item' 		=> __( 'Edit Club', 'ukfl' ),
-					'new_item' 		=> __( 'New', 'ukfl' ),
+					'new_item' 			=> __( 'New', 'ukfl' ),
 					'view_item' 		=> __( 'View Club', 'ukfl' ),
 					'search_items' 		=> __( 'Search', 'ukfl' ),
 					'not_found' 		=> __( 'No results found.', 'ukfl' ),
 					'not_found_in_trash' 	=> __( 'No results found.', 'ukfl' ),
-					'featured_image'	=> __( 'Logo', 'ukfl' ),
+					'featured_image'		=> __( 'Logo', 'ukfl' ),
 					'set_featured_image' 	=> __( 'Select Logo', 'ukfl' ),
 					'remove_featured_image' => __( 'Remove Logo', 'ukfl' ),
 					'use_featured_image' 	=> __( 'Select Logo', 'ukfl' ),
@@ -108,7 +108,7 @@ function ukfl_club_show_columns($name){
 			echo $post->post_author;
 			break;
 		case 'club_logo':
-			if($has_post_thumbnail($post->ID)) echo get_the_post_thumbnail($post->ID);
+			if(has_post_thumbnail($post->ID)) echo get_the_post_thumbnail($post->ID);
 			break;
 	}
 }
