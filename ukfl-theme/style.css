@@ -1,25 +1,20 @@
 /*
 Theme Name: UKFL
 Theme URI:
-Description: HTML5 & CSS3 Responsive WordPress Business theme with business style home page layout with welcome section, 3 product/services blocks and a client quote/testimonial section. 2 logo section layout options. 2 premade (Blue, Red) ready to use color schemes/skins. 3 widget areas in footer, 1 widget area in sidebar. 2 page layouts including a full width page template. Social media icons in footer.
 Version: 1.0.1
-Template: alexandria
-Author: ThemeAlley.com
-Author URI: http://www.themealley.com/
-Tags: black, blue, gray, red, dark, light, silver, white, two-columns, custom-menu, right-sidebar, fixed-layout, fluid-layout, custom-background, featured-image-header, sticky-post, theme-options, threaded-comments, featured-images, full-width-template, custom-header, flexible-header, responsive-layout
-License: GNU General Public License
-License URI: license.txt
-
-
-Canoe WordPress Theme, Copyright 2014 ThemeAlley.com
-Canoe is distributed under the terms of the GNU GPL
-
-Resetting and rebuilding styles have been helped along thanks to the fine work of
-Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
-along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
-and Blueprint http://www.blueprintcss.org/
+Template: busiprof-pro
 */
 
-
-.site-slider-slider-one { margin: 5% 0; }
-.full-page-content-area { margin: 0; }
+.navbar-brand { padding: 0px; }
+.post-thumbnail img { max-width: 250px; }
+.entry-venue:before { 
+	font-family: FontAwesome;
+	color: #abb6bc;
+	position: relative;
+	display: inline-block;
+	font-size: 14px;
+	padding-right: 10px;
+	text-decoration: inherit;
+	vertical-align: baseline;
+	content: "\f041";
+}
