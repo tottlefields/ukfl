@@ -59,9 +59,32 @@ function register_custom_posttypes() {
                 'has_archive'           => false,
                 'menu_icon'             => 'dashicons-shield-alt',
 	);
+	
+	$event_args = array(
+		'labels' => array(
+                        'name'                  => __( 'Events', 'ukfl' ),
+                        'singular_name'         => __( 'Event', 'ukfl' ),
+                        'add_new_item'          => __( 'Add New Event', 'ukfl' ),
+                        'edit_item'             => __( 'Edit Event', 'ukfl' ),
+                        'new_item'              => __( 'New', 'ukfl' ),
+                        'view_item'             => __( 'View Team', 'ukfl' ),
+                        'search_items'          => __( 'Search', 'ukfl' ),
+                        'not_found'             => __( 'No results found.', 'ukfl' ),
+                        'not_found_in_trash'    => __( 'No results found.', 'ukfl' ),
+                ),
+                'public'                => true,
+                'show_ui'               => true,
+                'publicly_queryable'    => true,
+                'exclude_from_search'   => false,
+                'hierarchical'          => false,
+                'rewrite'               => array( 'slug' => get_option('ukfl_event_slug','event') ),
+                'has_archive'           => true,
+                'menu_icon'             => 'dashicons-location-alt',
+	);
 
-	register_post_type('ukfl_club', $club_args);
-	register_post_type('ukfl_team', $team_args);
+	register_post_type('ukfl_club',  $club_args);
+	register_post_type('ukfl_team',  $team_args);
+	register_post_type('ukfl_event', $event_args);
 }
 // Hooking up our function to theme setup
 add_action( 'init', 'register_custom_posttypes' );
