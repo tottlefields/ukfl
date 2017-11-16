@@ -30,11 +30,22 @@
 			<?php  dynamic_sidebar( 'home-header-sidebar_left' ); ?>
 			<?php } ?>
 			</div>
-			<div class="col-md-8" style="text-align:right;padding:0px;">
+			<div class="col-md-4">
 			<?php  if( is_active_sidebar('home-header-sidebar_right') ) { ?>
 			<?php dynamic_sidebar( 'home-header-sidebar_right' ); ?>
 			<?php } ?>
 			</div>
+			<div class="col-md-4">
+				<aside id="ukfl-member-links" class="widget busiprof_header_info_widget"><ul class="header-contact-info pull-right">
+<?php if ( is_user_logged_in() ) { ?>
+    <li style="display:inline;"><i class="fa fa-user-circle"></i><a href="/account/">My Account</a></li>
+    <span style="padding:0px 10px;font-size:150%">|</span>
+    <li style="display:inline;"><i class="fa fa-sign-out"></i><a href="<?php echo wp_logout_url(); ?>">Logout</a></li>
+<?php } else { ?>
+    <li style="display:inline;"><i class="fa fa-sign-in"></i><a href="/login/">Login</a></li>
+<?php } ?>
+				</ul></aside>
+                        </div>
 		</div>	
 	</div>
 </section>

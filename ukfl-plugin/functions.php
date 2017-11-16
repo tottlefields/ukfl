@@ -1,13 +1,13 @@
 <?php
 /**
-* Plugin Name: FlyballPress
-* Description: Based on SportsPress - manage flyball teams/dogs/handlers/events.
+* Plugin Name: UKFL Plugin
+* Description: UKFL plugin - manage flyball teams/dogs/handlers/events.
 * Version: 0.0.1
 * Author: PawPrints Design
 *
-* Text Domain: flyballpress
+* Text Domain: ukfl
 *
-* @package FlyballPress
+* @package UKFL Plugin
 * @category Core
 * @author PawPrints Design
 */
@@ -23,7 +23,6 @@ function add_roles_on_activation() {
 			'read' => true,
 			'level_0' => true,
 			'level_1' => true,
-                        'read' => true,
 			'delete_posts' => true,
 			'edit_posts' => true
 		)
@@ -33,10 +32,15 @@ function add_roles_on_activation() {
                         'read' => true,
                         'level_0' => true,
                         'level_1' => true,
-                        'read' => true,
                         'delete_posts' => true,
                         'edit_posts' => true
                 )
+	);
+	add_role('ukfl_member', 'UKFL Member',
+		array(
+			'read' => true,
+                        'level_0' => true,
+		)
 	);
 }
 function del_roles_on_uninstall() {

@@ -89,6 +89,8 @@ function register_custom_posttypes() {
 // Hooking up our function to theme setup
 add_action( 'init', 'register_custom_posttypes' );
 
+
+
 function is_ukfl_club(){
 	global $wp_query;
 	if ($wp_query->query_vars['post_type'] == 'ukfl_club') return true;

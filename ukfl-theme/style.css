@@ -28,3 +28,6 @@ Template: busiprof-pro
     line-height: 1.5;
     border-radius: 3px;
 }
+
+.tml { max-width: 100%; }
+.form-horizontal .control-label { padding-top:15px; font-weight: 700 }
