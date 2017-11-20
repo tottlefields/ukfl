@@ -9,6 +9,7 @@ global $wpdb;
 $year = date('y');
 $sql = "select max(user_login) from wplt_users where user_login like '$year%'";
 $ukfl_no = $wpdb->get_var( $sql );
+if (!isset($ukfl_no)){ $ukfl_no = str_pad($year, 6. '0', STR_PAD_RIGHT); }
 $ukfl_no++;
 
 print_r($_POST);
