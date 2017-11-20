@@ -39,3 +39,6 @@ Template: busiprof-pro
     padding: 30px 15px 25px;
     margin: 0 0 40px;
     transition: all 0.3s ease 0s;
+}
+
+h3, .h3 { border-bottom: 1px solid #bdc7d0; }
