@@ -19,10 +19,10 @@ global $wpdb, $current_user;
 					<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 						<div class="entry-content">
 							<?php if (current_user_can('ukfl_member')){ ?>
-								<h3>Your Details <a class="btn btn-sm btn-default pull-right">Edit</a></h3>
-								<h3>Your Dogs <a class="btn btn-sm btn-default pull-right">Add a Dog</a></h3>
-								<h3>Your Teams <a class="btn btn-sm btn-default pull-right">Add a Team</a></h3>
-								<h3>Your Events <a class="btn btn-sm btn-default pull-right">Add an Event</a></h3>
+								<h3>Your Details<a class="btn btn-sm btn-default pull-right">Edit</a></h3>
+								<h3>Your Dogs<a class="btn btn-sm btn-default pull-right">Add a Dog</a></h3>
+								<h3>Your Clubs<a class="btn btn-sm btn-default pull-right">Add a Club</a></h3>
+								<h3>Your Events<a class="btn btn-sm btn-default pull-right">Add an Event</a></h3>
 							<?php } else { ?>
 							<p>Thank you for creating an account on the UKFL website, however to be able to enjoy playing flyball with us you need to become a member. All memberships run on a yearly basis and are payable via direct debit. Please select your required membership option below and you will be forwarded to <a href="https://gocardless.com/" target="_blank">GoCardless</a> to setup a payment.</p>
 <div class="row">
