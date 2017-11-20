@@ -28,7 +28,8 @@ Your password is: <strong>'.$password.'</strong>
 Your UKFL Number is: <strong>'.$_REQUEST['user_login'].'</strong>
 
 We look forward to racing with you in UKFL.';
-		wp_mail( $_REQUEST['user_email'], '[UK Flyball League] Welcome to UKFL!', $msg );
+		$headers = array('Content-Type: text/html; charset=UTF-8');
+		wp_mail( $_REQUEST['user_email'], '[UK Flyball League] Welcome to UKFL!', $msg, $headers );
 		wp_safe_redirect('/account/');
 		exit;
 	}
