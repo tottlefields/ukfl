@@ -25,17 +25,17 @@
 <section class="top-header-widget">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">	
+			<div class="col-xs-4">	
 			<?php if( is_active_sidebar('home-header-sidebar_left') ) { ?>
 			<?php  dynamic_sidebar( 'home-header-sidebar_left' ); ?>
 			<?php } ?>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 hidden-xs hidden-sm">
 			<?php  if( is_active_sidebar('home-header-sidebar_right') ) { ?>
 			<?php dynamic_sidebar( 'home-header-sidebar_right' ); ?>
 			<?php } ?>
 			</div>
-			<div class="col-md-4">
+			<div class="col-xs-8 col-md-4">
 				<aside id="ukfl-member-links" class="widget busiprof_header_info_widget"><ul class="header-contact-info pull-right">
 <?php if ( is_user_logged_in() ) { ?>
     <li style="display:inline;"><i class="fa fa-user-circle"></i><a href="/account/">My Account</a></li>
