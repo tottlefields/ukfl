@@ -38,7 +38,7 @@ We look forward to racing with you in UKFL.';
 get_header();
 get_template_part('index', 'bannerstrip');
 
-//add_user_meta( $current_user->ID, 'ukfl_membership_type', 'joint', 1 );
+add_user_meta( $current_user->ID, 'ukfl_membership_type', 'joint', 1 );
 $ukfl_no = generate_ukfl_number();
 ?>
 <!-- Blog & Sidebar Section -->
