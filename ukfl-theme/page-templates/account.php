@@ -26,15 +26,14 @@ global $wpdb, $current_user;
 										<div class="panel-body"></div>
 									</div>
 								</div>
-                                                                <div class="col-md-6 col-xs-12">
+								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-                                                                                <div class="panel-heading"><h3>Your Clubs<a class="btn btn-sm btn-default pull-right">Add a Club</a></h3></div>
-                                                                                <div class="panel-body">
+										<div class="panel-heading"><h3>Your Clubs<a class="btn btn-sm btn-default pull-right">Add a Club</a></h3></div>
+										<div class="panel-body">
 <?php
 $club_ids = array(); 
 $clubs = get_clubs_for_user(); 
-foreach ( $clubs as $post ) :
-  setup_postdata( $post ); 
+foreach ( $clubs as $post ) : setup_postdata( $post ); 
 	array_push($club_ids, $post->ID); ?>
 	<div class="col-sm-12 col-md-6">
 <?php	if ( has_post_thumbnail() ) { ?>
@@ -48,27 +47,26 @@ else { ?>
 wp_reset_postdata(); ?>
 										</div>
 									</div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="row">
-                                                                <div class="col-md-6 col-xs-12">
-                                                                        <div class="panel panel-default">
-                                                                                <div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right">Add a Dog</a></h3></div>
-                                                                                <div class="panel-body"></div>
-                                                                        </div>
-                                                                </div>
-                                                                <div class="col-md-6 col-xs-12">
-<div class="panel panel-default">
-  <div class="panel-heading"><h3>Your Events<a class="btn btn-sm btn-default pull-right">Add an Event</a></h3></div>
-  <div class="panel-body">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right">Add a Dog</a></h3></div>
+										<div class="panel-body"></div>
+									</div>
+								</div>
+								<div class="col-md-6 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading"><h3>Your Events<a class="btn btn-sm btn-default pull-right">Add an Event</a></h3></div>
+										<div class="panel-body">
 <?php
 $events = get_events_for_clubs($club_ids);
 if (count($events) > 0){ ?>
 <div class="row">
 	<div class="col-md-12">
 		<table class="events-list table table-condensed"><tbody>
-<?php foreach ( $events as $post ) :
-        setup_postdata( $post ); 
+<?php foreach ( $events as $post ) : setup_postdata( $post ); 
 	$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $post->ID, 'event_start_date', true ));
 ?>
 			<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
@@ -87,55 +85,55 @@ wp_reset_postdata(); ?>
 	</div>
 </div>
 <?php } ?>
-</div></div>
+										</div>
+									</div>
 								</div>
-                                                        </div>
+							</div>
 							<?php } else { ?>
 							<p>Thank you for creating an account on the UKFL website, however to be able to enjoy playing flyball with us you need to become a member. All memberships run on a yearly basis and are payable via direct debit. Please select your required membership option below and you will be forwarded to <a href="https://gocardless.com/" target="_blank">GoCardless</a> to setup a payment.</p>
-<div class="row">
-							<div class="col-md-4 col-sm-12 service-box">
-								<div class="box">
-									<div class="service-icon">
-										<i class="fa fa-user"></i>
+							<div class="row">
+								<div class="col-md-4 col-sm-12 service-box">
+									<div class="box">
+										<div class="service-icon">
+											<i class="fa fa-user"></i>
+										</div>
+										<div class="entry-header">
+											<h4 class="entry-title">Individual Membership</h4>
+										</div>
+										<div class="entry-content">
+											<?php echo do_shortcode("[gcp_redirect_flow ref=1]"); ?>
+										</div>
 									</div>
-									<div class="entry-header">
-										<h4 class="entry-title">Individual Membership</h4>
-									</div>
-									<div class="entry-content">
-										<?php echo do_shortcode("[gcp_redirect_flow ref=1]"); ?>
+								</div>
+								<div class="col-md-4 col-sm-12 service-box">
+	                                <div class="box">
+										<div class="service-icon">
+											<i class="fa fa-users"></i>
+										</div>
+										<div class="entry-header">
+											<h4 class="entry-title">Joint Membership</h4>
+										</div>
+										<div class="entry-content">
+											<?php echo do_shortcode("[gcp_redirect_flow ref=2]"); ?>
+										</div>
+	                                </div>
+								</div>
+								<div class="col-md-4 col-sm-12 service-box">
+									<div class="box">
+										<div class="service-icon">
+											<i class="fa fa-user"></i>
+										</div>
+										<div class="entry-header">
+											<h4 class="entry-title">Junior Membership</h4>
+										</div>
+										<div class="entry-content">
+											<?php echo do_shortcode("[gcp_redirect_flow ref=3]"); ?>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 col-sm-12 service-box">
-                                <div class="box">
-									<div class="service-icon">
-										<i class="fa fa-users"></i>
-									</div>
-									<div class="entry-header">
-										<h4 class="entry-title">Joint Membership</h4>
-									</div>
-									<div class="entry-content">
-										<?php echo do_shortcode("[gcp_redirect_flow ref=2]"); ?>
-									</div>
-                                </div>
-							</div>
-							<div class="col-md-4 col-sm-12 service-box">
-								<div class="box">
-									<div class="service-icon">
-										<i class="fa fa-user"></i>
-									</div>
-									<div class="entry-header">
-										<h4 class="entry-title">Junior Membership</h4>
-									</div>
-									<div class="entry-content">
-										<?php echo do_shortcode("[gcp_redirect_flow ref=3]"); ?>
-									</div>
-								</div>
-							</div>
-</div>
-		
 							<?php } ?>
-							<?php the_post(); the_content(); ?>
+							<?php #the_post(); the_content(); ?>
 						</div>
 					</article>
 				</div>
