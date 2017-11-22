@@ -19,10 +19,77 @@ global $wpdb, $current_user;
 					<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 						<div class="entry-content">
 							<?php if (current_user_can('ukfl_member')){ ?>
-								<h3>Your Details<a class="btn btn-sm btn-default pull-right">Edit</a></h3>
-								<h3>Your Dogs<a class="btn btn-sm btn-default pull-right">Add a Dog</a></h3>
-								<h3>Your Clubs<a class="btn btn-sm btn-default pull-right">Add a Club</a></h3>
-								<h3>Your Events<a class="btn btn-sm btn-default pull-right">Add an Event</a></h3>
+							<div class="row">
+								<div class="col-md-6 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right">Edit</a></h3></div>
+										<div class="panel-body"></div>
+									</div>
+								</div>
+                                                                <div class="col-md-6 col-xs-12">
+									<div class="panel panel-default">
+                                                                                <div class="panel-heading"><h3>Your Clubs<a class="btn btn-sm btn-default pull-right">Add a Club</a></h3></div>
+                                                                                <div class="panel-body">
+<?php
+$club_ids = array(); 
+$clubs = get_clubs_for_user(); 
+foreach ( $clubs as $post ) :
+  setup_postdata( $post ); 
+	array_push($club_ids, $post->ID); ?>
+	<div class="col-sm-12 col-md-6">
+<?php	if ( has_post_thumbnail() ) { ?>
+	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
+<?php } 
+else { ?>
+	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><img src="<?php get_bloginfo( 'stylesheet_directory' ) ?>/images/thumbnail-default.jpg" /></a>
+<?php } ?>
+	</div>
+<?php endforeach; 
+wp_reset_postdata(); ?>
+										</div>
+									</div>
+                                                                </div>
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-md-6 col-xs-12">
+                                                                        <div class="panel panel-default">
+                                                                                <div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right">Add a Dog</a></h3></div>
+                                                                                <div class="panel-body"></div>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-xs-12">
+<div class="panel panel-default">
+  <div class="panel-heading"><h3>Your Events<a class="btn btn-sm btn-default pull-right">Add an Event</a></h3></div>
+  <div class="panel-body">
+<?php
+$events = get_events_for_clubs($club_ids);
+if (count($events) > 0){ ?>
+<div class="row">
+	<div class="col-md-12">
+		<table class="events-list table table-condensed"><tbody>
+<?php foreach ( $events as $post ) :
+        setup_postdata( $post ); 
+	$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $post->ID, 'event_start_date', true ));
+?>
+			<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
+				<td>
+					<div class="event-date">
+						<div class="event-day"><?php echo $start_date->format('j'); ?></div>
+						<div class="event-month"><?php echo strtoupper($start_date->format('M')); ?></div>
+					</div>
+				</td>
+				<td><?php the_title(); ?></td>
+				<td class="event-venue hidden-xs"><a href="https://www.google.co.uk/maps/preview?q=<?php echo get_post_meta( $post->ID, 'event_lat', true); ?>,<?php echo get_post_meta( $post->ID, 'event_long', true); ?>" target="_blank"><i class="fa fa-map-marker"></i> <?php echo get_post_meta( $post->ID, 'event_postcode', true ) ?></a></td>
+			</tr>
+<?php endforeach;
+wp_reset_postdata(); ?>
+		</tbody></table>
+	</div>
+</div>
+<?php } ?>
+</div></div>
+								</div>
+                                                        </div>
 							<?php } else { ?>
 							<p>Thank you for creating an account on the UKFL website, however to be able to enjoy playing flyball with us you need to become a member. All memberships run on a yearly basis and are payable via direct debit. Please select your required membership option below and you will be forwarded to <a href="https://gocardless.com/" target="_blank">GoCardless</a> to setup a payment.</p>
 <div class="row">

@@ -1,6 +1,8 @@
 <?php
 
 require_once 'gocardless-pro.php';
+require 'general.php';
+require 'ajax.php';
 
 function my_custom_login() {
         echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo ( 'stylesheet_directory' ) . '/assets/css/custom-login-styles.css" />';
