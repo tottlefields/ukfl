@@ -1,9 +1,9 @@
 <!-- Page Title -->
 <?php 
 if (!isset($TITLE)){
-	if( is_archive() ){ $TITLE = the_archive_title(); }
-	else if( is_home() ){ $TITLE =wp_title(' '); }
-	else{ $TITLE =the_title(); }
+	if( is_archive() ){ $TITLE = get_the_archive_title(); }
+	else if( is_home() ){ $TITLE = wp_title(' ', false); }
+	else{ $TITLE = get_the_title(); }
 }
 ?>
 <section class="page-header">

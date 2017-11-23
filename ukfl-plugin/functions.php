@@ -26,6 +26,15 @@ function generate_ukfl_number(){
 	return $ukfl_no;
 }
 
+function generate_ukfl_dog_number($handler_ukfl){
+	global $wpdb;
+	$sql = "select max(dog_ukfl) from wplt_ukfl_dogs where owner_ukfl='".$handler_ukfl."'";
+	$ukfl_no = $wpdb->get_var( $sql );
+	if (!isset($ukfl_no)){ $ukfl_no = 'A'; }
+	else{ $ukfl_no++; }
+	return $ukfl_no;
+}
+
 function add_roles_on_activation() {
 	add_role( 'team_captain', 'Team Captain', 
 		array(

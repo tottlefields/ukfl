@@ -54,7 +54,8 @@ Template: busiprof-pro
 }
 
 .post-thumbnail img { width: 100%; }
-
+.form-control { height: 40px; }
+.radio-inline { padding-top:15px !important; display: inline-block !important; }
 
 
 /*--------------------------------------------------------------------------
