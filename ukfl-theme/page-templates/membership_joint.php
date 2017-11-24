@@ -54,7 +54,7 @@ $ukfl_no = generate_ukfl_number();
 							<div class="form-group">
 								<label class="col-sm-2 control-label" for="user_login">UKFL Number</label>
 								<div class="col-sm-3">
-									<input type="text" name="user_login" id="user_login" class="input form-control" value="170002" readonly="" size="20">
+									<input type="text" name="user_login" id="user_login" class="input form-control" value="<?php echo $ukfl_no; ?>" readonly="" size="20">
 								</div>
 								<label class="col-sm-2 control-label" for="user_email">E-mail</label>
 								<div class="col-sm-5">

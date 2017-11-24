@@ -19,7 +19,7 @@ require_once 'custom-metaboxes.php';
 function generate_ukfl_number(){
 	global $wpdb;
 	$year = date('y');
-	$sql = "select max(user_login) from wplt_users where user_login like '$year%'";
+	$sql = "select max(user_login) from {$wpdb->prefix}users where user_login like '$year%'";
 	$ukfl_no = $wpdb->get_var( $sql );
 	if (!isset($ukfl_no)){ $ukfl_no = str_pad($year, 6, '0', STR_PAD_RIGHT); }
 	$ukfl_no++;
@@ -28,7 +28,7 @@ function generate_ukfl_number(){
 
 function generate_ukfl_dog_number($handler_ukfl){
 	global $wpdb;
-	$sql = "select max(dog_ukfl) from wplt_ukfl_dogs where owner_ukfl='".$handler_ukfl."'";
+	$sql = "select max(dog_ukfl) from {$wpdb->prefix}dogs where owner_ukfl='".$handler_ukfl."'";
 	$ukfl_no = $wpdb->get_var( $sql );
 	if (!isset($ukfl_no)){ $ukfl_no = 'A'; }
 	else{ $ukfl_no++; }

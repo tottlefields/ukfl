@@ -52,7 +52,7 @@ wp_reset_postdata(); ?>
 							<div class="row">
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right">Add a Dog</a></h3></div>
+										<div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right" href="/account/dogs">Add a Dog</a></h3></div>
 										<div class="panel-body"></div>
 									</div>
 								</div>
