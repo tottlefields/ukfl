@@ -17,6 +17,8 @@ require_once 'posttypes.php';
 require_once 'custom-metaboxes.php';
 require_once 'ukfl-gocardless.php';
 
+$MEMBERSHIPS = array('Membership - Individual' => 'individual', 'Membership - Joint' => 'joint');
+
 function generate_ukfl_number(){
 	global $wpdb;
 	$year = date('y');

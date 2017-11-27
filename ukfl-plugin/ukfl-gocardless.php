@@ -9,6 +9,12 @@ function _create_sandbox_client(){
 	return $client;
 }
 
+function cpg_ukfl_get_rdf($rdf_ref){
+	$client = _create_sandbox_client();
+	$rdf = $client->redirectFlows()->get($rdf_ref);
+	return $rdf;
+}
+
 function cpg_ukfl_get_mandate($mandate_ref){
 	$client = _create_sandbox_client();
 	$mandate = $client->mandates()->get($mandate_ref);

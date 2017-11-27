@@ -16,7 +16,8 @@ function subscription_validator($input){
 			add_user_meta( $user->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
 			add_user_meta( $user->ID, 'ukfl_date_renewal', $input->upcoming_payments[1]->charge_date, 1 );
 			add_user_meta( $user->ID, 'ukfl_mandate_membership', $input->links->mandate, 1 );
-			add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
+			add_user_meta( $user->ID, 'ukfl_customer_membership', $customer->id, 1 );
+			add_user_meta( $user->ID, 'ukfl_membership_type', $MEMBERSHIPS[$input->name], 1 );
 			return;
         }
 }
