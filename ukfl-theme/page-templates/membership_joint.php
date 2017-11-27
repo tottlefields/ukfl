@@ -38,8 +38,6 @@ We look forward to racing with you in UKFL.';
 get_header();
 get_template_part('index', 'bannerstrip');
 
-add_user_meta( $current_user->ID, 'ukfl_membership_type', 'joint', 1 );
-$ukfl_no = generate_ukfl_number();
 ?>
 <!-- Blog & Sidebar Section -->
 <section>		
@@ -48,37 +46,36 @@ $ukfl_no = generate_ukfl_number();
 			<!--Blog Posts-->
 			<div class="col-md-12 col-xs-12">
 				<div class="page-content">
-					<p>Many thanks for joining UKFL and selecting a Joint Membership. Please fill in the details below for the other party on your joint membership to set them up their own account on the UKFL website. Their password and UKFL membership number will be emailed to them using the email address you have provided. THank you.</p>
-					<div class="tml tml-register" id="theme-my-login">
-						<form class="form form-horizontal" name="registerform" id="registerform" method="post">
-							<div class="form-group">
-								<label class="col-sm-2 control-label" for="user_login">UKFL Number</label>
-								<div class="col-sm-3">
-									<input type="text" name="user_login" id="user_login" class="input form-control" value="<?php echo $ukfl_no; ?>" readonly="" size="20">
-								</div>
-								<label class="col-sm-2 control-label" for="user_email">E-mail</label>
-								<div class="col-sm-5">
-									<input type="text" name="user_email" id="user_email" class="input form-control" value="" size="20">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label" for="first_name">First name</label>
-								<div class="col-sm-3">
-									<input type="text" name="first_name" id="first_name" class="input form-control" value="" size="20">
-								</div>
-						                       <label class="col-sm-2 control-label" for="last_name">Last name</label>
-								<div class="col-sm-5">
-									<input type="text" name="last_name" id="last_name" class="input form-control" value="" size="20">
-								</div>
-						        </div>
-							<p class="tml-submit-wrap">
-								<input type="submit" class="btn btn-success pull-right" name="add_joint_member" id="add_joint_member" value="Continue">
-							</p>
-						</form>
-					</div>
+					<p>Many thanks for joining UKFL and selecting a Joint Membership. using the email address you have provided. THank you.</p>
+					
 						<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 						<div class="entry-content">
+							<p>Many thanks for joining UKFL and selecting a Joint Membership. Your direct debit mandate and payment plan have been successfully setup (see reference below). Your new UKFL membership number and password should have been e-mailed to you, using the email address you have provided. Thank you.</p>
 							<?php the_post(); the_content(); ?>
+							<p>Please fill in the details below for the other party on your joint membership to set them up their own account on the UKFL website. Their password and UKFL membership number will be emailed to them separately</p>
+							<div class="tml tml-register" id="theme-my-login">
+								<form class="form form-horizontal" name="registerform" id="registerform" method="post">
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="user_email">E-mail</label>
+										<div class="col-sm-5">
+											<input type="text" name="user_email" id="user_email" class="input form-control" value="">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="first_name">First name</label>
+										<div class="col-sm-3">
+											<input type="text" name="first_name" id="first_name" class="input form-control" value="" >
+										</div>
+										<label class="col-sm-2 control-label" for="last_name">Last name</label>
+										<div class="col-sm-5">
+											<input type="text" name="last_name" id="last_name" class="input form-control" value="">
+										</div>
+								        </div>
+									<p class="tml-submit-wrap">
+										<input type="submit" class="btn btn-success btn-busiprof pull-right" name="add_joint_member" id="add_joint_member" value="Continue">
+									</p>
+								</form>
+							</div>
 						</div>
 					</article>
 				</div>
