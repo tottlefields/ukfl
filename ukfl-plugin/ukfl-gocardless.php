@@ -1,6 +1,6 @@
 <?php
 
-require_once '/home/ec2-user/vhosts/ukflyball.org.uk/www/wp-content/plugins/gocardless-pro/lib/gcp/vendor/autoload.php';
+//require_once 'lib/gcp/vendor/autoload.php';
 
 function _create_sandbox_client(){
 	$access_token = 'sandbox_2uv9or7FYuFlMG97I_M04c4KgDRggrtrUF6cps8S';
