@@ -1,6 +1,6 @@
 <?php
 
-include WP_PLUGIN_DIR.'/ukfl-plugin/ukfl-gocardless.php';
+//include WP_PLUGIN_DIR.'/ukfl-plugin/ukfl-gocardless.php';
 
 function mandate_validator($input){
         //$current_user = wp_get_current_user();
