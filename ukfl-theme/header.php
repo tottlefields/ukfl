@@ -44,7 +44,7 @@
 <?php } else { ?>
     <li style="display:inline;"><i class="fa fa-sign-in"></i><a href="/login/">Login</a></li>
     <span style="padding:0px 10px;font-size:150%">|</span>
-    <li style="display:inline;"><a href="/register/">Register</a></li>
+    <li style="display:inline;"><a href="/membership/">Register</a></li>
 <?php } ?>
 				</ul></aside>
                         </div>
