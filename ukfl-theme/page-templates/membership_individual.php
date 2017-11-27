@@ -1,6 +1,8 @@
 <?php
 //Template Name: Membership (Individual)
 
+the_post(); the_content();
+
 
 
 /*$current_user = wp_get_current_user();
