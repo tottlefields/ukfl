@@ -11,9 +11,16 @@ function _create_sandbox_client(){
 	return $client;
 }
 
+function cpg_ukfl_get_mandate($mandate_ref){
+	$client = _create_sandbox_client();
+	$mandate = $client->mandates()->get($mandate_ref);
+	return $mandate;
+}
+
 function cpg_ukfl_get_customer($cust_ref){
 	$client = _create_sandbox_client();
 	$customer = $client->customers()->get($cust_ref);
+	return $customer;
 }
 
 
