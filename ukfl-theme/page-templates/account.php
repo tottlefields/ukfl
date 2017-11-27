@@ -61,30 +61,32 @@ wp_reset_postdata(); ?>
 										<div class="panel-heading"><h3>Your Events<a class="btn btn-sm btn-default pull-right">Add an Event</a></h3></div>
 										<div class="panel-body">
 <?php
+if (count($club_ids) > 0){
 $events = get_events_for_clubs($club_ids);
-if (count($events) > 0){ ?>
-<div class="row">
-	<div class="col-md-12">
-		<table class="events-list table table-condensed"><tbody>
-<?php foreach ( $events as $post ) : setup_postdata( $post ); 
-	$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $post->ID, 'event_start_date', true ));
-?>
-			<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
-				<td>
-					<div class="event-date">
-						<div class="event-day"><?php echo $start_date->format('j'); ?></div>
-						<div class="event-month"><?php echo strtoupper($start_date->format('M')); ?></div>
-					</div>
-				</td>
-				<td><?php the_title(); ?></td>
-				<td class="event-venue hidden-xs"><a href="https://www.google.co.uk/maps/preview?q=<?php echo get_post_meta( $post->ID, 'event_lat', true); ?>,<?php echo get_post_meta( $post->ID, 'event_long', true); ?>" target="_blank"><i class="fa fa-map-marker"></i> <?php echo get_post_meta( $post->ID, 'event_postcode', true ) ?></a></td>
-			</tr>
-<?php endforeach;
-wp_reset_postdata(); ?>
-		</tbody></table>
+	if (count($events) > 0){ ?>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="events-list table table-condensed"><tbody>
+	<?php foreach ( $events as $post ) : setup_postdata( $post ); 
+		$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $post->ID, 'event_start_date', true ));
+	?>
+				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
+					<td>
+						<div class="event-date">
+							<div class="event-day"><?php echo $start_date->format('j'); ?></div>
+							<div class="event-month"><?php echo strtoupper($start_date->format('M')); ?></div>
+						</div>
+					</td>
+					<td><?php the_title(); ?></td>
+					<td class="event-venue hidden-xs"><a href="https://www.google.co.uk/maps/preview?q=<?php echo get_post_meta( $post->ID, 'event_lat', true); ?>,<?php echo get_post_meta( $post->ID, 'event_long', true); ?>" target="_blank"><i class="fa fa-map-marker"></i> <?php echo get_post_meta( $post->ID, 'event_postcode', true ) ?></a></td>
+				</tr>
+	<?php endforeach;
+	wp_reset_postdata(); ?>
+			</tbody></table>
+		</div>
 	</div>
-</div>
-<?php } ?>
+<?php } 
+}?>
 										</div>
 									</div>
 								</div>
