@@ -52,7 +52,7 @@ function create_ukfl_member($first_name, $last_name, $email){
 	$user->set_role('subscriber');
 	$user->add_role('ukfl_member');
 	
-	$msg = 'Dear '.$_REQUEST['first_name'].'<br />,
+	$msg = 'Dear '.$first_name.',<br />
 Welcome to the United Kingdom Flyball League (UKFL) and thank-you for joining us.<br />	
 	
 Your UKFL Number is: <strong>'.$ukfl_no.'</strong><br />
@@ -64,7 +64,7 @@ Please feel free to <a href="'.esc_url( wp_login_url() ).'">login to your accoun
 <p>We look forward to seeing you in the lanes very soon.<br /><br />UK Flyball League</p>';
 	
 	$headers = array('Content-Type: text/html; charset=UTF-8');
-	wp_mail( $email, '['.bloginfo( 'name' ).'] Welcome to UKFL!', $msg, $headers );
+	wp_mail( $email, '['.get_bloginfo('name').'] Welcome to UKFL!', $msg, $headers );
 	
 	return $user;
 }
