@@ -9,7 +9,8 @@ if (isset($_REQUEST['add_joint_member'])){
 		$rdf = cpg_ukfl_get_rdf($_REQUEST['redirect_flow_id']);
 		add_user_meta( $user->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
 		add_user_meta( $user->ID, 'ukfl_mandate_membership', $rdf->links->mandate, 1 );
-		add_user_meta( $user->ID, 'ukfl_membership_type', $MEMBERSHIPS[$input->name], 1 );
+		add_user_meta( $user->ID, 'ukfl_date_renewal', $input->upcoming_payments[1]->charge_date, 1 );
+		add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
 		wp_safe_redirect('/login/');
 		exit;
 	}
@@ -30,20 +31,20 @@ get_template_part('index', 'bannerstrip');
 						<div class="entry-content">
 							<p>Many thanks for joining UKFL and selecting a Joint Membership. Your direct debit mandate and payment plan have been successfully setup (see reference below). Your new UKFL membership number and password should have been e-mailed to you, using the email address you have provided. If you haven't received this within the next 30 mins please <a href="/contact/">contact us</a>.</p>
 							<div class="alert alert-success" role="alert"><?php the_post(); the_content(); ?></div>
-							<p>Please fill in the details below for the other party on your joint membership to set them up their own account on the UKFL website. Their password and UKFL membership number will be emailed to them separately.</p>
+							<p>Please fill in the details below for the other party on your joint membership to set them up their own account on the UKFL website. Their password and UKFL membership number will be emailed to them separately. Once completed, you will be redirected to the login page.</p>
 							<div class="tml tml-register" id="theme-my-login">
 								<form class="form form-horizontal" name="registerform" id="registerform" method="post">
 									<div class="form-group">
-										<label class="col-sm-2 control-label" for="user_email">E-mail</label>
-										<div class="col-sm-5">
-											<input type="text" name="user_email" id="user_email" class="input form-control" value="">
-										</div>
 										<label class="col-sm-2 control-label" for="first_name">Name</label>
-										<div class="col-sm-3">
+										<div class="col-sm-2">
 											<input type="text" placeholder="First Name" name="first_name" id="first_name" class="input form-control" value="" >
 										</div>
-										<div class="col-sm-5">
+										<div class="col-sm-2">
 											<input type="text" placeholder="Last Name" name="last_name" id="last_name" class="input form-control" value="">
+										</div>
+										<label class="col-sm-2 control-label" for="user_email">E-mail</label>
+										<div class="col-sm-4">
+											<input type="text" name="user_email" id="user_email" class="input form-control" value="">
 										</div>
 								    </div>
 									<p class="tml-submit-wrap">
