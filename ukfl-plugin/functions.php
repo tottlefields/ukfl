@@ -36,6 +36,39 @@ function generate_ukfl_dog_number($handler_ukfl){
 	return $ukfl_no;
 }
 
+function create_ukfl_member($first_name, $last_name, $email){
+	$password = wp_generate_password( 12, true );
+	$ukfl_no = generate_ukfl_number();
+	$user_id = wp_create_user ( $ukfl_no, $password, $email );
+	wp_update_user(
+			array(
+					'ID'		=> $user_id,
+					'first_name'=> $first_name,
+					'last_name'	=> $last_name,
+					'nickname'	=> $first_name.' '.$last_name
+			)
+	);
+	$user = new WP_User($user_id);
+	$user->set_role('subscriber');
+	$user->add_role('ukfl_member');
+	
+	$msg = 'Dear '.$_REQUEST['first_name'].'<br />,
+Welcome to the United Kingdom Flyball League (UKFL) and thank-you for joining us.<br />	
+	
+Your UKFL Number is: <strong>'.$ukfl_no.'</strong><br />
+Your password is: <strong>'.$password.'</strong><br />
+
+<p>You can use your UKFL Number or the email address registered to your account ('.$email.') to login to the <a href="'.home_url().'">UKFL website</a>.<br />
+Please feel free to <a href="'.esc_url( wp_login_url() ).'">login to your account</a> and start adding your dogs, clubs and events.</p>
+
+<p>We look forward to seeing you in the lanes very soon.<br /><br />UK Flyball League</p>';
+	
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+	wp_mail( $email, '['.bloginfo( 'name' ).'] Welcome to UKFL!', $msg, $headers );
+	
+	return $user;
+}
+
 function add_roles_on_activation() {
 	add_role( 'team_captain', 'Team Captain', 
 		array(
