@@ -58,9 +58,10 @@ Template: busiprof-pro
 .radio-inline { padding-top:15px !important; display: inline-block !important; }
 
 
-.box .selected-individual { border-color: #e91e63;}
-.box .selected-joint { color: #00bcd4; }
-.box .selected-junior { border-color: #4caf50;}
+
+.service-box:nth-child(1) .box.selected { border-color: #e91e63;}
+.service-box:nth-child(2) .box.selected { color: #00bcd4; }
+.service-box:nth-child(3) .box.selected { border-color: #4caf50;}
 
 
 /*--------------------------------------------------------------------------

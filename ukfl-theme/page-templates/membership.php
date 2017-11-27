@@ -2,7 +2,11 @@
 //Template Name: UKFL Memberships
 
 $payment_links = 1;
-if (is_user_logged_in() && current_user_can('ukfl_member')) { $payment_links = 0; }
+$memb_type = null;
+if (is_user_logged_in() && current_user_can('ukfl_member')) {
+	$payment_links = 0;
+	$memb_type = get_user_meta($current_user->ID, 'ukfl_membership_type', true);
+}
 
 get_header();
 get_template_part('index', 'bannerstrip');
@@ -17,7 +21,7 @@ get_template_part('index', 'bannerstrip');
 						<div class="entry-content">
 							<div class="row">
 								<div class="col-md-6 col-sm-12 service-box">
-									<div class="box">
+									<div class="box<?php if ($memb_type == 'individual'){ echo ' selected'; }?>">
 										<div class="service-icon">
 											<i class="fa fa-user"></i>
 										</div>
@@ -30,7 +34,7 @@ get_template_part('index', 'bannerstrip');
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-12 service-box">
-	                                <div class="box selected-joint">
+	                                <div class="box<?php if ($memb_type == 'joint'){ echo ' selected'; }?>">
 										<div class="service-icon">
 											<i class="fa fa-users"></i>
 										</div>
@@ -43,7 +47,7 @@ get_template_part('index', 'bannerstrip');
 	                                </div>
 								</div>
 								<!-- <div class="col-md-4 col-sm-12 service-box">
-									<div class="box">
+									<div class="box<?php if ($memb_type == 'junior'){ echo ' selected'; }?>">
 										<div class="service-icon">
 											<i class="fa fa-user"></i>
 										</div>
