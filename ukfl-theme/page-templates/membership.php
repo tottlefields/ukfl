@@ -1,6 +1,9 @@
 <?php
 //Template Name: UKFL Memberships
 
+$payment_links = 1;
+if (is_user_logged_in() && current_user_can('ukfl_member')) { $payment_links = 0; }
+
 get_header();
 get_template_part('index', 'bannerstrip');
 ?>
@@ -22,7 +25,7 @@ get_template_part('index', 'bannerstrip');
 											<h4 class="entry-title">Individual Membership</h4>
 										</div>
 										<div class="entry-content">
-											<?php echo do_shortcode("[gcp_redirect_flow ref=1]"); ?>
+											<?php if ($payment_links) { echo do_shortcode("[gcp_redirect_flow ref=1]"); } ?>
 										</div>
 									</div>
 								</div>
@@ -35,7 +38,7 @@ get_template_part('index', 'bannerstrip');
 											<h4 class="entry-title">Joint Membership</h4>
 										</div>
 										<div class="entry-content">
-											<?php echo do_shortcode("[gcp_redirect_flow ref=2]"); ?>
+											<?php if ($payment_links) { echo do_shortcode("[gcp_redirect_flow ref=2]"); } ?>
 										</div>
 	                                </div>
 								</div>
@@ -48,7 +51,7 @@ get_template_part('index', 'bannerstrip');
 											<h4 class="entry-title">Junior Membership</h4>
 										</div>
 										<div class="entry-content">
-											<?php echo do_shortcode("[gcp_redirect_flow ref=3]"); ?>
+											<?php if ($payment_links) { echo do_shortcode("[gcp_redirect_flow ref=3]"); } ?>
 										</div>
 									</div>
 								</div> -->
