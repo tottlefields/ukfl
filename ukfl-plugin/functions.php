@@ -53,10 +53,10 @@ function create_ukfl_member($first_name, $last_name, $email){
 	$user->add_role('ukfl_member');
 	
 	$msg = 'Dear '.$first_name.',<br />
-Welcome to the United Kingdom Flyball League (UKFL) and thank-you for joining us.<br />	
+Welcome to the United Kingdom Flyball League (UKFL) and thank-you for joining us.<br /><br />
 	
-Your UKFL Number is: <strong>'.$ukfl_no.'</strong><br />
-Your password is: <strong>'.$password.'</strong><br />
+	Your UKFL Number is: <strong>'.$ukfl_no.'</strong><br />
+	Your password is: <strong>'.$password.'</strong><br />
 
 <p>You can use your UKFL Number or the email address registered to your account ('.$email.') to login to the <a href="'.home_url().'">UKFL website</a>.<br />
 Please feel free to <a href="'.esc_url( wp_login_url() ).'">login to your account</a> and start adding your dogs, clubs and events.</p>
