@@ -5,7 +5,7 @@ $payment_links = 1;
 $memb_type = null;
 if (is_user_logged_in() && current_user_can('ukfl_member')) {
 	$payment_links = 0;
-	$memb_type = get_user_meta($current_user->ID, 'ukfl_membership_type', true);
+	$memb_typ = $MEMBERSHIPS[get_user_meta($current_user->ID, 'ukfl_membership_type', true)];
 }
 
 get_header();
