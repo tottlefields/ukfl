@@ -8,7 +8,6 @@ function mandate_validator($input){
 }
 
 function subscription_validator($input){
-		wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', json_encode($input));
         if (preg_match('/Membership/', $input->name)){
         	$mandate = cpg_ukfl_get_mandate($input->links->mandate);
         	$customer = cpg_ukfl_get_customer($mandate->links->customer);
@@ -20,6 +19,7 @@ function subscription_validator($input){
 			add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
 			return;
         }
+		//wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', json_encode($input));
 }
 add_action('gcp_successful_mandate_setup', 'mandate_validator');
 add_action('gcp_successful_payment_plan', 'subscription_validator');
