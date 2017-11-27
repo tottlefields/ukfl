@@ -13,7 +13,8 @@ function subscription_validator($input){
         	$customer = cpg_ukfl_get_customer($mandate->links->customer);
         	$user = create_ukfl_member($customer->given_name, $customer->family_name, $customer->email);
 			add_user_meta( $user->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
-			add_user_meta( $user->ID, 'ukfl_date_renewal', $input->upcoming_payments[1]->charge_date, 1 );
+			//add_user_meta( $user->ID, 'ukfl_date_renewal', $input->upcoming_payments[1]->charge_date, 1 );
+			add_user_meta( $user->ID, 'ukfl_date_renewal', strtotime(date("Y-m-d"). " +1 year"), 1 );
 			add_user_meta( $user->ID, 'ukfl_mandate_membership', $input->links->mandate, 1 );
 			add_user_meta( $user->ID, 'ukfl_customer_membership', $customer->id, 1 );
 			add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
