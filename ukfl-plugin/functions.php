@@ -15,6 +15,7 @@
 // Include widget/files...
 require_once 'posttypes.php';
 require_once 'custom-metaboxes.php';
+require_once 'ukfl-gocardless.php';
 
 function generate_ukfl_number(){
 	global $wpdb;
