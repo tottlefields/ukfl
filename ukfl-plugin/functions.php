@@ -54,7 +54,7 @@ function create_ukfl_member($first_name, $last_name, $email){
 	$user->set_role('subscriber');
 	$user->add_role('ukfl_member');
 	
-	$msg = 'Dear '.$first_name.',<br />
+	$msg = 'Dear '.$first_name.',<br /><br />
 Welcome to the United Kingdom Flyball League (UKFL) and thank-you for joining us.<br /><br />
 	
 	Your UKFL Number is: <strong>'.$ukfl_no.'</strong><br />

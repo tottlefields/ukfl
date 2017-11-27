@@ -9,8 +9,14 @@ if (isset($_REQUEST['add_joint_member'])){
 		$rdf = cpg_ukfl_get_rdf($_REQUEST['redirect_flow_id']);
 		add_user_meta( $user->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
 		add_user_meta( $user->ID, 'ukfl_mandate_membership', $rdf->links->mandate, 1 );
-		add_user_meta( $user->ID, 'ukfl_date_renewal', $input->upcoming_payments[1]->charge_date, 1 );
-		add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
+		add_user_meta( $user->ID, 'ukfl_date_renewal', $rdf->upcoming_payments[1]->charge_date, 1 );
+		add_user_meta( $user->ID, 'ukfl_membership_type', $rdf->name, 1 );
+		$customer_ref = $rdf->links->customer;
+		$user_query = new WP_User_Query( array( 'meta_key' => 'ukfl_customer_membership', 'meta_value' => $customer_ref ) );
+		if (isset($user_query)){
+			add_user_meta( $user->ID, 'ukfl_membership_link', $user_query->ID, 1 );
+			add_user_meta( $user_query->ID, 'ukfl_membership_link', $user->ID, 1 );
+		}
 		wp_safe_redirect('/login/');
 		exit;
 	}
