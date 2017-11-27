@@ -30,7 +30,7 @@ get_template_part('index', 'bannerstrip');
 									</div>
 								</div>
 								<div class="col-md-6 col-sm-12 service-box">
-	                                <div class="box">
+	                                <div class="box selected">
 										<div class="service-icon">
 											<i class="fa fa-users"></i>
 										</div>
