@@ -68,6 +68,12 @@ Please feel free to <a href="'.esc_url( wp_login_url() ).'">login to your accoun
 	$headers = array('Content-Type: text/html; charset=UTF-8');
 	wp_mail( $email, '['.get_bloginfo('name').'] Welcome to UKFL!', $msg, $headers );
 	
+	$admin_msg = 'New user registration on '.get_bloginfo('name').':<br /><br />
+	UKFL Number: <strong>'.$ukfl_no.'</strong><br />
+	Name: <strong>'.$first_name.' '.$last_name.'</strong><br />
+	E-mail: <strong>'.$email.'</strong><br />';
+	wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New User Registration', $admin_msg, $headers);
+	
 	return $user;
 }
 
