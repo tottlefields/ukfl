@@ -31,10 +31,10 @@ global $wpdb, $current_user;
 										<div class="panel-heading"><h3>Your Team(s)<a class="btn btn-sm btn-default pull-right" href="/account/teams">Add a Team</a></h3></div>
 										<div class="panel-body">
 <?php
-$club_ids = array(); 
-$clubs = get_clubs_for_user(); 
-foreach ( $clubs as $post ) : setup_postdata( $post ); 
-	array_push($club_ids, $post->ID); ?>
+$team_ids = array(); 
+$teams = get_teams_for_user(); 
+foreach ( $teams as $post ) : setup_postdata( $post ); 
+	array_push($team_ids, $post->ID); ?>
 	<div class="col-sm-12 col-md-6">
 <?php	if ( has_post_thumbnail() ) { ?>
 	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
@@ -61,8 +61,8 @@ wp_reset_postdata(); ?>
 										<div class="panel-heading"><h3>Your Events<a class="btn btn-sm btn-default pull-right">Add an Event</a></h3></div>
 										<div class="panel-body">
 <?php
-if (count($club_ids) > 0){
-$events = get_events_for_clubs($club_ids);
+if (count($team_ids) > 0){
+$events = get_events_for_teams($team_ids);
 	if (count($events) > 0){ ?>
 	<div class="row">
 		<div class="col-md-12">
