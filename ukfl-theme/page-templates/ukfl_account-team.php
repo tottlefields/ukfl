@@ -13,7 +13,7 @@ if (isset($_POST['add_team'])){
 <script type="text/javascript">
         jQuery(function ($) {
 		console.log($("a.gcp_redirect_flow4"));
-		$("a.gcp_redirect_flow4")[0].click();
+		//$("a.gcp_redirect_flow4")[0].click();
 	 } );
 </script>';
 }
@@ -32,6 +32,12 @@ include(locate_template('index-bannerstrip.php'))
 						<div class="entry-content">
 							<?php the_post(); the_content(); ?>
 							<form method="post" class="form form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="team_name">Team Name</label>
+                					<div class="col-sm-10">
+                						<input type="text" name="team_name" id="team_name" class="input form-control" value="" />
+                					</div>
+                				</div>
 								<div class="form-group">
 									<div class="controls">
 										<input type="submit" name="add_team" id="add_team" value="Add Team" class="btn btn-success btn-busiprof pull-right" />
