@@ -102,7 +102,7 @@ include(locate_template('index-bannerstrip.php'))
 <?php } ?>
 	<div class="form-group">
 		<div class="controls">
-                 	<input type="submit" name="submit" value="Add Dog" class="btn btn-success pull-right" />
+                 	<input type="submit" name="add_dog" id="add_dog" value="Add Dog" class="btn btn-success btn-busiprof pull-right" />
                 </div>
         </div>    
 </form>

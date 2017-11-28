@@ -7,7 +7,7 @@ if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
 
-if (isset($_POST['add_dog'])){
+if (isset($_POST['add_team'])){
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
 <script type="text/javascript">
@@ -32,7 +32,9 @@ include(locate_template('index-bannerstrip.php'))
 						<div class="entry-content">
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
-									<div class="controls"><input type="submit" name="submit" value="Add Team" class="btn btn-success btn-busiprof pull-right" /></div>
+									<div class="controls">
+										<input type="submit" name="add_team" id="add_team" value="Add Team" class="btn btn-success btn-busiprof pull-right" />
+									</div>
 								</div>    
 							</form>
 						</div>
