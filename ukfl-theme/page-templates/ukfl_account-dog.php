@@ -37,10 +37,7 @@ include(locate_template('index-bannerstrip.php'))
 				<div class="page-content">
 					<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 						<div class="entry-content">
-							<?php if(!isset($_GET['edit'])){ ?>
-							<p>For newly registered dogs with the UKFL we can, at their point of registration, transfer any current point total the dog has with the BFA as a starting point for their UKFL career. This is the only time that this can be done. If you wish to have you dog's current BFA point total transferred, please enter your dog's BFA number in the box provided and tick the transfer consent box before adding your new dog.</p>
-							<?php }
-							if (isset($_POST['add_dog'])){ echo $content; } else {?>
+							<?php if (isset($_POST['add_dog'])){ echo $content; } else {?>
 <form method="post" class="form form-horizontal">
         <div class="form-group">
 		<label class="col-sm-2 control-label" for="ukfl_no">UKFL No.</label>
