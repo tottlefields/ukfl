@@ -9,6 +9,18 @@ if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 debug_array($_POST);
 
 if (isset($_POST['add_team'])){
+	
+	$team_post = array(
+			'post_title'    => wp_strip_all_tags( $_POST['team_name'] ),
+			'post_status'   => 'pending',
+			'post_author'	=> $current_user->ID,
+			'post_type'		=> 'ukfl_team'
+	);
+	
+	// Insert the post into the database
+	wp_insert_post( $team_post );
+	
+	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
 <script type="text/javascript">
