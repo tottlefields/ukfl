@@ -5,6 +5,7 @@ Version: 1.0.1
 Template: busiprof-pro
 */
 
+p, .entry-content { margin-bottom: 20px; }
 .navbar-brand { padding: 0px; }
 .post-thumbnail img { max-width: 250px; }
 .entry-venue:before { 
