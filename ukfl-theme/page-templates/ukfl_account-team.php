@@ -30,6 +30,7 @@ include(locate_template('index-bannerstrip.php'))
 				<div class="page-content">
 					<article id="page-<?php the_ID(); ?>" <?php post_class('page'); ?> > 					
 						<div class="entry-content">
+							<?php the_post(); the_content(); ?>
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
 									<div class="controls">
