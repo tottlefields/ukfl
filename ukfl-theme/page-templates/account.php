@@ -28,7 +28,7 @@ global $wpdb, $current_user;
 								</div>
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Clubs<a class="btn btn-sm btn-default pull-right">Add a Club</a></h3></div>
+										<div class="panel-heading"><h3>Your Team(s)<a class="btn btn-sm btn-default pull-right" href="/account/teams">Add a Team</a></h3></div>
 										<div class="panel-body">
 <?php
 $club_ids = array(); 
