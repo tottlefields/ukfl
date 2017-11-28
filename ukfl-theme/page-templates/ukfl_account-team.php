@@ -8,12 +8,12 @@ if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
 
 if (isset($_POST['add_dog'])){
-	$content = do_shortcode("[gcp_redirect_flow ref=5]"); 
+	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
 <script type="text/javascript">
         jQuery(function ($) {
 		console.log($("a.gcp_redirect_flow6"));
-		$("a.gcp_redirect_flow5")[0].click();
+		$("a.gcp_redirect_flow4")[0].click();
 	 } );
 </script>';
 }
