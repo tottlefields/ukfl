@@ -12,7 +12,7 @@ if (isset($_POST['add_team'])){
 	$js_for_footer = '
 <script type="text/javascript">
         jQuery(function ($) {
-		console.log($("a.gcp_redirect_flow6"));
+		console.log($("a.gcp_redirect_flow4"));
 		$("a.gcp_redirect_flow4")[0].click();
 	 } );
 </script>';
