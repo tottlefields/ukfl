@@ -51,4 +51,10 @@ function my_theme_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles', 100); 
 
+function debug_array($array){
+	echo '<pre>';
+	print_r($array);
+	echo '</pre>';
+}
+
 ?>
