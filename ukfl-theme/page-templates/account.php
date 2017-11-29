@@ -39,9 +39,9 @@ foreach ( $teams as $post ) : setup_postdata( $post );
 <?php	if ( has_post_thumbnail() ) { 
 	if (get_post_status($post->ID) == 'publish'){ ?>
 		<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
-	<?php  } else { 
-		the_post_thumbnail(); 
-	}
+	<?php  } else { ?>
+		<span class="post-thumbnail team-pending"><?php the_post_thumbnail(); ?></span>
+	<?php }
 } 
 else { ?>
 	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><img src="<?php get_bloginfo( 'stylesheet_directory' ) ?>/images/thumbnail-default.jpg" /></a>
