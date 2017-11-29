@@ -16,9 +16,8 @@ if (isset($_POST['add_team'])){
 			'post_author'	=> $current_user->ID,
 			'post_type'		=> 'ukfl_team'
 	);
-	
-	// Insert the post into the database
-	wp_insert_post( $team_post );
+	//$team_id = wp_insert_post( $team_post );
+	$team_id = 177;
 	
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
@@ -51,6 +50,29 @@ include(locate_template('index-bannerstrip.php'))
                 					<div class="col-sm-10">
                 						<input type="text" name="team_name" id="team_name" class="input form-control" value="" />
                 					</div>
+                				</div>
+                				<div class="panel panel-default">
+                					<div class="panel-heading"><h3 class="panel-title">Secondary Team Names</h3></div>
+                					<div class="panel-body">
+                						<p>Please list up to 5 secondary team names that you wish to request as the same time as your team application. Once approved, you will have the option to add as many more secondary teams as you wish, subject to committee approval.</p><p>These names may or may not include the above requested team name but they will be your racing team names. Therefore, if you wish to race under the above Team Name, please include it below as well.</p>
+                					</div>
+                					<table class="table">
+                						<thead><tr><th>#</th><th>Secondary Team Name</th><th>Team Type</th></tr></thead><tbody>            						
+                						<?php 
+                						$team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
+                						for ($i=1; $i<=5; $i++){ ?>
+                							<tr>
+                								<td><?php echo $i.'.'; ?></td>
+                								<td><div class="form-group"><div class="col-sm-10"><input type="text" name="sub_team[]" class="input form-control" value="" /></div></div></td>
+                								<td><select class="form-control" name=sub_team_type[]">
+                									<option value="N/A">Select type</option>
+                								<?php foreach ($team_types as $key => $value) { 
+                									echo '<option value="'.$key.'">'.$value.'</option>';
+                								} ?>
+                								</select></td>                							
+                							</tr>                						
+										<?php } ?>
+									</tbody></table>
                 				</div>
 								<div class="form-group">
 									<div class="controls">
