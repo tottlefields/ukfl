@@ -6,32 +6,7 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
-debug_array($_POST);
-
-/* Array
-(
-    [team_name] => Cambridgeshire Flyball Team
-    [sub_team] => Array
-        (
-            [0] => Cambs Canines
-            [1] => Cambs Catapults
-            [2] => Cambs Cannons
-            [3] => Cambs Crusaders
-            [4] => Cambs Crossbows
-        )
-
-    [sub_team_type] => Array
-        (
-            [0] => league
-            [1] => league
-            [2] => league
-            [3] => league
-            [4] => league
-        )
-
-    [add_team] => Register Team
-)
- */
+$team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
 
 if (isset($_POST['add_team'])){
 	
@@ -41,8 +16,7 @@ if (isset($_POST['add_team'])){
 			'post_author'	=> $current_user->ID,
 			'post_type'		=> 'ukfl_team'
 	);
-	//$team_id = wp_insert_post( $team_post );
-	$team_id = 177;
+	$team_id = wp_insert_post( $team_post );
 	
 	$teams_by_type = array();
 	for ($i=0; $i<5; $i++){
@@ -59,17 +33,31 @@ if (isset($_POST['add_team'])){
 						)
 				)
 			);
-			if (!isset($teams_by_type[$_POST['sub_team_type'][$i]])){ $teams_by_type[$_POST['sub_team_type'][$i]] = array(); }
+			if (!isset($teams_by_type[$team_types($_POST['sub_team_type'][$i])])){ $teams_by_type[$team_types($_POST['sub_team_type'][$i])] = array(); }
 			array_push($teams_by_type[$_POST['sub_team_type'][$i]], $_POST['sub_team'][$i]);
 		}
 	}
+	
+	$admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
+	Team Captain: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
+	UKFL Number: <strong>'.$current_user->user_login.'</strong><br /><br />
+	Team Name: <strong>'.wp_strip_all_tags( $_POST['team_name'] ).'</strong><br />
+	';
+	foreach ($teams_by_type as $team_type => $sub_teams){
+		echo $team_type.'<br /><ul>';
+		foreach ($sub_teams as $sub_team){
+			echo '<li>'.$sub_team.'</li>';
+		}
+		echo '</ul>';
+	}
+	wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
 <script type="text/javascript">
         jQuery(function ($) {
 		console.log($("a.gcp_redirect_flow4"));
-		//$("a.gcp_redirect_flow4")[0].click();
+		$("a.gcp_redirect_flow4")[0].click();
 	 } );
 </script>';
 }
@@ -99,7 +87,6 @@ include(locate_template('index-bannerstrip.php'))
 								<p>Please list up to 5 secondary team names that you wish to request as the same time as your team application. Once approved, you will have the option to add as many more secondary teams as you wish, subject to committee approval.</p>
 								<p>These names may or may not include the above requested team name but they will be your racing team names. Therefore, if you wish to race under the above Team Name, please include it below as well.</p>
 								<?php 
-								$team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
                 				for ($i=1; $i<=5; $i++){ ?>
                 					<div class="form-group"><div class="col-sm-8">
 	                					<div class="input-group">
