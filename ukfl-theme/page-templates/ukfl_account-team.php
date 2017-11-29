@@ -8,6 +8,31 @@ if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
 debug_array($_POST);
 
+/* Array
+(
+    [team_name] => Cambridgeshire Flyball Team
+    [sub_team] => Array
+        (
+            [0] => Cambs Canines
+            [1] => Cambs Catapults
+            [2] => Cambs Cannons
+            [3] => Cambs Crusaders
+            [4] => Cambs Crossbows
+        )
+
+    [sub_team_type] => Array
+        (
+            [0] => league
+            [1] => league
+            [2] => league
+            [3] => league
+            [4] => league
+        )
+
+    [add_team] => Register Team
+)
+ */
+
 if (isset($_POST['add_team'])){
 	
 	$team_post = array(
@@ -19,6 +44,25 @@ if (isset($_POST['add_team'])){
 	//$team_id = wp_insert_post( $team_post );
 	$team_id = 177;
 	
+	$teams_by_type = array();
+	for ($i=0; $i<5; $i++){
+		if (isset($_POST['sub_team'][$i]) && $_POST['sub_team'][$i] != ''){
+			wp_insert_post(
+				array(
+						'post_parent'	=> $team_id,
+						'post_title'    => wp_strip_all_tags( $_POST['sub_team'][$i] ),
+						'post_status'   => 'pending',
+						'post_author'	=> $current_user->ID,
+						'post_type'		=> 'ukfl_sub-team',
+						'meta_input'   => array(
+							'ukfl_team_type' => $_POST['sub_team_type'][$i],
+						)
+				)
+			);
+			if (!isset($teams_by_type[$_POST['sub_team_type'][$i]])){ $teams_by_type[$_POST['sub_team_type'][$i]] = array(); }
+			array_push($teams_by_type[$_POST['sub_team_type'][$i]], $_POST['sub_team'][$i]);
+		}
+	}
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
