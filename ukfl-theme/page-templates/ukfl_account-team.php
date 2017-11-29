@@ -18,7 +18,7 @@ if (isset($_POST['add_team'])){
 	);
 	$team_id = wp_insert_post( $team_post );
 	
-	$teams_by_type = array();
+	$secondary_teams = array();
 	for ($i=0; $i<5; $i++){
 		if (isset($_POST['sub_team'][$i]) && $_POST['sub_team'][$i] != ''){
 			wp_insert_post(
@@ -33,23 +33,16 @@ if (isset($_POST['add_team'])){
 						)
 				)
 			);
-			if (!isset($teams_by_type[$team_types[$_POST['sub_team_type'][$i]]])){ $teams_by_type[$team_types[$_POST['sub_team_type'][$i]]] = array(); }
-			array_push($teams_by_type[$team_types[$_POST['sub_team_type'][$i]]], $_POST['sub_team'][$i]);
+			array_push($secondary_teams, '<li>'.$_POST['sub_team'][$i].' - '.$team_types[$_POST['sub_team_type'][$i]].'</li>');
 		}
 	}
 	
 	$admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
 	Team Captain: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
 	UKFL Number: <strong>'.$current_user->user_login.'</strong><br /><br />
-	Team Name: <strong>'.wp_strip_all_tags( $_POST['team_name'] ).'</strong><br />
-	';
-	foreach ($teams_by_type as $team_type => $sub_teams){
-		$admin_msg .= $team_type.'<br /><ul>';
-		foreach ($sub_teams as $sub_team){
-			$admin_msg .= '<li>'.$sub_team.'</li>';
-		}
-		$admin_msg .= '</ul>';
-	}
+	Team Name: <strong>'.wp_strip_all_tags( $_POST['team_name'] ).'</strong><br /><br />
+	Secondary Team Names:<br />
+	<ul>'.implode("\n", $secondary_teams).'</ul>';
 	$headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
 	wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
 	
