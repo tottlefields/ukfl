@@ -85,6 +85,15 @@ function register_custom_posttypes() {
 	register_post_type('ukfl_team',  $team_args);
 	register_post_type('ukfl_sub-team',  $sub_team_args);
 	register_post_type('ukfl_event', $event_args);
+	
+	register_taxonomy('dog-breeds', null,
+			array(
+					'hierarchical' => false,
+					'label' => 'Dog Breeds',
+					'singular_label' => 'Dog Breed',
+					'rewrite' => true
+			)
+	);
 }
 // Hooking up our function to theme setup
 add_action( 'init', 'register_custom_posttypes' );
