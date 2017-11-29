@@ -20,6 +20,7 @@ function subscription_validator($input){
 			add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
 			return;
         }
+        wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', json_encode($input));
         if (preg_match('/Team/', $input->name)){
         	$current_user = wp_get_current_user();
         	$args = array(
