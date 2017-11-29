@@ -57,18 +57,20 @@ include(locate_template('index-bannerstrip.php'))
 								<?php 
 								$team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
                 				for ($i=1; $i<=5; $i++){ ?>
-                					<div class="form-group"><div class="col-sm-10">
+                					<div class="form-group"><div class="col-sm-8">
 	                					<div class="input-group">
 	                						<div class="input-group-addon"><?php echo $i.'.'; ?></div>
 	                						<input type="text" name="sub_team[]" class="input form-control" value="" placeholder="Secondary Team Name" />
 	                					</div>
 	                				</div></div>
-	                				<select class="form-control" name=sub_team_type[]">
-	                					<option value="N/A">Select type</option>
-	                					<?php foreach ($team_types as $key => $value) { 
-	                						echo '<option value="'.$key.'">'.$value.'</option>';
-	                					} ?>
-	                				</select>               						
+	                				<div class="col-sm-4">
+		                				<select class="form-control" name=sub_team_type[]">
+		                					<option value="N/A">Select Team Type</option>
+		                					<?php foreach ($team_types as $key => $value) { 
+		                						echo '<option value="'.$key.'">'.$value.'</option>';
+		                					} ?>
+		                				</select>  
+		                			</div>             						
 								<?php } ?>
 								<div class="form-group">
 									<div class="controls">
