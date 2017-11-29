@@ -7,6 +7,7 @@ function get_teams_for_user(){
 			'post_type'		=> 'ukfl_team',
 			'orderby'       =>  'post_title',
 			'order'         =>  'ASC',
+			'post_status'	=> array('publish', 'pending'),
 			'posts_per_page' => -1 // no limit
 	);
 	$teams = get_posts( $args );
@@ -16,6 +17,7 @@ function get_teams_for_user(){
 function get_events_for_teams($team_ids){
 	$args = array(
 			'post_type'     => 'ukfl_event',
+			'post_status'	=> array('publish', 'pending'),
 			'posts_per_page' => -1,
 			'order'			=> 'ASC',
 			'meta_key'		=> 'event_start_date',
