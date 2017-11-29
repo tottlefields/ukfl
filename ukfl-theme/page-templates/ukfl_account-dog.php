@@ -26,7 +26,13 @@ else{
 }
 
 get_header();
-include(locate_template('index-bannerstrip.php'))
+include(locate_template('index-bannerstrip.php'));
+
+$breeds = get_terms('dog-breeds', array('hide_empty' => false));
+$dogBreeds = array();
+foreach($breeds as $b) {
+	$dogBreeds[$b->term_id] = array('name' => $b->name, 'slug' => $b->slug);
+}
 ?>
 <!-- Blog & Sidebar Section -->
 <section>		
@@ -59,6 +65,7 @@ include(locate_template('index-bannerstrip.php'))
 		<div class="col-sm-6">
 			<select name="breed" class="form-control">
 				<option value="">Select Breed...</option>
+				<?php echo get_options_for_breeds('dog-breeds', $dogBreeds, dog['breed']); ?>
 			</select>
 		</div>
                 <label class="col-sm-2 control-label" for="microchip">Microchip</label>

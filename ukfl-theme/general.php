@@ -30,4 +30,16 @@ function get_events_for_teams($team_ids){
 	$events = get_posts($args);
 	return $events;
 }
+
+function get_options_for_breeds($slug, $breeds, $selected){
+	$options = '';
+	foreach($breeds as $id => $breed) {
+		$options .= '<option value="' . $id . '" data-breed="' . $id . '" data-type="' . $slug . '"';
+		if (isset($selected) && $selected > 0 && $id == $selected){
+			$options .= ' selected="selected"';
+		}
+		$options .= '>' . $breed['name'] . '</option>';
+	}
+	return $options;
+}
 ?>
