@@ -44,19 +44,20 @@ if (isset($_POST['add_team'])){
 	Team Name: <strong>'.wp_strip_all_tags( $_POST['team_name'] ).'</strong><br />
 	';
 	foreach ($teams_by_type as $team_type => $sub_teams){
-		echo $team_type.'<br /><ul>';
+		$admin_msg .= $team_type.'<br /><ul>';
 		foreach ($sub_teams as $sub_team){
-			echo '<li>'.$sub_team.'</li>';
+			$admin_msg .= '<li>'.$sub_team.'</li>';
 		}
-		echo '</ul>';
+		$admin_msg .= '</ul>';
 	}
+	$headers = array('Content-Type: text/html; charset=UTF-8');
 	wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
 <script type="text/javascript">
         jQuery(function ($) {
-		console.log($("a.gcp_redirect_flow4"));
+		//console.log($("a.gcp_redirect_flow4"));
 		$("a.gcp_redirect_flow4")[0].click();
 	 } );
 </script>';

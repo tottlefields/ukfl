@@ -85,7 +85,7 @@ function custom_sub_team_meta_box_markup($post) {
 }
 
 function add_sub_team_custom_meta_box($post){
-    add_meta_box("sub-team-meta-box", "Parent team", "custom_sub_team_meta_box_markup", "ukfl_sub-team", "side", "core", null);
+    add_meta_box("sub-team-meta-box", "Parent Team", "custom_sub_team_meta_box_markup", "ukfl_sub-team", "side", "core", null);
 }
 
 function custom_event_meta_box_markup($post){	
@@ -95,9 +95,10 @@ function custom_event_meta_box_markup($post){
 	$teams = get_posts(
                 array(
                         'post_type'   => 'ukfl_team',
+                		'post_status' => 'any',
                         'orderby'     => 'title',
-                'order'       => 'ASC',
-                'numberposts' => -1
+		                'order'       => 'ASC',
+		                'numberposts' => -1
                 )
         );
 
