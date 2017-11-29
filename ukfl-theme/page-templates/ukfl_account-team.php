@@ -33,7 +33,7 @@ if (isset($_POST['add_team'])){
 						)
 				)
 			);
-			if (!isset($teams_by_type[$team_types($_POST['sub_team_type'][$i])])){ $teams_by_type[$team_types($_POST['sub_team_type'][$i])] = array(); }
+			if (!isset($teams_by_type[$team_types[$_POST['sub_team_type'][$i]]])){ $teams_by_type[$team_types[$_POST['sub_team_type'][$i]]] = array(); }
 			array_push($teams_by_type[$_POST['sub_team_type'][$i]], $_POST['sub_team'][$i]);
 		}
 	}
