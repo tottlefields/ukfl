@@ -6,7 +6,8 @@ Template: busiprof-pro
 */
 
 p, .entry-content { margin-bottom: 20px; }
-img.bordered {    padding: 4px; border: 1px solid #ddd; }
+img.bordered { padding: 4px; border: 1px solid #ddd; }
+.team-pending { -webkit-filter: opacity(30%) grayscale(80%); filter: opacity(30%) grayscale(80%); }
 .navbar-brand { padding: 0px; }
 .post-thumbnail img { max-width: 250px; }
 .entry-venue:before { 
