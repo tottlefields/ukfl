@@ -19,7 +19,7 @@ get_template_part('index', 'bannerstrip');
                                         // Start the Loop.
                                         while ( have_posts() ) : the_post();
 
-                                                get_template_part( 'page-templates/content','ukfl_club' );
+                                                get_template_part( 'page-templates/content','ukfl_team' );
 
                                         endwhile; endif;
                                         ?>
