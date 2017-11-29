@@ -45,7 +45,7 @@ include(locate_template('index-bannerstrip.php'))
 						<?php if (isset($_POST['add_team'])){ echo $content; } else {?>
 							<?php the_post(); the_content(); ?>
 							<form method="post" class="form form-horizontal">
-								<div class="form-group">
+								<div class="form-group well well-lg">
 									<label class="col-sm-2 control-label" for="team_name">Team Name</label>
                 					<div class="col-sm-10">
                 						<input type="text" name="team_name" id="team_name" class="input form-control" value="" />
@@ -74,7 +74,7 @@ include(locate_template('index-bannerstrip.php'))
 								<?php } ?>
 								<div class="form-group">
 									<div class="controls">
-										<input type="submit" name="add_team" id="add_team" value="Add Team" class="btn btn-success btn-busiprof pull-right" />
+										<input type="submit" name="add_team" id="add_team" value="Register Team" class="btn btn-success btn-busiprof pull-right" />
 									</div>
 								</div>    
 							</form>
