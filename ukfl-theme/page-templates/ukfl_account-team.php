@@ -50,8 +50,8 @@ if (isset($_POST['add_team'])){
 		}
 		$admin_msg .= '</ul>';
 	}
-	$headers = array('Content-Type: text/html; charset=UTF-8');
-	wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
+	$headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
+	wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
