@@ -68,6 +68,7 @@ function custom_sub_team_meta_box_markup($post) {
 	$teams = get_posts(
 		array(
 			'post_type'   => 'ukfl_team',
+            'post_status' => array('publish', 'pending'),
 			'orderby'     => 'title',
         	'order'       => 'ASC',
         	'numberposts' => -1
@@ -95,7 +96,7 @@ function custom_event_meta_box_markup($post){
 	$teams = get_posts(
                 array(
                         'post_type'   => 'ukfl_team',
-                		'post_status' => 'any',
+                		'post_status' => array('publish', 'pending'),
                         'orderby'     => 'title',
 		                'order'       => 'ASC',
 		                'numberposts' => -1
