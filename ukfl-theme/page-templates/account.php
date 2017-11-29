@@ -36,9 +36,13 @@ $teams = get_teams_for_user();
 foreach ( $teams as $post ) : setup_postdata( $post ); 
 	array_push($team_ids, $post->ID); ?>
 	<div class="col-sm-12 col-md-6">
-<?php	if ( has_post_thumbnail() ) { ?>
-	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
-<?php } 
+<?php	if ( has_post_thumbnail() ) { 
+	if (get_post_status($post->ID) == 'publish'){ ?>
+		<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
+	<?php  } else { 
+		the_post_thumbnail(); 
+	}
+} 
 else { ?>
 	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><img src="<?php get_bloginfo( 'stylesheet_directory' ) ?>/images/thumbnail-default.jpg" /></a>
 <?php } ?>
