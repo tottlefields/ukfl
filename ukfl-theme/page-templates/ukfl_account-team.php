@@ -51,29 +51,25 @@ include(locate_template('index-bannerstrip.php'))
                 						<input type="text" name="team_name" id="team_name" class="input form-control" value="" />
                 					</div>
                 				</div>
-                				<div class="panel panel-default">
-                					<div class="panel-heading"><h3 class="panel-title">Secondary Team Names</h3></div>
-                					<div class="panel-body">
-                						<p>Please list up to 5 secondary team names that you wish to request as the same time as your team application. Once approved, you will have the option to add as many more secondary teams as you wish, subject to committee approval.</p><p>These names may or may not include the above requested team name but they will be your racing team names. Therefore, if you wish to race under the above Team Name, please include it below as well.</p>
-                					</div>
-                					<table class="table">
-                						<thead><tr><th>#</th><th>Secondary Team Name</th><th>Team Type</th></tr></thead><tbody>            						
-                						<?php 
-                						$team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
-                						for ($i=1; $i<=5; $i++){ ?>
-                							<tr>
-                								<td><?php echo $i.'.'; ?></td>
-                								<td><div class="form-group"><div class="col-sm-10"><input type="text" name="sub_team[]" class="input form-control" value="" /></div></div></td>
-                								<td><select class="form-control" name=sub_team_type[]">
-                									<option value="N/A">Select type</option>
-                								<?php foreach ($team_types as $key => $value) { 
-                									echo '<option value="'.$key.'">'.$value.'</option>';
-                								} ?>
-                								</select></td>                							
-                							</tr>                						
-										<?php } ?>
-									</tbody></table>
-                				</div>
+                				<h4>Secondary Team Names</h4>
+								<p>Please list up to 5 secondary team names that you wish to request as the same time as your team application. Once approved, you will have the option to add as many more secondary teams as you wish, subject to committee approval.</p>
+								<p>These names may or may not include the above requested team name but they will be your racing team names. Therefore, if you wish to race under the above Team Name, please include it below as well.</p>
+								<?php 
+								$team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
+                				for ($i=1; $i<=5; $i++){ ?>
+                					<div class="form-group"><div class="col-sm-10">
+	                					<div class="input-group">
+	                						<div class="input-group-addon"><?php echo $i.'.'; ?></div>
+	                						<input type="text" name="sub_team[]" class="input form-control" value="" placeholder="Secondary Team Name" />
+	                					</div>
+	                				</div></div>
+	                				<select class="form-control" name=sub_team_type[]">
+	                					<option value="N/A">Select type</option>
+	                					<?php foreach ($team_types as $key => $value) { 
+	                						echo '<option value="'.$key.'">'.$value.'</option>';
+	                					} ?>
+	                				</select>               						
+								<?php } ?>
 								<div class="form-group">
 									<div class="controls">
 										<input type="submit" name="add_team" id="add_team" value="Add Team" class="btn btn-success btn-busiprof pull-right" />
