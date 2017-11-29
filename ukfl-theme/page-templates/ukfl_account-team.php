@@ -62,7 +62,7 @@ include(locate_template('index-bannerstrip.php'))
 	                						<div class="input-group-addon"><?php echo $i.'.'; ?></div>
 	                						<input type="text" name="sub_team[]" class="input form-control" value="" placeholder="Secondary Team Name" />
 	                					</div>
-	                				</div></div>
+	                				</div>
 	                				<div class="col-sm-4">
 		                				<select class="form-control" name=sub_team_type[]">
 		                					<option value="N/A">Select Team Type</option>
@@ -70,7 +70,7 @@ include(locate_template('index-bannerstrip.php'))
 		                						echo '<option value="'.$key.'">'.$value.'</option>';
 		                					} ?>
 		                				</select>  
-		                			</div>             						
+		                			</div></div>           						
 								<?php } ?>
 								<div class="form-group">
 									<div class="controls">
