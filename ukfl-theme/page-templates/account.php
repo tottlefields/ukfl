@@ -67,11 +67,11 @@ if (count($dogs) > 0){ ?>
 <?php foreach ( $dogs as $post ) : setup_postdata( $post ); 
 	$ukfl_points = get_post_meta(get_the_ID(), 'ukfl_dog_points', true);
 	debug_array(get_post_meta(get_the_ID(), 'ukfl_dog_points', true));
-	echo $ukfl_points;
-	wp_die();
 	$ukfl_height = get_post_meta(get_the_ID(), 'ukfl_dog_height', true);
 	if (!isset($ukfl_points)){ $ukfl_points = 0; }
 	if (!isset($ukfl_height)){ $ukfl_height = "FH"; }
+	echo $ukfl_points;
+	wp_die();
 	?>
 				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
 					<td><?php echo get_post_meta(get_the_ID(), 'ukfl_dog_name', true); ?></td>
