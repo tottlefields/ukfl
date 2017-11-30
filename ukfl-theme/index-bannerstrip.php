@@ -3,6 +3,7 @@
 if (!isset($TITLE)){
 	if( is_archive() ){ $TITLE = get_the_archive_title(); }
 	else if( is_home() ){ $TITLE = wp_title(' ', false); }
+	else if (is_singular( "ukfl_dog" )) { $TITLE = get_post_meta(get_the_ID(), 'ukfl_dog_name', true); }
 	else{ $TITLE = get_the_title(); }
 }
 ?>
