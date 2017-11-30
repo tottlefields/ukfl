@@ -67,10 +67,10 @@ if (count($dogs) > 0){ ?>
 <?php foreach ( $dogs as $post ) : setup_postdata( $post ); 
 	?>
 				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
-					<td><?php the_title(); ?></td>
 					<td><?php echo get_post_meta(get_the_ID(), 'ukfl_dog_name', true); ?></td>
-					<td><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;<?php echo get_post_meta(get_the_ID(), 'ukfl_dog_points', true); ?></td>
-					<td><?php echo (null !==(get_post_meta(get_the_ID(), 'ukfl_dog_height', true))) ? get_post_meta(get_the_ID(), 'ukfl_dog_height', true) : "FH"; ?></td>
+					<td><?php the_title(); ?></td>
+					<td><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;<?php $ukfl_points = isset(get_post_meta(get_the_ID(), 'ukfl_dog_points', true)) ? get_post_meta(get_the_ID(), 'ukfl_dog_points', true) : "0"; echo $ukfl_points; ?></td>
+					<td><?php $ukfl_height = isset(get_post_meta(get_the_ID(), 'ukfl_dog_height', true)) ? get_post_meta(get_the_ID(), 'ukfl_dog_height', true) : "FH"; echo $ukfl_height; ?></td>
 				</tr>
 <?php endforeach;
 wp_reset_postdata(); ?>	
