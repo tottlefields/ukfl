@@ -48,6 +48,7 @@ function subscription_validator($input){
         	);
         	$dogs = get_posts( $args );
         	$dog = $dogs[0];
+        	debug_array($dog);
         	add_post_meta( $dog->ID, 'ukfl_mandate_dog', $input->links->mandate, 1 );
         	return;
         }
