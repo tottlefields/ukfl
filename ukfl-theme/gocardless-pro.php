@@ -28,12 +28,28 @@ function subscription_validator($input){
         			'post_type'		=> 'ukfl_team',
         			'orderby'       =>  'ID',
         			'order'         =>  'DESC',
-        			'post_status'	=>  'pending',
+        			'post_status'	=>  'draft',
         			'posts_per_page' => 1
         	);
         	$teams = get_posts( $args );
         	$team = $teams[0];
         	add_post_meta( $team->ID, 'ukfl_mandate_team', $input->links->mandate, 1 );
+        	return;
+        }
+        
+        if (preg_match('/Dog/', $input->name)){
+        	$current_user = wp_get_current_user();
+        	$args = array(
+        			'author'        =>  $current_user->ID,
+        			'post_type'		=> 'ukfl_dog',
+        			'orderby'       =>  'ID',
+        			'order'         =>  'DESC',
+        			'post_status'	=>  'draft',
+        			'posts_per_page' => 1
+        	);
+        	$dogs = get_posts( $args );
+        	$dog = $dogs[0];
+        	add_post_meta( $dog->ID, 'ukfl_mandate_dog', $input->links->mandate, 1 );
         	return;
         }
 		//wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', json_encode($input));
