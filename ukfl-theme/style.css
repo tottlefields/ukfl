@@ -7,6 +7,7 @@ Template: busiprof-pro
 @import url('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css');
 
 table{ table-layout: auto; }
+div.slide-caption { display:none; }
 p, .entry-content { margin-bottom: 20px; }
 img.bordered { padding: 4px; border: 1px solid #ddd; }
 .team-pending img { -webkit-filter: opacity(30%) grayscale(80%); filter: opacity(30%) grayscale(80%); }
