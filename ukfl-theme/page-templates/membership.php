@@ -61,6 +61,7 @@ get_template_part('index', 'bannerstrip');
 								</div> -->
 							</div>
 						</div>
+						<div class="alert alert-info"><strong>Coming Soon...</strong> Junior memberships will be available to add to your individual or joint memberships via your account page.</div>
 					</article>
 				</div>
 			</div>
