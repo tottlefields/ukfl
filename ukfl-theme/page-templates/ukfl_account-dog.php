@@ -42,7 +42,8 @@ if (isset($_POST['add_dog'])){
 				weekStart: 1,
 				daysOfWeekHighlighted: "0,6",
 				autoclose: true,
-				todayHighlight: true
+				todayHighlight: true,
+				orientation: "bottom"
 			});
 	 } );
 </script>';
