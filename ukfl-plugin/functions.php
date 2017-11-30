@@ -29,9 +29,12 @@ function generate_ukfl_number(){
 	return $ukfl_no;
 }
 
-function generate_ukfl_dog_number($handler_ukfl){
+function generate_ukfl_dog_number($owner_ukfl){
 	global $wpdb;
-	$sql = "select max(dog_ukfl) from {$wpdb->prefix}ukfl_dogs where owner_ukfl='".$handler_ukfl."'";
+	$sql = "select group_concat(post_id) as post_ids from {$wpdb->prefix}postmeta where meta_key='ukfl_dog_owner' and meta_value='".$owner_ukfl."' group by meta_key,meta_value";
+	$post_ids = $wpdb->get_var( $sql );
+	$sql = "select max(meta_value) from {$wpdb->prefix}postmeta where meta_key='ukfl_dog_letter' and post_id in ('.$post_ids.')";
+	//$sql = "select max(dog_ukfl) from {$wpdb->prefix}ukfl_dogs where owner_ukfl='".$handler_ukfl."'";
 	$ukfl_no = $wpdb->get_var( $sql );
 	if (!isset($ukfl_no)){ $ukfl_no = 'A'; }
 	else{ $ukfl_no++; }
