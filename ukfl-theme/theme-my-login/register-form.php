@@ -5,8 +5,6 @@ Theme My Login will always look in your theme's directory first, before using th
 */
 ?>
 <?php
-wp_redirect('/membership/');
-exit;
 $ukfl_no = generate_ukfl_number();
 ?>
 <div class="alert alert-warning">Your registration email should be sent within minutes of you completing this form. Please check your spam/junk folders. If you haven't received anything within 30 minutes, please <a href="/contact/">contact us</a>.</div>
