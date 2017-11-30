@@ -78,6 +78,7 @@ foreach($breeds as $b) {
 					<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 						<div class="entry-content">
 							<?php if (isset($_POST['add_dog'])){ echo $content; } else {?>
+							<div class="well">Registration is &pound;2.50 per dog per year. Please fill in the payment details requested after each registration to complete your dog's UKFL&copy; registration.</div>
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="owner">Owner</label>
