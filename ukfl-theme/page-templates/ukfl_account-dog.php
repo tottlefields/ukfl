@@ -6,23 +6,6 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
-echo debug_array($_POST);
-
-/*
- * Array
-(
-    [ukfl_no] => 17000A
-    [dog_ukfl] => A
-    [dog_name] => Tally
-    [birth_date] => 31/08/2009
-    [breed] => 208
-    [microchip] => 978101080231144
-    [current_club] => 0
-    [sex] => Bitch
-    [add_dog] => Add Dog
-)
- */
-
 if (isset($_POST['add_dog'])){
 	$dog_post = array(
 			'post_title'  	=> $_POST['ukfl_no'],
@@ -40,7 +23,8 @@ if (isset($_POST['add_dog'])){
 					'ukfl_dog_sex'		=> $_POST['sex'],
 			),
 	);
-	$team_id = wp_insert_post( $dog_post );
+	$dog_id = wp_insert_post( $dog_post );
+	echo debug_array($dog_post);
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=5]"); 
 	$js_for_footer = '
