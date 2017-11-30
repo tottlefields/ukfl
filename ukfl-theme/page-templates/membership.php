@@ -27,6 +27,7 @@ get_template_part('index', 'bannerstrip');
 										</div>
 										<div class="entry-header">
 											<h4 class="entry-title">Individual Membership</h4>
+											<p>Individual membership is for a single person aged 16 or over. This gives the member full voting rights.</p>
 										</div>
 										<div class="entry-content">
 											<?php if ($payment_links) { echo do_shortcode("[gcp_redirect_flow ref=1]"); } ?>
@@ -40,6 +41,7 @@ get_template_part('index', 'bannerstrip');
 										</div>
 										<div class="entry-header">
 											<h4 class="entry-title">Joint Membership</h4>
+											<p>Joint membership is for two people (16+) living in the same household. Both members have full voting rights.</p>
 										</div>
 										<div class="entry-content">
 											<?php if ($payment_links) { echo do_shortcode("[gcp_redirect_flow ref=2]"); } ?>
