@@ -65,7 +65,7 @@ foreach($breeds as $b) {
 		<div class="col-sm-6">
 			<select name="breed" class="form-control">
 				<option value="">Select Breed...</option>
-				<?php echo get_options_for_breeds('dog-breeds', $dogBreeds, dog['breed']); ?>
+				<?php echo get_options_for_breeds('dog-breeds', $dogBreeds, $dog['breed']); ?>
 			</select>
 		</div>
                 <label class="col-sm-2 control-label" for="microchip">Microchip</label>
