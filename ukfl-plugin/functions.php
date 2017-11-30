@@ -31,7 +31,7 @@ function generate_ukfl_number(){
 
 function generate_ukfl_dog_number($handler_ukfl){
 	global $wpdb;
-	$sql = "select max(dog_ukfl) from {$wpdb->prefix}dogs where owner_ukfl='".$handler_ukfl."'";
+	$sql = "select max(dog_ukfl) from {$wpdb->prefix}ukfl_dogs where owner_ukfl='".$handler_ukfl."'";
 	$ukfl_no = $wpdb->get_var( $sql );
 	if (!isset($ukfl_no)){ $ukfl_no = 'A'; }
 	else{ $ukfl_no++; }
