@@ -121,7 +121,7 @@ foreach($breeds as $b) {
 									</div>
 									<label class="col-sm-2 control-label" for="current_club">Flyball Club</label>
 									<div class="col-sm-4">
-										<?php echo get_club_dropdown($dog->post_parent); ?>
+										<?php echo get_club_dropdown_menu($dog->post_parent); ?>
 									</div>
 								</div>
 								<div class="form-group">
