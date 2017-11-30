@@ -24,10 +24,9 @@ function subscription_validator($input){
         	$current_user = wp_get_current_user();
         	$args = array(
         			'author'        =>  $current_user->ID,
-        			'post_type'		=> 'ukfl_team',
+        			'post_type'	=> 'ukfl_team',
         			'orderby'       =>  'ID',
         			'order'         =>  'DESC',
-        			'post_status'	=>  'draft',
         			'posts_per_page' => 1
         	);
         	$teams = get_posts( $args );
@@ -43,12 +42,10 @@ function subscription_validator($input){
         			'post_type'		=> 'ukfl_dog',
         			'orderby'       =>  'ID',
         			'order'         =>  'DESC',
-        			'post_status'	=>  'draft',
         			'posts_per_page' => 1
         	);
         	$dogs = get_posts( $args );
         	$dog = $dogs[0];
-        	debug_array($dog);
         	add_post_meta( $dog->ID, 'ukfl_mandate_dog', $input->links->mandate, 1 );
         	return;
         }
