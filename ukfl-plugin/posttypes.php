@@ -113,7 +113,10 @@ function register_custom_posttypes() {
 					'hierarchical' => false,
 					'label' => 'Dog Breeds',
 					'singular_label' => 'Dog Breed',
-					'rewrite' => true
+					'rewrite' => true,
+					'capabilities' => array(
+							'assign_terms' => 'read'
+					)
 			)
 	);
 }

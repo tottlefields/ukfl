@@ -8,8 +8,44 @@ if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
 echo debug_array($_POST);
 
+/*
+ * Array
+(
+    [ukfl_no] => 17000A
+    [dog_ukfl] => A
+    [dog_name] => Tally
+    [birth_date] => 31/08/2009
+    [breed] => 208
+    [microchip] => 978101080231144
+    [current_club] => 0
+    [sex] => Bitch
+    [add_dog] => Add Dog
+)
+ */
 
 if (isset($_POST['add_dog'])){
+	$args = array(
+			'post_title'  	=> $_POST['ukfl_no'],
+			'post_status' 	=> 'draft',
+			'post_author' 	=> get_current_user_id(),
+			'post_parent'	=> $_POST['current_club'],
+			'tax_input'		=> array(
+					'dog-breeds' => $_POST['breed'],
+			),
+			'meta_input'   => array(
+					'ukfl_dog_name'		=> $_POST['dog_name'],
+					'ukfl_dog_letter'	=> $_POST['dog_ukfl'],
+					'ukfl_dog_dob'		=> dateToSQL($_POST['birth_date']),
+					'ukfl_dog_microchip'	=> $_POST['microchip'],
+					'ukfl_dog_sex'		=> $_POST['sex'],
+			),
+	);
+	
+	echo debug_array($args);
+	
+	
+	
+	
 	$content = do_shortcode("[gcp_redirect_flow ref=5]"); 
 	$js_for_footer = '
 <script type="text/javascript">

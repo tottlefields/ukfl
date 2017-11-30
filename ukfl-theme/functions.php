@@ -73,6 +73,16 @@ function add_admin_menu_separator( $position ) {
 }
 add_action( 'admin_init', 'add_admin_menu_separator' );
 
+function dateToSQL($date){
+	if ($date == ""){ return ""; }
+	return date_format(DateTime::createFromFormat('d/m/Y', $date), 'Y-m-d');
+}
+
+function SQLToDate($date){
+	if ($date == ""){ return ""; }
+	return date_format(DateTime::createFromFormat('Y-m-d', $date), 'd/m/Y');
+}
+
 function debug_array($array){
 	echo '<pre>';
 	print_r($array);
