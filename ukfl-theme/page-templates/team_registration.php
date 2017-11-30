@@ -20,9 +20,11 @@ wp_update_post( array('ID' => $team->ID, 'post_status' => 'pending') );
 $sub_teams = get_posts(array(
 	'post_type'		=> 'ukfl_sub-team',
 	'posts_per_page'=> -1,
+	'post_status'	=>  'draft',
 	'post_parent'	=> $team->ID
 		
 ));
+$secondary_teams = array();
 foreach ($sub_teams as $sub_team){
 	array_push($secondary_teams, '<li>'.$sub_team->post_title.' - '.$team_types[get_post_meta( $sub_team->ID, 'ukfl_team_type', true )].'</li>');
 	wp_update_post( array('ID' => $sub_team->ID, 'post_status' => 'pending') );
