@@ -16,6 +16,20 @@ function get_teams_for_user(){
 	return $teams;
 }
 
+function get_dogs_for_account(){
+	global $wpdb, $current_user;
+	$args = array(
+			'author'        =>  $current_user->ID,
+			'post_type'		=> 'ukfl_dog',
+			'orderby'       =>  'post_date',
+			'order'         =>  'ASC',
+			'post_status'	=> array('publish'),
+			'posts_per_page' => -1 // no limit
+	);
+	$dogs = get_posts( $args );
+	return $dogs;
+}
+
 function get_events_for_teams($team_ids){
 	$args = array(
 			'post_type'     => 'ukfl_event',

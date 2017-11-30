@@ -14,7 +14,7 @@
 
                 <div class="entry-meta">
                         <!-- <span class="entry-date">Registered: <time datetime=""><?php the_time('M j,Y');?></time></span> -->
-                        <span class="entry-ukfl">UKFL No: <?php get_the_title(); ?></span>
+                        <span class="entry-ukfl">UKFL No: <?php echo get_the_title(); ?></span>
                         <span class="entry-breed">Breed: <?php echo $breed->name; ?></span>
 				</div>
 		</div>

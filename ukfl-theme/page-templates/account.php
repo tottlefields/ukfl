@@ -57,7 +57,28 @@ wp_reset_postdata(); ?>
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
 										<div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right" href="/account/dogs">Add a Dog</a></h3></div>
-										<div class="panel-body"></div>
+										<div class="panel-body">
+<?php 
+$dogs = get_dogs_for_account(); 
+if (count($dogs) > 0){ ?>
+	<div class="row">
+		<div class="col-md-12">
+			<table class="dogs-list table table-condensed"><tbody>
+<?php foreach ( $teams as $post ) : setup_postdata( $post ); 
+	?>
+				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
+					<td><?php the_title(); ?></td>
+					<td><?php echo get_post_meta(get_the_ID(), 'ukfl_dog_name', true); ?></td>
+					<td><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;<?php echo get_post_meta(get_the_ID(), 'ukfl_dog_points', true); ?></td>
+					<td><?php echo isset(get_post_meta(get_the_ID(), 'ukfl_dog_height', true)) ? get_post_meta(get_the_ID(), 'ukfl_dog_height', true) : "FH"; ?></td>
+				</tr>
+<?php endforeach;
+wp_reset_postdata(); ?>	
+			</tbody></table>
+		</div>
+	</div>
+<?php } ?>									
+										</div>
 									</div>
 								</div>
 								<div class="col-md-6 col-xs-12">
