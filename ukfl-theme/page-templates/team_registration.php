@@ -18,7 +18,7 @@ $team = $teams[0];
 wp_update_post( array('ID' => $team->ID, 'post_status' => 'pending') );
 
 $sub_teams = get_posts(array(
-	'post_type'		=> 'ukfl_team',
+	'post_type'		=> 'ukfl_sub-team',
 	'posts_per_page'=> -1,
 	'post_parent'	=> $team->ID
 		
