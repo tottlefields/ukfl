@@ -25,36 +25,6 @@ global $wpdb, $current_user;
 										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right">Edit</a></h3></div>
 										<div class="panel-body"></div>
 									</div>
-								</div>
-								<div class="col-md-6 col-xs-12">
-									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Team(s)<a class="btn btn-sm btn-default pull-right" href="/account/teams">Add a Team</a></h3></div>
-										<div class="panel-body">
-<?php
-$team_ids = array(); 
-$teams = get_teams_for_user(); 
-foreach ( $teams as $post ) : setup_postdata( $post ); 
-	array_push($team_ids, $post->ID); ?>
-	<div class="col-sm-12 col-md-6">
-<?php	if ( has_post_thumbnail() ) { 
-	if (get_post_status($post->ID) == 'publish'){ ?>
-		<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
-	<?php  } else { ?>
-		<span class="post-thumbnail team-pending"><?php the_post_thumbnail(); ?></span>
-	<?php }
-} 
-else { ?>
-	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><img src="<?php get_bloginfo( 'stylesheet_directory' ) ?>/images/thumbnail-default.jpg" /></a>
-<?php } ?>
-	</div>
-<?php endforeach; 
-wp_reset_postdata(); ?>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
 										<div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right" href="/account/dogs">Add a Dog</a></h3></div>
 										<div class="panel-body">
@@ -82,6 +52,32 @@ wp_reset_postdata(); ?>
 		</div>
 	</div>
 <?php } ?>									
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-xs-12">
+									<div class="panel panel-default">
+										<div class="panel-heading"><h3>Your Team(s)<a class="btn btn-sm btn-default pull-right" href="/account/teams">Add a Team</a></h3></div>
+										<div class="panel-body">
+<?php
+$team_ids = array(); 
+$teams = get_teams_for_user(); 
+foreach ( $teams as $post ) : setup_postdata( $post ); 
+	array_push($team_ids, $post->ID); ?>
+	<div class="col-sm-12 col-md-6">
+<?php	if ( has_post_thumbnail() ) { 
+	if (get_post_status($post->ID) == 'publish'){ ?>
+		<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
+	<?php  } else { ?>
+		<span class="post-thumbnail team-pending"><?php the_post_thumbnail(); ?></span>
+	<?php }
+} 
+else { ?>
+	<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><img src="<?php get_bloginfo( 'stylesheet_directory' ) ?>/images/thumbnail-default.jpg" /></a>
+<?php } ?>
+	</div>
+<?php endforeach; 
+wp_reset_postdata(); ?>
 										</div>
 									</div>
 								</div>
