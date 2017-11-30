@@ -16,6 +16,19 @@ if (isset($_POST['add_dog'])){
 		$("a.gcp_redirect_flow5")[0].click();
 	 } );
 </script>';
+}else{
+	$js_for_footer = '
+<script type="text/javascript">
+        jQuery(function ($) {
+			$(".ukfl-datepicker").datepicker({
+				format: "dd/mm/yyyy",
+				weekStart: 1,
+				daysOfWeekHighlighted: "0,6",
+				autoclose: true,
+				todayHighlight: true
+			});
+	 } );
+</script>';
 }
 
 if(isset($_GET['edit']) && isset($_GET['dogID'])) { $TITLE = "Edit Dog"; }
@@ -57,7 +70,7 @@ foreach($breeds as $b) {
                 </div>
                 <label class="col-sm-2 control-label" for="birth_date">Birth Date</label>
                 <div class="col-sm-2">
-                        <input type="text" name="birth_date" id="birth_date" class="datepicker input form-control" value="" />
+                        <input type="text" name="birth_date" id="birth_date" class="ukfl-datepicker input form-control" value="" />
                 </div>
         </div>
 	<div class="form-group">
