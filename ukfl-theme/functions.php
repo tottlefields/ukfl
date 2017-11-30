@@ -61,6 +61,18 @@ function fontawesome_dashboard() {
 }
 add_action('admin_init', 'fontawesome_dashboard');
 
+function add_admin_menu_separator( $position ) {
+	global $menu;
+	$menu[ $position ] = array(
+			0	=>	'',
+			1	=>	'read',
+			2	=>	'separator' . $position,
+			3	=>	'',
+			4	=>	'wp-menu-separator'
+	);
+}
+add_action( 'admin_init', 'add_admin_menu_separator' );
+
 function debug_array($array){
 	echo '<pre>';
 	print_r($array);

@@ -20,21 +20,17 @@ function register_custom_posttypes() {
 					'remove_featured_image' => __( 'Remove Logo', 'ukfl' ),
 					'use_featured_image' 	=> __( 'Select Logo', 'ukfl' ),
 			),
-			'public' 		=> true,
-			'show_ui' 		=> true,
-			//'capability_type' 	=> 'ukfl_team',
-			//'map_meta_cap' 	=> true,
+			'public' 				=> true,
+			'show_ui' 				=> true,
 			'publicly_queryable' 	=> true,
 			'exclude_from_search' 	=> false,
-			'hierarchical'		=> false,
-			'rewrite'		=> array( 'slug' => get_option('ukfl_team_slug','teams') ),
-			'supports' 		=> array( 'title', 'author', 'thumbnail' ),
-			'has_archive' 		=> false,
+			'hierarchical'			=> false,
+			'rewrite'				=> array( 'slug' => get_option('ukfl_team_slug','teams') ),
+			'supports' 				=> array( 'title', 'author', 'thumbnail' ),
+			'has_archive' 			=> false,
 			'show_in_nav_menus' 	=> true,
-			'menu_icon' 		=> 'dashicons-shield',
-			//'show_in_rest' 			=> true,
-			//'rest_controller_class' => 'SP_REST_Posts_Controller',
-			//'rest_base' 			=> 'teams',
+			'menu_icon' 			=> 'dashicons-shield',
+			'menu_position'			=> 30,
 	);
 
 	$sub_team_args = array(
@@ -49,15 +45,16 @@ function register_custom_posttypes() {
                         'not_found'             => __( 'No results found.', 'ukfl' ),
                         'not_found_in_trash'    => __( 'No results found.', 'ukfl' ),
 		),
-                'public'                => true,
-                'show_ui'               => true,
-                'publicly_queryable'    => true,
-                'exclude_from_search'   => false,
-                'hierarchical'          => false,
-                'rewrite'               => array( 'slug' => get_option('ukfl_sub_team_slug','sub-teams') ),
-                'supports'              => array( 'title', 'author' ),
-                'has_archive'           => false,
-                'menu_icon'             => 'dashicons-shield-alt',
+			'public'                => true,
+			'show_ui'               => true,
+			'publicly_queryable'    => true,
+			'exclude_from_search'   => false,
+			'hierarchical'          => false,
+			'rewrite'               => array( 'slug' => get_option('ukfl_sub_team_slug','sub-teams') ),
+			'supports'              => array( 'title', 'author' ),
+			'has_archive'           => false,
+			'menu_icon'             => 'dashicons-shield-alt',
+			'menu_position'			=> 31,
 	);
 	
 	$event_args = array(
@@ -80,6 +77,7 @@ function register_custom_posttypes() {
                 'rewrite'               => array( 'slug' => get_option('ukfl_event_slug','events') ),
                 'has_archive'           => true,
                 'menu_icon'             => 'dashicons-location-alt',
+				'menu_position'			=> 33,
 	);
 	
 	$dog_args = array(
@@ -102,6 +100,7 @@ function register_custom_posttypes() {
                 'rewrite'               => array( 'slug' => get_option('ukfl_dog_slug','dogs') ),
 				'supports' 				=> array( 'title', 'author', 'thumbnail' ),
                 'has_archive'           => false,
+				'menu_position'			=> 32,
 	);
 
 	register_post_type('ukfl_team',  $team_args);
@@ -129,6 +128,9 @@ function fontawesome_icon_dashboard() {
 			}";
 }
 add_action('admin_head', 'fontawesome_icon_dashboard');
+
+function set_admin_menu_separator() { do_action( 'admin_init', 29 ); }
+add_action( 'admin_menu', 'set_admin_menu_separator' );
 
 function is_ukfl_team(){
 	global $wp_query;
