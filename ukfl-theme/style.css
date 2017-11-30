@@ -24,6 +24,8 @@ img.bordered { padding: 4px; border: 1px solid #ddd; }
 	content: "\f041";
 }
 
+.datepicker-dropdown { background-color: white; }
+.datepicker table { border:0px; }
 .top-header-widget .widget { padding: 0px; }
 
 .input-sm {
