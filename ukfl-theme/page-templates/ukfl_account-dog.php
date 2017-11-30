@@ -66,6 +66,7 @@ $dogBreeds = array();
 foreach($breeds as $b) {
 	$dogBreeds[$b->term_id] = array('name' => $b->name, 'slug' => $b->slug);
 }
+
 ?>
 <!-- Blog & Sidebar Section -->
 <section>		
@@ -120,9 +121,7 @@ foreach($breeds as $b) {
 									</div>
 									<label class="col-sm-2 control-label" for="current_club">Flyball Club</label>
 									<div class="col-sm-4">
-										<select name="current_club" class="form-control">
-											<option value="0">Select Current Club...</option>
-										</select>
+										<?php echo get_club_dropdown($dog->post_parent); ?>
 									</div>
 								</div>
 								<div class="form-group">

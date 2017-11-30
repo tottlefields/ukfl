@@ -58,4 +58,30 @@ function get_options_for_breeds($slug, $breeds, $selected){
 	}
 	return $options;
 }
+
+function get_club_dropdown_menu($selected) {
+	global$wpdb;
+	$options = '';	
+	
+	$clubs = get_posts(array(
+			'post_type'		=> 'ukfl_team',
+			'orderby'       =>  'post_title',
+			'order'         =>  'ASC',
+			'post_status'	=> array('publish', 'pending'),
+			'posts_per_page' => -1 // no limit
+	));
+	foreach($clubs as $club) {
+		$options .= '<option value="' . $club->ID . '"';
+		if (isset($selected) && $selected > 0 && $club->ID == $selected){
+			$options .= ' selected="selected"';
+		}
+		$options .= '>' . $club->post_title . '</option>';	
+	}
+	
+	return '
+	<select name="current_club" class="form-control">
+		<option value="0">Select Current Club...</option>
+		'.$options.'
+	</select>';
+}
 ?>
