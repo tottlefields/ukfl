@@ -38,18 +38,27 @@ add_filter ( "login_redirect", "admin_login_redirect", 10, 3 );
 add_action( 'init', 'login_checked_remember_me' );
 
 
-function my_theme_enqueue_styles() {
+function ukfl_enqueue_styles() {
 	$parent_style = 'busiprof-pro-style'; // This is 'twentyfifteen-style' for the Twenty Fifteen theme.
-
-	//wp_dequeue_style( 'style' );
-//	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'child-style',
 		get_stylesheet_directory_uri() . '/style.css',
 		array( 'style' ),
 		wp_get_theme()->get('Version')
 	);
 }
-add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles', 100); 
+
+function ukfl_enqueue_scripts() {
+	wp_deregister_script ( 'jquery' );
+	wp_register_script ( 'jquery', ("//code.jquery.com/jquery-2.2.4.min.js"), false, '2.2.4', true );
+	wp_enqueue_script ( 'jquery' );
+	
+	// BS DatePicker
+	wp_register_script ( 'datepicker-js', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js', array ('jquery',), '1.7.1', true );
+	wp_enqueue_script ( 'datepicker-js' );
+}
+
+add_action( 'wp_enqueue_scripts', 'ukfl_enqueue_styles', 100);
+add_action ( 'wp_enqueue_scripts', 'ukfl_enqueue_scripts' );
 
 function debug_array($array){
 	echo '<pre>';
