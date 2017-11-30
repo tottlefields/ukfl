@@ -12,6 +12,7 @@ if (isset($_POST['add_dog'])){
 			'post_status' 	=> 'draft',
 			'post_author' 	=> get_current_user_id(),
 			'post_parent'	=> $_POST['current_club'],
+			'post_type'		=> 'ukfl_dog',
 			'tax_input'		=> array(
 					'dog-breeds' => $_POST['breed'],
 			),
