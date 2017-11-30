@@ -14,7 +14,7 @@ if (isset($_POST['add_dog'])){
 			'post_parent'	=> $_POST['current_club'],
 			'post_type'		=> 'ukfl_dog',
 			'tax_input'		=> array(
-					'dog-breeds' => array($_POST['breed']),
+					'dog-breeds' => array(intval($_POST['breed'])),
 			),
 			'meta_input'   => array(
 					'ukfl_dog_name'		=> $_POST['dog_name'],
