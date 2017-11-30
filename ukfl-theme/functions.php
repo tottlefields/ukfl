@@ -47,13 +47,9 @@ function ukfl_enqueue_styles() {
 	);
 }
 
-function ukfl_enqueue_scripts() {
-	wp_deregister_script ( 'jquery' );
-	wp_register_script ( 'jquery', ("//code.jquery.com/jquery-2.2.4.min.js"), false, '2.2.4', true );
-	wp_enqueue_script ( 'jquery' );
-	
+function ukfl_enqueue_scripts() {	
 	// BS DatePicker
-	wp_register_script ( 'datepicker-js', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js', array ('jquery',), '1.7.1', true );
+	wp_register_script ( 'datepicker-js', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js', array (), '1.7.1', false );
 	wp_enqueue_script ( 'datepicker-js' );
 }
 
