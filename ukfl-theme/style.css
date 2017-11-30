@@ -9,6 +9,7 @@ Template: busiprof-pro
 table{ table-layout: auto; }
 div.slide-caption { display:none; }
 p, .entry-content { margin-bottom: 20px; }
+.clickable-row { cursor: pointer; }
 img.bordered { padding: 4px; border: 1px solid #ddd; }
 .team-pending img { -webkit-filter: opacity(30%) grayscale(80%); filter: opacity(30%) grayscale(80%); }
 .navbar-brand { padding: 0px; }
