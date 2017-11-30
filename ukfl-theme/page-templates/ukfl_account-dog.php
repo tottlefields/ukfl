@@ -9,6 +9,7 @@ if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 if (isset($_POST['add_dog'])){
 	$dog_post = array(
 			'post_title'  	=> $_POST['ukfl_no'],
+			'post_name'  	=> $_POST['ukfl_no'],
 			'post_status' 	=> 'draft',
 			'post_author' 	=> get_current_user_id(),
 			'post_parent'	=> $_POST['current_club'],
