@@ -55,11 +55,6 @@ function ukfl_enqueue_scripts() {
 	// BS DatePicker
 	wp_register_script ( 'datepicker-js', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js', array ('jquery',), '1.7.1', true );
 	wp_enqueue_script ( 'datepicker-js' );
-	
-	wp_localize_script('ukfl', 'ukflAjax', array(
-			'ajaxurl' => admin_url('admin-ajax.php'),
-			'ajaxnonce' => wp_create_nonce('ukflajax-nonce')
-	));
 }
 
 add_action( 'wp_enqueue_scripts', 'ukfl_enqueue_styles', 100);
