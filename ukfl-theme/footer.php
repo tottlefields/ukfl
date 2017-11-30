@@ -48,7 +48,6 @@
 <!--/End of Scroll To Top--> 	
 <script type='text/javascript'>//<![CDATA[
 		var ukflAjax = {"ajax_url":"<?php echo admin_url( 'admin-ajax.php' ); ?>", "ajax_nonce" :"<?php echo wp_create_nonce('ukflajax-nonce'); ?>"};
-		
 //]]></script>
 <?php wp_footer(); ?>
 </div>
