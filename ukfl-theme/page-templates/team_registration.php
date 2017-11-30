@@ -39,8 +39,8 @@ $admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
 	Secondary Team Names:<br />
 	<ul>'.implode("\n", $secondary_teams).'</ul>';
 $headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
-//wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
-wp_mail('online@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
+wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
+//wp_mail('online@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
 
 get_header();
 get_template_part('index', 'bannerstrip');
