@@ -46,7 +46,9 @@
 <!--Scroll To Top--> 
 <a href="#" class="scrollup"><i class="fa fa-chevron-up"></i></a>
 <!--/End of Scroll To Top--> 	
-<script>var ukflAjax = {"ajax_url":"<?php echo admin_url( 'admin-ajax.php' ); ?>"};</script>
+<script type='text/javascript'>//<![CDATA[
+		var ukflAjax = {"ajax_url":"<?php echo admin_url( 'admin-ajax.php' ); ?>"};
+//]]></script>
 <?php wp_footer(); ?>
 </div>
 </body>
