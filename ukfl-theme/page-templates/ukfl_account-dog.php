@@ -103,12 +103,12 @@ foreach($breeds as $b) {
 									<div class="col-sm-2">
 										<input type="text" name="microchip" id="microchip" class="input form-control" value=""  />
 									</div>
-									</div>
 									<label class="col-sm-2 control-label" for="sex">Sex</label>
 									<div class="col-sm-2">
 										<label class="radio-inline"><input type="radio" name="sex" value="Dog" <?php if($ukfl_dog['sex'] == 'Dog') { echo 'checked="checked"'; } ?>> Dog</label>
 										<label class="radio-inline"><input type="radio" name="sex" value="Bitch" <?php if($ukfl_dog['sex'] == 'Bitch') { echo 'checked="checked"'; } ?>> Bitch</label>
 									</div>
+								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="breed">Breed</label>
 									<div class="col-sm-4">
