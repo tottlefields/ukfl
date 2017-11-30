@@ -26,9 +26,9 @@
 				<?php if( $current_options['footer_social_media_enabled'] == 'on' ) { ?>
 				<div class="col-md-5">	
 					<ul class="social">
-					   <li class="facebook"><a href="<?php echo $current_options['footer_facebook_link']; ?>" data-toggle="tooltip" title="<?php _e('Facebook','busiprof'); ?>"><i class="fa fa-facebook"></i></a></li>
-					   <li class="twitter"><a href="<?php echo $current_options['footer_twitter_link']; ?>" data-toggle="tooltip" title="<?php _e('Twitter','busiprof'); ?>"><i class="fa fa-twitter"></i></a></li>
-					   <li class="instagram"><a href="<?php echo $current_options['footer_instagram_link']; ?>" data-toggle="tooltip" title="<?php _e('Instagram','busiprof'); ?>"><i class="fa fa-instagram"></i></a></li>
+					   <li class="facebook"><a href="<?php echo $current_options['footer_facebook_link']; ?>" target="_blank" data-toggle="tooltip" title="<?php _e('Facebook','busiprof'); ?>"><i class="fa fa-facebook"></i></a></li>
+					   <li class="twitter"><a href="<?php echo $current_options['footer_twitter_link']; ?>" target="_blank" data-toggle="tooltip" title="<?php _e('Twitter','busiprof'); ?>"><i class="fa fa-twitter"></i></a></li>
+					   <li class="instagram"><a href="<?php echo $current_options['footer_instagram_link']; ?>" target="_blank" data-toggle="tooltip" title="<?php _e('Instagram','busiprof'); ?>"><i class="fa fa-instagram"></i></a></li>
 					   <!-- <li class="linkedin"><a href="<?php echo $current_options['footer_linkedin_link']; ?>" data-toggle="tooltip" title="<?php _e('LinkedIn','busiprof'); ?>"><i class="fa fa-linkedin"></i></a></li>
 					   <li class="googleplus"><a href="<?php echo $current_options['footer_google_link']; ?>" data-toggle="tooltip" title="<?php _e('GooglePlus','busiprof'); ?>"><i class="fa fa-google-plus"></i></a></li>
 					   <li class="skype"><a href="<?php echo $current_options['footer_skype_link']; ?>" data-toggle="tooltip" title="<?php _e('Skype','busiprof'); ?>"><i class="fa fa-skype"></i></a></li> -->
