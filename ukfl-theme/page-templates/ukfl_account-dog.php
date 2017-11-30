@@ -25,7 +25,6 @@ if (isset($_POST['add_dog'])){
 			),
 	);
 	$dog_id = wp_insert_post( $dog_post );
-	echo debug_array($dog_post);
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=5]"); 
 	$js_for_footer = '
