@@ -6,7 +6,7 @@ function mandate_validator($input){
 }
 
 function subscription_validator($input){
-	wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', json_encode($input));
+	//wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', json_encode($input));
         if (preg_match('/Membership/', $input->name)){
         	$mandate = cpg_ukfl_get_mandate($input->links->mandate);
         	$customer = cpg_ukfl_get_customer($mandate->links->customer);
