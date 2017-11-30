@@ -32,7 +32,7 @@ if (isset($_POST['add_dog'])){
 	$js_for_footer = '
 <script type="text/javascript">
         jQuery(function ($) {
-		//$("a.gcp_redirect_flow5")[0].click();
+		$("a.gcp_redirect_flow5")[0].click();
 	 } );
 </script>';
 }else{
