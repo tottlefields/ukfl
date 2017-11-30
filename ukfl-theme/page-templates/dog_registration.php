@@ -1,5 +1,5 @@
 <?php
-//Template Name: Team Registration
+//Template Name: Dog Registration
 
 global $wpdb, $current_user;
 
