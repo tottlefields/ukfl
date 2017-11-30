@@ -22,7 +22,7 @@ global $wpdb, $current_user;
 							<div class="row">
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right">Edit</a></h3></div>
+										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right" style="display:none;">Edit</a></h3></div>
 										<div class="panel-body"></div>
 									</div>
 									<div class="panel panel-default">
