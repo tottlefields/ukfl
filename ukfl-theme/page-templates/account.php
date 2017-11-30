@@ -63,8 +63,8 @@ $dogs = get_dogs_for_account();
 if (count($dogs) > 0){ ?>
 	<div class="row">
 		<div class="col-md-12">
-			<table class="dogs-list table table-condensed"><tbody>
-<?php foreach ( $teams as $post ) : setup_postdata( $post ); 
+			<table class="events-list table table-condensed"><tbody>
+<?php foreach ( $dogs as $post ) : setup_postdata( $post ); 
 	?>
 				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
 					<td><?php the_title(); ?></td>
