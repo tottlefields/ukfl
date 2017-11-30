@@ -25,7 +25,7 @@ function generate_ukfl_number(){
 	$sql = "select max(user_login) from {$wpdb->prefix}users where user_login like '$year%'";
 	$ukfl_no = $wpdb->get_var( $sql );
 	if (!isset($ukfl_no)){ $ukfl_no = str_pad($year, 5, '0', STR_PAD_RIGHT); }
-	$ukfl_no++;
+	else{ $ukfl_no++; }
 	return $ukfl_no;
 }
 

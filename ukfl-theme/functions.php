@@ -54,7 +54,12 @@ function ukfl_enqueue_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'ukfl_enqueue_styles', 100);
-add_action ( 'wp_enqueue_scripts', 'ukfl_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'ukfl_enqueue_scripts' );
+
+function fontawesome_dashboard() {
+	wp_enqueue_style('fontawesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', '', '4.7.0', 'all');
+}
+add_action('admin_init', 'fontawesome_dashboard');
 
 function debug_array($array){
 	echo '<pre>';

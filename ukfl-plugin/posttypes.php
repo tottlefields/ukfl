@@ -81,12 +81,35 @@ function register_custom_posttypes() {
                 'has_archive'           => true,
                 'menu_icon'             => 'dashicons-location-alt',
 	);
+	
+	$dog_args = array(
+		'labels' => array(
+                        'name'                  => __( 'Dogs', 'ukfl' ),
+                        'singular_name'         => __( 'Dog', 'ukfl' ),
+                        'add_new_item'          => __( 'Add New Dog', 'ukfl' ),
+                        'edit_item'             => __( 'Edit Dog', 'ukfl' ),
+                        'new_item'              => __( 'New', 'ukfl' ),
+                        'view_item'             => __( 'View Dog', 'ukfl' ),
+                        'search_items'          => __( 'Search', 'ukfl' ),
+                        'not_found'             => __( 'No results found.', 'ukfl' ),
+                        'not_found_in_trash'    => __( 'No results found.', 'ukfl' ),
+                ),
+                'public'                => true,
+                'show_ui'               => true,
+                'publicly_queryable'    => true,
+                'exclude_from_search'   => false,
+                'hierarchical'          => false,
+                'rewrite'               => array( 'slug' => get_option('ukfl_dog_slug','dogs') ),
+				'supports' 				=> array( 'title', 'author', 'thumbnail' ),
+                'has_archive'           => false,
+	);
 
 	register_post_type('ukfl_team',  $team_args);
 	register_post_type('ukfl_sub-team',  $sub_team_args);
 	register_post_type('ukfl_event', $event_args);
+	register_post_type('ukfl_dog', $dog_args);
 	
-	register_taxonomy('dog-breeds', null,
+	register_taxonomy('dog-breeds', array('ukfl_dog'),
 			array(
 					'hierarchical' => false,
 					'label' => 'Dog Breeds',
@@ -98,7 +121,14 @@ function register_custom_posttypes() {
 // Hooking up our function to theme setup
 add_action( 'init', 'register_custom_posttypes' );
 
-
+function fontawesome_icon_dashboard() {
+	echo "<style type='text/css' media='screen'>
+			#adminmenu #menu-posts-ukfl_dog div.wp-menu-image:before {
+				font-family: Fontawesome !important;
+				content: '\\f1b0';
+			}";
+}
+add_action('admin_head', 'fontawesome_icon_dashboard');
 
 function is_ukfl_team(){
 	global $wp_query;
