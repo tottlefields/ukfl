@@ -70,7 +70,7 @@ if (count($dogs) > 0){ ?>
 					<td><?php the_title(); ?></td>
 					<td><?php echo get_post_meta(get_the_ID(), 'ukfl_dog_name', true); ?></td>
 					<td><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;<?php echo get_post_meta(get_the_ID(), 'ukfl_dog_points', true); ?></td>
-					<td><?php echo isset(get_post_meta(get_the_ID(), 'ukfl_dog_height', true)) ? get_post_meta(get_the_ID(), 'ukfl_dog_height', true) : "FH"; ?></td>
+					<td><?php echo (null !==(get_post_meta(get_the_ID(), 'ukfl_dog_height', true))) ? get_post_meta(get_the_ID(), 'ukfl_dog_height', true) : "FH"; ?></td>
 				</tr>
 <?php endforeach;
 wp_reset_postdata(); ?>	
