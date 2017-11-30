@@ -24,7 +24,7 @@ echo debug_array($_POST);
  */
 
 if (isset($_POST['add_dog'])){
-	$args = array(
+	$dog_post = array(
 			'post_title'  	=> $_POST['ukfl_no'],
 			'post_status' 	=> 'draft',
 			'post_author' 	=> get_current_user_id(),
@@ -40,11 +40,7 @@ if (isset($_POST['add_dog'])){
 					'ukfl_dog_sex'		=> $_POST['sex'],
 			),
 	);
-	
-	echo debug_array($args);
-	
-	
-	
+	$team_id = wp_insert_post( $dog_post );
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=5]"); 
 	$js_for_footer = '

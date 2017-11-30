@@ -6,13 +6,11 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
-$team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
-
 if (isset($_POST['add_team'])){
 	
 	$team_post = array(
 			'post_title'    => wp_strip_all_tags( $_POST['team_name'] ),
-			'post_status'   => 'pending',
+			'post_status'   => 'draft',
 			'post_author'	=> $current_user->ID,
 			'post_type'		=> 'ukfl_team'
 	);
@@ -25,7 +23,7 @@ if (isset($_POST['add_team'])){
 				array(
 						'post_parent'	=> $team_id,
 						'post_title'    => wp_strip_all_tags( $_POST['sub_team'][$i] ),
-						'post_status'   => 'pending',
+						'post_status'   => 'draft',
 						'post_author'	=> $current_user->ID,
 						'post_type'		=> 'ukfl_sub-team',
 						'meta_input'   => array(
@@ -33,11 +31,11 @@ if (isset($_POST['add_team'])){
 						)
 				)
 			);
-			array_push($secondary_teams, '<li>'.$_POST['sub_team'][$i].' - '.$team_types[$_POST['sub_team_type'][$i]].'</li>');
+			//array_push($secondary_teams, '<li>'.$_POST['sub_team'][$i].' - '.$team_types[$_POST['sub_team_type'][$i]].'</li>');
 		}
 	}
 	
-	$admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
+/*	$admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
 	Team Captain: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
 	Email Address: <strong>'.$current_user->user_email.'</strong><br />
 	UKFL Number: <strong>'.$current_user->user_login.'</strong><br /><br />
@@ -45,7 +43,7 @@ if (isset($_POST['add_team'])){
 	Secondary Team Names:<br />
 	<ul>'.implode("\n", $secondary_teams).'</ul>';
 	$headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
-	wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers);
+	wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers); */
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
