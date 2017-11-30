@@ -6,14 +6,15 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
+echo debug_array($_POST);
+
 
 if (isset($_POST['add_dog'])){
 	$content = do_shortcode("[gcp_redirect_flow ref=5]"); 
 	$js_for_footer = '
 <script type="text/javascript">
         jQuery(function ($) {
-		console.log($("a.gcp_redirect_flow6"));
-		$("a.gcp_redirect_flow5")[0].click();
+		//$("a.gcp_redirect_flow5")[0].click();
 	 } );
 </script>';
 }else{
