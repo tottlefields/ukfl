@@ -11,7 +11,7 @@
 
 <?php wp_head(); ?>
 
-<?php $favicon_dir = get_stylesheet_directory_uri() . '/assest/favicon'; ?>
+<?php $favicon_dir = get_stylesheet_directory_uri() . '/assets/favicon'; ?>
 
 	<link rel="apple-touch-icon" sizes="57x57" href="<?php echo $favicon_dir; ?>/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="<?php echo $favicon_dir; ?>/apple-icon-60x60.png">
