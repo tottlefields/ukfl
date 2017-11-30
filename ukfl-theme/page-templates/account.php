@@ -173,3 +173,10 @@ $events = get_events_for_teams($team_ids);
  
 <div class="clearfix"></div>
 <?php get_footer(); ?>
+<script type="text/javascript">
+jQuery(function ($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
