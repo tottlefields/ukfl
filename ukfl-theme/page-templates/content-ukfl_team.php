@@ -18,7 +18,7 @@
                         <span class="tag-links"><a href="<?php the_permalink(); ?>"><?php the_tags('', ', ', ''); ?></a></span>
                         <?php } ?>
 
-			<span class="entry-venue">Location: <a href="https://maps.google.co.uk/?q=Horsely Fen Farm, Chatteris, Cambridgeshire, PE16 6SH" target="_blank"><address>Horsely Fen Farm, Chatteris, Cambridgeshire, PE16 6SH</address></a></span>
+<!--			<span class="entry-venue">Location: <a href="https://maps.google.co.uk/?q=Horsely Fen Farm, Chatteris, Cambridgeshire, PE16 6SH" target="_blank"><address>Horsely Fen Farm, Chatteris, Cambridgeshire, PE16 6SH</address></a></span>	-->
                 </div>
 		</div>
                <div class="col-md-4 hidden-sm hidden-xs">
