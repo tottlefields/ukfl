@@ -57,7 +57,7 @@ wp_reset_postdata(); ?>
 								</div>
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Team(s)<a class="btn btn-sm btn-default pull-right" href="/account/teams">Add a Team</a></h3></div>
+										<div class="panel-heading"><h3>Your Team(s)<a class="btn btn-sm btn-default pull-right" href="/account/teams">Register a Team</a></h3></div>
 										<div class="panel-body">
 <?php
 $team_ids = array(); 
