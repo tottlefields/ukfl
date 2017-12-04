@@ -53,7 +53,8 @@ function create_ukfl_member($first_name, $last_name, $email){
 					'ID'		=> $user_id,
 					'first_name'=> $first_name,
 					'last_name'	=> $last_name,
-					'nickname'	=> $first_name.' '.$last_name
+					'nickname'	=> $first_name.' '.$last_name,
+					'display_name'	=> $first_name.' '.$last_name
 			)
 	);
 	$user = new WP_User($user_id);
