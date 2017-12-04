@@ -29,7 +29,7 @@ get_template_part('index', 'bannerstrip');
 											<h4 class="entry-title">Individual Membership</h4>
 											<p>Individual membership is for a single person aged 16 or over.<br />
 											This gives the member full voting rights.<br />
-											An email address is required.</p>
+											A unique email address is required.</p>
 										</div>
 										<div class="entry-content">
 											<?php if ($payment_links) { echo do_shortcode("[gcp_redirect_flow ref=1]"); } ?>
