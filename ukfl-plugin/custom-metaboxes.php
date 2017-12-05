@@ -93,10 +93,10 @@ function custom_event_meta_box_markup($post){
         wp_nonce_field(basename(__FILE__), "meta-box-nonce");
 
 	$postmeta = get_post_meta( $post->ID );
-	$teams = get_posts(
+/*	$teams = get_posts(
                 array(
                         'post_type'   => 'ukfl_team',
-                		'post_status' => array('publish', 'pending'),
+               		'post_status' => array('publish', 'pending'),
                         'orderby'     => 'title',
 		                'order'       => 'ASC',
 		                'numberposts' => -1
@@ -111,11 +111,7 @@ function custom_event_meta_box_markup($post){
 	foreach ( $teams as $team ) {
         	printf( '<option value="%s"%s>%s</option>', esc_attr( $team->ID ), selected( $selected, $team->ID, false ), esc_html( $team->post_title ) );
         }
-        echo '</select>';
-}
-
-function add_event_custom_meta_box($post){
-    add_meta_box("event-meta-box", "Event Details", "custom_event_meta_box_markup", "ukfl_event", "normal", "high", null);
+        echo '</select>';*/
 }
 
 function save_event_custom_meta_box($post_id){
@@ -129,6 +125,34 @@ function save_event_custom_meta_box($post_id){
 
 	if( isset( $_POST['event_host_team'] ) )
 		update_post_meta( $post_id, 'event_host_team', esc_attr( $_POST['event_host_team'] ) );
+}
+
+function add_event_custom_meta_box($post){
+    add_meta_box("event-host-meta-box", "Host Team", "custom_event_host_meta_box_markup", "ukfl_event", "side", "high", null);
+    add_meta_box("event-meta-box", "Event Details", "custom_event_meta_box_markup", "ukfl_event", "normal", "high", null);
+}
+
+function custom_event_host_meta_box_markup($post){
+	wp_nonce_field(basename(__FILE__), "meta-box-nonce");
+	
+	$teams = get_posts(
+		array(
+			'post_type'   => 'ukfl_team',
+ 		        'post_status' => array('publish'),
+			'orderby'     => 'title',
+        		'order'       => 'ASC',
+	        	'numberposts' => -1
+		)
+	);
+	
+	if ( !empty( $teams ) ) {
+		echo '<select name="parent_id" class="widefat">'; // !Important! Don't change the 'parent_id' name attribute.
+		echo '<option value="0">None</option>';
+		foreach ( $teams as $team ) {
+			printf( '<option value="%s"%s>%s</option>', esc_attr( $team->ID ), selected( $team->ID, $post->post_parent, false ), esc_html( $team->post_title ) );
+		}
+		echo '</select>';
+	}
 }
 
 
