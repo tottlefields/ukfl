@@ -124,7 +124,7 @@ img.bordered { padding: 4px; border: 1px solid #ddd; }
   -ms-transition: all .25s linear;
   transition: all .25s linear;
 }
-.events-list .event-date .event-day {
+.events-list .event-date .event-day, .events-list .event-details .event-title {
   color: #808080;
   font-size: 1.5em;
   font-weight: 600;
@@ -136,7 +136,26 @@ img.bordered { padding: 4px; border: 1px solid #ddd; }
   font-weight: 600;
   text-align: center;
 }
+.events-list .event-details .event-title {
+	text-align: left;
+}
 .events-list .event-date .event-venue,
 .events-list .event-date .event-price {
   white-space: nowrap;
 }
+div.img-div{
+height:75px;
+width:75px;
+overflow:hidden;
+border-radius:50%;
+}
+.img-div img{
+max-width: none;
+-webkit-transform:translate(-50%);
+-moz-transform: translate(-50%);
+-o-transform: translate(-50%);
+-ms-transform: translate(-50%);
+transform: translate(-50%);
+margin-left:37.5px;
+}
+

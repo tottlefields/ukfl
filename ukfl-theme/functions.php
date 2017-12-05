@@ -75,12 +75,12 @@ add_action( 'admin_init', 'add_admin_menu_separator' );
 
 function dateToSQL($date){
 	if ($date == ""){ return ""; }
-	return date_format(DateTime::createFromFormat('d/m/Y', $date), 'Y-m-d');
+	return date_format(DateTime::createFromFormat('d/m/Y', $date), 'Ymd');
 }
 
-function SQLToDate($date){
+function SQLToDate($date, $format='d/m/Y'){
 	if ($date == ""){ return ""; }
-	return date_format(DateTime::createFromFormat('Y-m-d', $date), 'd/m/Y');
+	return date_format(DateTime::createFromFormat('Ymd', $date), $format);
 }
 
 function debug_array($array){
