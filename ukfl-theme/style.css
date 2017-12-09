@@ -89,6 +89,7 @@ img.bordered { padding: 4px; border: 1px solid #ddd; }
 .service-box:nth-child(2) .box.selected { color: #00bcd4; }
 .service-box:nth-child(3) .box.selected { border-color: #4caf50;}
 
+.social li.instagram:hover { background-color: #d10869; }
 
 /*--------------------------------------------------------------------------
 +	Events List Style
