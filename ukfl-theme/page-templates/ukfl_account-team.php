@@ -6,6 +6,8 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
+$js_for_footer = '';
+
 if (isset($_POST['add_team'])){
 	
 	$team_post = array(
