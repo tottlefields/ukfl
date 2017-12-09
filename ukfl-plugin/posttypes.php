@@ -159,6 +159,18 @@ function is_ukfl_sub_team(){
         return false;
 }
 
+function is_ukfl_dog(){
+        global $wp_query;
+        if ($wp_query->query_vars['post_type'] == 'ukfl_dog') return true;
+        return false;
+}
+
+function is_ukfl_event(){
+        global $wp_query;
+        if ($wp_query->query_vars['post_type'] == 'ukfl_event') return true;
+        return false;
+}
+
 
 // List Clubs/Teams alphabetically
 add_filter('posts_orderby', 'club_team_orderby');
@@ -182,6 +194,13 @@ function ukfl_team_custom_columns($defaults) {
 		$defaults['author'] = 'Team Captain';
 		return $defaults;
 	}
+	if (is_ukfl_dog()){
+		unset($defaults['date']);
+		$defaults['title'] = "UKFL No.";
+	        $defaults['dog_name'] = "Dog's Name";
+                $defaults['author'] = 'Owner';
+                $defaults['team_name'] = 'Team';
+	}
 	return $defaults;
 }
 function ukfl_team_show_columns($column, $post_id){
@@ -189,5 +208,14 @@ function ukfl_team_show_columns($column, $post_id){
 		case 'club_logo':
 			echo get_the_post_thumbnail($post_id, 'thumbnail');
 			break;
+                case 'dog_name':
+                        echo get_post_meta($post_id, 'ukfl_dog_name', true) ;
+                        break;
+		case 'team_name':
+			$club_id = wp_get_post_parent_id($post_id);
+			echo get_the_title( $club_id );
+			break;	
 	}
 }
+
+

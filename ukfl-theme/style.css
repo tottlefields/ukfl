@@ -1,7 +1,7 @@
 /*
 Theme Name: UKFL
 Theme URI:
-Version: 1.0.5
+Version: 1.0.6
 Template: busiprof-pro
 */
 @import url('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css');
@@ -136,6 +136,11 @@ img.bordered { padding: 4px; border: 1px solid #ddd; }
   font-size: 1.1em;
   font-weight: 600;
   text-align: center;
+}
+.events-list .event-details .event-venue{
+ font-size: 0.8em;
+ font-style: italic;
+ color: #CFCFCF;
 }
 .events-list .event-details .event-title {
 	text-align: left;
