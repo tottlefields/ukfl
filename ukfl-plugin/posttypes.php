@@ -119,6 +119,18 @@ function register_custom_posttypes() {
 					)
 			)
 	);
+	
+	register_taxonomy('team-regions', array('ukfl_team'),
+			array(
+					'hierarchical' => false,
+					'label' => 'UKFL Regions',
+					'singular_label' => 'UKFL Region',
+					'rewrite' => true,
+					'capabilities' => array(
+							'assign_terms' => 'read'
+					)
+			)
+	);
 }
 // Hooking up our function to theme setup
 add_action( 'init', 'register_custom_posttypes' );
