@@ -65,17 +65,40 @@ include(locate_template('index-bannerstrip.php'))
 						<?php if (isset($_POST['add_event'])){ echo $content; } else {?>
 							<?php the_post(); the_content(); ?>
 							<form method="post" class="form form-horizontal">
+							
+					    		<div class="row">
+					    			<div class="col-md-7 col-sm-12">
+										<div class="panel panel-default">					
+											<div class="panel-heading">
+												<h3 class="panel-title">Host Details</h3>
+											</div>
+											<div class="panel-body">
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="current_club">Host Club</label>
+													<div class="col-sm-4">
+														<?php echo get_club_dropdown_menu(); ?>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+					    			<div class="col-md-5 col-sm-12">
+					    				<div class="form-group">
+											<div class="controls">
+												<input type="submit" name="add_event" id="add_event" value="Register Event" class="btn btn-success btn-busiprof pull-right" />
+											</div>
+										</div>   
+					    			</div>
+								</div> <!--  end of the row  -->
+							
+							
 								<div class="form-group well well-lg">
 									<label class="col-sm-2 control-label" for="team_name">Team Name</label>
                 					<div class="col-sm-10">
                 						<input type="text" name="team_name" id="team_name" class="input form-control" value="" />
                 					</div>
                 				</div>
-								<div class="form-group">
-									<div class="controls">
-										<input type="submit" name="add_event" id="add_event" value="Register Event" class="btn btn-success btn-busiprof pull-right" />
-									</div>
-								</div>    
+								 
 							</form>
 							<?php } ?>
 						</div>
