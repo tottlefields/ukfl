@@ -63,8 +63,14 @@ else{
 				daysOfWeekHighlighted: "0,6",
 				autoclose: true,
 				todayHighlight: true,
-				orientation: "bottom"
+				orientation: "bottom auto"
 			});
+			$("#ukfl_event_start_date").datepicker().on(picker_event, function(e) {
+        		// `e` here contains the extra attributes
+        		console.log(e);
+				var date = $("#ukfl_event_start_date").datepicker("getDate");
+				console.log(date);
+    		});
 			$("#ukfl_event_start_date").datepicker({
 				onSelect: function(dateText, inst) {
 					var date = $("#ukfl_event_start_date").datepicker("getDate");
@@ -143,11 +149,11 @@ include(locate_template('index-bannerstrip.php'))
 												<div class="form-group">
 													<label for="ukfl_event_start_date" class="col-sm-2 control-label">Start Date</label>
 													<div class="col-sm-4">
-														<input class="form-control ukfl-datepicker" type="text" id="ukfl_event_start_date" name="ukfl_event_start_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
+														<input class="form-control ukfl-datepicker" type="text" id="ukfl_event_start_date" name="ukfl_event_start_date" required="required" placeholder="dd/mm/yyyy">
 													</div>
 													<label for="ukfl_event_end_date" class="col-sm-2 control-label">End Date</label>
 													<div class="col-sm-4">
-														<input class="form-control ukfl-datepicker" type="text" id="ukfl_event_end_date" name="ukfl_event_end_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
+														<input class="form-control ukfl-datepicker" type="text" id="ukfl_event_end_date" name="ukfl_event_end_date" required="required" placeholder="dd/mm/yyyy">
 													</div>
 												</div>						
 												<div class="form-group">
