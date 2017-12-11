@@ -91,6 +91,51 @@ include(locate_template('index-bannerstrip.php'))
 												</div>
 											</div>
 										</div>
+										
+										<div class="panel panel-default">					
+											<div class="panel-heading">
+												<h3 class="panel-title">Event Details</h3>
+											</div>
+											<div class="panel-body">						
+												<div class="form-group">
+													<label for="ukfl_event_venue" class="col-sm-2 control-label">Venue</label>
+													<div class="col-sm-10">
+														<div class="input-group">
+															<input class="form-control" type="text" id="ukfl_event_venue" name="ukfl_event_venue" required="required">
+														</div>
+													</div>
+												</div>						
+												<div class="form-group">
+													<label for="ukfl_event_postcode" class="col-sm-2 control-label">Postcode</label>
+													<div class="col-sm-2">
+														<div class="input-group">
+															<input class="postcode form-control" type="text" id="ukfl_event_postcode" name="ukfl_event_postcode" maxlength="10" required="required">
+														</div>
+													</div>
+													<label for="tourn_title" class="col-sm-2 control-label">Short Title</label>
+													<div class="col-sm-6">
+														<input type="text" class="form-control" id="tourn_title" name="tourn_title" required="required">
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="ukfl_event_start_date" class="col-sm-2 control-label">Start Date</label>
+													<div class="col-sm-2">
+														<input class="form-control datepicker" type="text" id="ukfl_event_start_date" name="ukfl_event_start_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
+													</div>
+													<label for="ukfl_event_end_date" class="col-sm-2 control-label">End Date</label>
+													<div class="col-sm-2">
+														<input class="form-control datepicker" type="text" id="ukfl_event_end_date" name="ukfl_event_end_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
+													</div>
+												</div>						
+												<div class="form-group">
+													<label for="tourn_notes" class="col-sm-2 control-label">Notes</label>
+													<div class="col-sm-10">
+														<textarea class="form-control" rows="4" name="tourn_notes" id="tourn_notes"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>										
+										
 									</div>
 					    			<div class="col-md-5 col-sm-12">
 					    				<div class="form-group">
@@ -100,14 +145,6 @@ include(locate_template('index-bannerstrip.php'))
 										</div>   
 					    			</div>
 								</div> <!--  end of the row  -->
-							
-							
-								<div class="form-group well well-lg">
-									<label class="col-sm-2 control-label" for="team_name">Team Name</label>
-                					<div class="col-sm-10">
-                						<input type="text" name="team_name" id="team_name" class="input form-control" value="" />
-                					</div>
-                				</div>
 								 
 							</form>
 							<?php } ?>
