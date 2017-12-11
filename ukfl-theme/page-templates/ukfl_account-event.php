@@ -65,11 +65,9 @@ else{
 				todayHighlight: true,
 				orientation: "bottom auto"
 			});
-			$("#ukfl_event_start_date").datepicker().on(picker_event, function(e) {
+			$("#ukfl_event_start_date").datepicker().on("changeDate", function(e) {
         		// `e` here contains the extra attributes
-        		console.log(e);
-				var date = $("#ukfl_event_start_date").datepicker("getDate");
-				console.log(date);
+				$("#ukfl_event_end_date").datepicker("setDate", e.date);
     		});
 			$("#ukfl_event_start_date").datepicker({
 				onSelect: function(dateText, inst) {
