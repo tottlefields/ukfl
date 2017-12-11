@@ -100,30 +100,26 @@ include(locate_template('index-bannerstrip.php'))
 												<div class="form-group">
 													<label for="ukfl_event_venue" class="col-sm-2 control-label">Venue</label>
 													<div class="col-sm-10">
-														<div class="input-group">
-															<input class="form-control" type="text" id="ukfl_event_venue" name="ukfl_event_venue" required="required">
-														</div>
+														<input class="form-control" type="text" id="ukfl_event_venue" name="ukfl_event_venue" required="required">
 													</div>
 												</div>						
 												<div class="form-group">
 													<label for="ukfl_event_postcode" class="col-sm-2 control-label">Postcode</label>
-													<div class="col-sm-2">
-														<div class="input-group">
-															<input class="postcode form-control" type="text" id="ukfl_event_postcode" name="ukfl_event_postcode" maxlength="10" required="required">
-														</div>
+													<div class="col-sm-4">
+														<input class="postcode form-control" type="text" id="ukfl_event_postcode" name="ukfl_event_postcode" maxlength="10" required="required">
 													</div>
 													<label for="tourn_title" class="col-sm-2 control-label">Short Title</label>
-													<div class="col-sm-6">
+													<div class="col-sm-4">
 														<input type="text" class="form-control" id="tourn_title" name="tourn_title" required="required">
 													</div>
 												</div>
 												<div class="form-group">
 													<label for="ukfl_event_start_date" class="col-sm-2 control-label">Start Date</label>
-													<div class="col-sm-2">
+													<div class="col-sm-4">
 														<input class="form-control datepicker" type="text" id="ukfl_event_start_date" name="ukfl_event_start_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
 													</div>
 													<label for="ukfl_event_end_date" class="col-sm-2 control-label">End Date</label>
-													<div class="col-sm-2">
+													<div class="col-sm-4">
 														<input class="form-control datepicker" type="text" id="ukfl_event_end_date" name="ukfl_event_end_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
 													</div>
 												</div>						
