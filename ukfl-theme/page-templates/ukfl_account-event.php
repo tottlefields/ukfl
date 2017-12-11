@@ -51,6 +51,31 @@ if (isset($_POST['add_event'])){
 	 } );
 </script>';
 }
+else{
+	$js_for_footer = '
+<script type="text/javascript">
+        jQuery(function ($) {
+			$.validate();
+			
+			$(".ukfl-datepicker").datepicker({
+				format: "dd/mm/yyyy",
+				weekStart: 1,
+				daysOfWeekHighlighted: "0,6",
+				autoclose: true,
+				todayHighlight: true,
+				orientation: "bottom"
+			});
+			$("#ukfl_event_start_date").datepicker({
+				onSelect: function(dateText, inst) {
+					var date = $("#ukfl_event_start_date").datepicker("getDate");
+					$("#ukfl_event_end_date").datepicker("setDate", date);
+					//date.setMonth(date.getMonth() - 1)
+					//$("#close_date").datepicker("setDate", date);
+				}
+			});
+	 } );	
+</script>';
+}
 
 get_header();
 include(locate_template('index-bannerstrip.php'))
@@ -118,11 +143,11 @@ include(locate_template('index-bannerstrip.php'))
 												<div class="form-group">
 													<label for="ukfl_event_start_date" class="col-sm-2 control-label">Start Date</label>
 													<div class="col-sm-4">
-														<input class="form-control datepicker" type="text" id="ukfl_event_start_date" name="ukfl_event_start_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
+														<input class="form-control ukfl-datepicker" type="text" id="ukfl_event_start_date" name="ukfl_event_start_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
 													</div>
 													<label for="ukfl_event_end_date" class="col-sm-2 control-label">End Date</label>
 													<div class="col-sm-4">
-														<input class="form-control datepicker" type="text" id="ukfl_event_end_date" name="ukfl_event_end_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
+														<input class="form-control ukfl-datepicker" type="text" id="ukfl_event_end_date" name="ukfl_event_end_date" data-validation="date" data-validation-format="dd/mm/yyyy" required="required" placeholder="dd/mm/yyyy">
 													</div>
 												</div>						
 												<div class="form-group">
