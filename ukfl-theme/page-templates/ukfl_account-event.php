@@ -76,7 +76,18 @@ include(locate_template('index-bannerstrip.php'))
 												<div class="form-group">
 													<label class="col-sm-2 control-label" for="host_team">Host Team</label>
 													<div class="col-sm-10">
-														<?php echo get_club_dropdown_menu("host_team", "Select Host Team..."); ?>
+														<?php echo get_club_dropdown_menu("host_team", "Select Host Team...", null); ?>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="to_name">TO Name</label>
+													<div class="col-sm-4">
+														<input type="text" name="to_name" id="to_name" class="input form-control" value="<?php echo $current_user->user_firstname.' '.$current_user->user_lastname; ?>" readonly />
+													</div>
+													<label class="col-sm-2 control-label" for="to_email">TO Email</label>
+													<div class="col-sm-4">
+														<input type="text" name="to_email" id="to_email" class="input form-control" value="<?php echo $current_user->user_email; ?>" readonly />
+														<input type="hidden" name="owner_ukfl" id="owner_ukfl" value="<?php echo $current_user->user_login; ?>" />
 													</div>
 												</div>
 											</div>
