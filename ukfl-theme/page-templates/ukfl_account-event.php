@@ -10,8 +10,12 @@ $js_for_footer = '';
 
 if (isset($_POST['add_event'])){
 	
-	require_once '../assets/inc/Postcodes-IO-PHP.php';
+	require_once get_stylesheet_directory().'/assets/inc/Postcodes-IO-PHP.php';
 	
+	$postcode = new Postcode();
+	$lookup = $postcode->lookup($_POST['ukfl_event_postcode']);
+	debug_array($lookup);
+
 	debug_array($_POST);
 	exit;
 	
@@ -22,7 +26,7 @@ if (isset($_POST['add_event'])){
 			'post_author'	=> $current_user->ID,
 			'post_type'		=> 'ukfl_event',
 			'meta_input'   => array(
-					'ukfl_event_start_date' => '',
+					'ukfl_event_start_date' => dateToSQL($_POST['ukfl_event_start_date']),
 					'ukfl_event_postcode' => '',
 					'ukfl_event_lat' => '',
 					'ukfl_event_long' => '',
