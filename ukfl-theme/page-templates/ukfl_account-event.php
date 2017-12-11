@@ -28,7 +28,7 @@ if (isset($_POST['add_event'])){
 			'meta_input'   => array(
 					'ukfl_event_start_date' => $start_date,
 					'ukfl_event_postcode' => $_POST['ukfl_event_postcode'],
-					'ukfl_event_lat' => $lookup->longitude,
+					'ukfl_event_lat' => $lookup->latitude,
 					'ukfl_event_long' => $lookup->longitude,
 					'ukfl_event_title' => $team_name." - ".$_POST['ukfl_event_title'],
 					'ukfl_event_venue' => $_POST['ukfl_event_venue']
