@@ -14,26 +14,29 @@ if (isset($_POST['add_event'])){
 	
 	$postcode = new Postcode();
 	$lookup = $postcode->lookup($_POST['ukfl_event_postcode']);
-	debug_array($lookup);
-
-	debug_array($_POST);
-	exit;
+	
+	$start_date = dateToSQL($_POST['ukfl_event_start_date']);
+	$team_name = get_the_title($_POST['host_team']);
+	$event_title = str_replace(" ", "-", $team_name)."_".SQLToDate($start_date, 'jMy');
 	
 	$event_post = array(
-			'post_parent'	=> $_POST['team_id'],
-			'post_title'    => wp_strip_all_tags( $_POST['team_name'] ),
+			'post_parent'	=> $_POST['host_team'],
+			'post_title'    => $event_title,
 			'post_status'   => 'draft',
 			'post_author'	=> $current_user->ID,
 			'post_type'		=> 'ukfl_event',
 			'meta_input'   => array(
-					'ukfl_event_start_date' => dateToSQL($_POST['ukfl_event_start_date']),
-					'ukfl_event_postcode' => '',
-					'ukfl_event_lat' => '',
-					'ukfl_event_long' => '',
-					'ukfl_event_title' => '',
-					'ukfl_event_venue' => ''
+					'ukfl_event_start_date' => $start_date,
+					'ukfl_event_postcode' => $_POST['ukfl_event_postcode'],
+					'ukfl_event_lat' => $lookup->longitude,
+					'ukfl_event_long' => $lookup->longitude,
+					'ukfl_event_title' => $team_name." - ".$_POST['ukfl_event_title'],
+					'ukfl_event_venue' => $_POST['ukfl_event_venue']
 			)
 	);
+
+	debug_array($event_post);
+	exit;
 	$event_id = wp_insert_post( $event_post );
 	
 	
@@ -121,7 +124,6 @@ include(locate_template('index-bannerstrip.php'))
 													</div>
 													<div class="col-sm-6">
 														<input type="text" name="to_email" id="to_email" class="input form-control" value="<?php echo $current_user->user_email; ?>" readonly />
-														<input type="hidden" name="owner_ukfl" id="owner_ukfl" value="<?php echo $current_user->user_login; ?>" />
 													</div>
 												</div>
 											</div>
@@ -143,9 +145,9 @@ include(locate_template('index-bannerstrip.php'))
 													<div class="col-sm-4">
 														<input class="postcode form-control" type="text" id="ukfl_event_postcode" name="ukfl_event_postcode" maxlength="10" required="required">
 													</div>
-													<label for="tourn_title" class="col-sm-2 control-label">Short Title</label>
+													<label for="ukfl_event_title" class="col-sm-2 control-label">Short Title</label>
 													<div class="col-sm-4">
-														<input type="text" class="form-control" id="tourn_title" name="tourn_title" required="required">
+														<input type="text" class="form-control" id="ukfl_event_title" name="ukfl_event_title" required="required">
 													</div>
 												</div>
 												<div class="form-group">
