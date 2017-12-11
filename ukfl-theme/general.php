@@ -59,7 +59,7 @@ function get_options_for_breeds($slug, $breeds, $selected){
 	return $options;
 }
 
-function get_club_dropdown_menu($selected) {
+function get_club_dropdown_menu($name="current_club", $option0="Select Current Club...", $selected) {
 	global$wpdb;
 	$options = '';	
 	
@@ -79,8 +79,8 @@ function get_club_dropdown_menu($selected) {
 	}
 	
 	return '
-	<select name="current_club" class="form-control">
-		<option value="0">Select Current Club...</option>
+	<select name="'.$name.'" class="form-control">
+		<option value="0">'.$option0.'</option>
 		'.$options.'
 	</select>';
 }

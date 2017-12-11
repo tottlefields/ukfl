@@ -74,9 +74,9 @@ include(locate_template('index-bannerstrip.php'))
 											</div>
 											<div class="panel-body">
 												<div class="form-group">
-													<label class="col-sm-2 control-label" for="current_club">Host Club</label>
-													<div class="col-sm-4">
-														<?php echo get_club_dropdown_menu(); ?>
+													<label class="col-sm-2 control-label" for="host_team">Host Team</label>
+													<div class="col-sm-10">
+														<?php echo get_club_dropdown_menu("host_team", "Select Host Team..."); ?>
 													</div>
 												</div>
 											</div>
