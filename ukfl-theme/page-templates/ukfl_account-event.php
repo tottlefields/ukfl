@@ -10,6 +10,8 @@ $js_for_footer = '';
 
 if (isset($_POST['add_event'])){
 	
+	require_once '../assets/inc/Postcodes-IO-PHP.php';
+	
 	debug_array($_POST);
 	exit;
 	
