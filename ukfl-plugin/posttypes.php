@@ -190,8 +190,10 @@ add_action( 'manage_posts_custom_column' , 'ukfl_team_show_columns', 10, 2 );
 function ukfl_team_custom_columns($defaults) {
 	global $wp_query;
 	if (is_ukfl_team()){
+		$defaults['region'] = 'UKFL Region';
 		$defaults['club_logo'] = 'Club Logo';
 		$defaults['author'] = 'Team Captain';
+		$defaults['title'] = 'Team Name';
 		return $defaults;
 	}
 	if (is_ukfl_dog()){
@@ -205,6 +207,9 @@ function ukfl_team_custom_columns($defaults) {
 }
 function ukfl_team_show_columns($column, $post_id){
 	switch ($column) {
+		case 'region':
+			echo get_the_term_list( $post_id, 'team-regions', '', ', ' );
+			break;
 		case 'club_logo':
 			echo get_the_post_thumbnail($post_id, 'thumbnail');
 			break;
