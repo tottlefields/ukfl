@@ -12,7 +12,7 @@ if (isset($_POST['add_dog'])){
 			'post_name'  	=> $_POST['ukfl_no'],
 			'post_status' 	=> 'draft',
 			'post_author' 	=> get_current_user_id(),
-			'post_parent'	=> $_POST['current_club'],
+			'post_parent'	=> $_POST['current_team'],
 			'post_type'		=> 'ukfl_dog',
 			'tax_input'		=> array(
 					'dog-breeds' => array(intval($_POST['breed'])),
@@ -121,9 +121,9 @@ foreach($breeds as $b) {
 											<?php echo get_options_for_breeds('dog-breeds', $dogBreeds, $dog['breed']); ?>
 										</select>
 									</div>
-									<label class="col-sm-2 control-label" for="current_club">Flyball Club</label>
+									<label class="col-sm-2 control-label" for="current_team">Flyball Club</label>
 									<div class="col-sm-4">
-										<?php echo get_club_dropdown_menu($dog->post_parent); ?>
+										<?php echo get_club_dropdown_menu("current_team", "Select Current Team...", $dog->post_parent); ?>
 									</div>
 								</div>
 								<div class="form-group">
