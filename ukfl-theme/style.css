@@ -6,6 +6,7 @@ Template: busiprof-pro
 */
 @import url('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css');
 
+.comments-link { display: none; }
 table{ table-layout: auto; }
 div.slide-caption { display:none; }
 p, .entry-content { margin-bottom: 20px; }
@@ -25,6 +26,7 @@ img.bordered { padding: 4px; border: 1px solid #ddd; }
 	vertical-align: baseline;
 	content: "\f041";
 }
+.fa-file-pdf-o { color: darkred; }
 
 .datepicker-dropdown { background-color: white; }
 .datepicker table { border:0px; }
