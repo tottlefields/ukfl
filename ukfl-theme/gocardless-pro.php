@@ -65,7 +65,14 @@ function subscription_validator($input){
         	return;
         }
 }
+
+function subscription_validator($input){
+	wp_mail(get_option('admin_email'), 'gcp_successful_oneoff_amount - oneoff_validator', json_encode($input));
+	
+}
+
 add_action('gcp_successful_mandate_setup', 'mandate_validator');
 add_action('gcp_successful_payment_plan', 'subscription_validator');
+add_action('gcp_successful_oneoff_amount', 'oneoff_validator');
 
 ?>
