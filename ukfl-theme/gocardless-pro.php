@@ -17,7 +17,7 @@ function mandate_validator($input){
 
 function subscription_validator($input){
 	//wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', $input->description);
-        if (property_exists($input, 'name') && preg_match('/Membership/', $input->name)){
+        /*if (property_exists($input, 'name') && preg_match('/Membership/', $input->name)){
         	$mandate = cpg_ukfl_get_mandate($input->links->mandate);
         	$customer = cpg_ukfl_get_customer($mandate->links->customer);
         	$user = create_ukfl_member($customer->given_name, $customer->family_name, $customer->email);
