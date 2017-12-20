@@ -40,9 +40,9 @@ if (isset($_POST['add_event'])){
 	);
 
 	debug_array($event_post);
-	exit;
 	$event_id = wp_insert_post( $event_post );
 	
+	exit;
 	
 /*	$admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
 	Team Captain: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />

@@ -83,7 +83,7 @@ wp_reset_postdata(); ?>
 								</div>
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Events<a class="btn btn-sm btn-default pull-right" style="display:none;">Add an Event</a></h3></div>
+										<div class="panel-heading"><h3>Your Events<a href="/account/events/" class="btn btn-sm btn-default pull-right">Add an Event</a></h3></div>
 										<div class="panel-body">
 <?php
 if (count($team_ids) > 0){
