@@ -24,8 +24,8 @@ $admin_msg = 'New event registration on '.get_bloginfo('name').':<br /><br />
 	Host Team: <strong>'.get_the_title(wp_get_post_parent_id($event->ID)).'</strong><br /><br />
 	Venue: <strong>'.get_post_meta($event->ID, 'ukfl_event_venue', 1).', '.get_post_meta($event->ID, 'ukfl_event_postcode', 1).'</strong><br /><br />';
 $headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
-//wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Event Registration', $admin_msg, $headers);
-wp_mail('online@ukflyball.org.uk', '['.get_bloginfo('name').'] New Event Registration', $admin_msg, $headers);
+wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Event Registration', $admin_msg, $headers);
+//wp_mail('online@ukflyball.org.uk', '['.get_bloginfo('name').'] New Event Registration', $admin_msg, $headers);
 
 get_header();
 get_template_part('index', 'bannerstrip');
