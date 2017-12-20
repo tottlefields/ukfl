@@ -44,19 +44,19 @@ if (isset($_POST['add_event'])){
 	);
 
 	debug_array($event_post);
-	$event_id = wp_insert_post( $event_post );
+	//$event_id = wp_insert_post( $event_post );
 	
-	exit;
-	
-/*	$admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
+	$admin_msg = 'New event registration on '.get_bloginfo('name').':<br /><br />
 	Team Captain: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
 	Email Address: <strong>'.$current_user->user_email.'</strong><br />
 	UKFL Number: <strong>'.$current_user->user_login.'</strong><br /><br />
-	Team Name: <strong>'.wp_strip_all_tags( $_POST['team_name'] ).'</strong><br /><br />
-	Secondary Team Names:<br />
-	<ul>'.implode("\n", $secondary_teams).'</ul>';
+	Host Team: <strong>'.$team_name.'</strong><br /><br />
+	Venue: <strong>'.$_POST['ukfl_event_venue'].', '.$_POST['ukfl_event_postcode'].'</strong><br /><br />';
 	$headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
-	wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers); */
+	//wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Event Registration', $admin_msg, $headers); 
+	wp_mail('online@ukflyball.org.uk', '['.get_bloginfo('name').'] New Event Registration', $admin_msg, $headers); 
+	
+	exit;
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=6]"); 
 	$js_for_footer = '
