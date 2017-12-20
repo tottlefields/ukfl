@@ -99,8 +99,6 @@ include(locate_template('index-bannerstrip.php'))
 							<?php the_post(); the_content(); ?>
 							<form method="post" class="form form-horizontal">
 							
-					    		<div class="row">
-					    			<div class="col-md-7 col-sm-12">
 										<div class="panel panel-default">					
 											<div class="panel-heading">
 												<h3 class="panel-title">Host Details</h3>
@@ -130,7 +128,7 @@ include(locate_template('index-bannerstrip.php'))
 											</div>
 											<div class="panel-body">						
 												<div class="form-group">
-													<label for="ukfl_event_venue" class="col-sm-2 control-label">Venue</label>
+													<label for="ukfl_event_venue" class="col-sm-2 control-label">Venue Address</label>
 													<div class="col-sm-10">
 														<input class="form-control" type="text" id="ukfl_event_venue" name="ukfl_event_venue" required="required">
 													</div>
@@ -156,23 +154,19 @@ include(locate_template('index-bannerstrip.php'))
 													</div>
 												</div>						
 												<div class="form-group">
-													<label for="tourn_notes" class="col-sm-2 control-label">Notes</label>
+													<label for="tourn_notes" class="col-sm-2 control-label">Notes<br /><small><em>Please fill in team types being offered.</em></small></label>
 													<div class="col-sm-10">
 														<textarea class="form-control" rows="4" name="tourn_notes" id="tourn_notes"></textarea>
 													</div>
 												</div>
 											</div>
 										</div>										
-										
-									</div>
-					    			<div class="col-md-5 col-sm-12">
+									<div class="alert alert-info">On clicking the "Register Event" button, you will be redirected to the external GoCardless website to create a one-off pyament for this event and the event request will be forwarded to the UKFL&copy; secretary who will contact you in due time.</div>	
 					    				<div class="form-group">
 											<div class="controls">
 												<input type="submit" name="add_event" id="add_event" value="Register Event" class="btn btn-success btn-busiprof pull-right" />
 											</div>
 										</div>   
-					    			</div>
-								</div> <!--  end of the row  -->
 								 
 							</form>
 							<?php } ?>
