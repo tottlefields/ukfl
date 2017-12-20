@@ -68,6 +68,21 @@ function subscription_validator($input){
 
 function subscription_validator($input){
 	wp_mail(get_option('admin_email'), 'gcp_successful_oneoff_amount - oneoff_validator', json_encode($input));
+        
+        if (preg_match('/Event/', $input->name)){
+        	$current_user = wp_get_current_user();
+        	$args = array(
+        			'author'        =>  $current_user->ID,
+        			'post_type'		=> 'ukfl_event',
+        			'orderby'       =>  'ID',
+        			'order'         =>  'DESC',
+        			'posts_per_page' => 1
+        	);
+        	$events = get_posts( $args );
+        	$event = $events[0];
+        	add_post_meta( $event->ID, 'ukfl_mandate_event', $input->links->mandate, 1 );
+        	return;
+        }
 	
 }
 
