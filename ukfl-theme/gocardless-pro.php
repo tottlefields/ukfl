@@ -6,8 +6,8 @@ function mandate_validator($input){
 }
 
 function subscription_validator($input){
-	//wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', json_encode($input));
-        if (preg_match('/Membership/', $input->name)){
+	//wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', $input->description);
+        if (property_exists($input, 'name') && preg_match('/Membership/', $input->name)){
         	$mandate = cpg_ukfl_get_mandate($input->links->mandate);
         	$customer = cpg_ukfl_get_customer($mandate->links->customer);
         	$user = create_ukfl_member($customer->given_name, $customer->family_name, $customer->email);
@@ -20,44 +20,46 @@ function subscription_validator($input){
 			return;
         }
         
-        if (preg_match('/Team/', $input->name)){
+        if (property_exists($input, 'name') && preg_match('/Team/', $input->name)){
         	$current_user = wp_get_current_user();
         	$args = array(
         			'author'        =>  $current_user->ID,
         			'post_type'	=> 'ukfl_team',
         			'orderby'       =>  'ID',
         			'order'         =>  'DESC',
-        			'posts_per_page' => 1
+        			'posts_per_page' => 1,
+				'post_status'   => 'pending'
         	);
         	$teams = get_posts( $args );
         	$team = $teams[0];
         	add_post_meta( $team->ID, 'ukfl_mandate_team', $input->links->mandate, 1 );
         	return;
         }
-        
-        if (preg_match('/Event/', $input->name)){
+       
+        if (property_exists($input, 'description') && preg_match('/Event/', $input->description)){
         	$current_user = wp_get_current_user();
         	$args = array(
         			'author'        =>  $current_user->ID,
         			'post_type'		=> 'ukfl_event',
         			'orderby'       =>  'ID',
         			'order'         =>  'DESC',
-        			'posts_per_page' => 1
+        			'posts_per_page' => 1,
+				'post_status'	=> 'pending'
         	);
         	$events = get_posts( $args );
         	$event = $events[0];
-        	add_post_meta( $event->ID, 'ukfl_mandate_event', $input->links->mandate, 1 );
+        	add_post_meta( $event->ID, 'ukfl_payment_event', $input->id, 1 );
         	return;
         }
         
-        if (preg_match('/Dog/', $input->name)){
+        if (property_exists($input, 'name') && preg_match('/Dog/', $input->name)){
         	$current_user = wp_get_current_user();
         	$args = array(
         			'author'        =>  $current_user->ID,
         			'post_type'		=> 'ukfl_dog',
         			'orderby'       =>  'ID',
         			'order'         =>  'DESC',
-        			'posts_per_page' => 1
+        			'posts_per_page' => 1,
         	);
         	$dogs = get_posts( $args );
         	$dog = $dogs[0];
@@ -66,28 +68,7 @@ function subscription_validator($input){
         }
 }
 
-function subscription_validator($input){
-	wp_mail(get_option('admin_email'), 'gcp_successful_oneoff_amount - oneoff_validator', json_encode($input));
-        
-        if (preg_match('/Event/', $input->name)){
-        	$current_user = wp_get_current_user();
-        	$args = array(
-        			'author'        =>  $current_user->ID,
-        			'post_type'		=> 'ukfl_event',
-        			'orderby'       =>  'ID',
-        			'order'         =>  'DESC',
-        			'posts_per_page' => 1
-        	);
-        	$events = get_posts( $args );
-        	$event = $events[0];
-        	add_post_meta( $event->ID, 'ukfl_mandate_event', $input->links->mandate, 1 );
-        	return;
-        }
-	
-}
-
 add_action('gcp_successful_mandate_setup', 'mandate_validator');
 add_action('gcp_successful_payment_plan', 'subscription_validator');
-add_action('gcp_successful_oneoff_amount', 'oneoff_validator');
 
 ?>
