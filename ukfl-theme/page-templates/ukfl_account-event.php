@@ -22,8 +22,8 @@ if (isset($_POST['add_event'])){
 	$open_date = new DateTime($start_date);
 	$open_date->sub(new DateInterval('P60D'));
 	$interval = 4 - $open_date->format('N');
-	if ($interval > 0){ $open_date->add(); }
-	elseif ($interval < 0){ $interval *= -1; $open_date->sub(); }
+	if ($interval > 0){ $open_date->add(new DateInterval('P'.$interval.'D')); }
+	elseif ($interval < 0){ $interval *= -1; $open_date->sub(new DateInterval('P'.$interval.'D')); }
 	
 	$event_post = array(
 			'post_parent'	=> $_POST['host_team'],
