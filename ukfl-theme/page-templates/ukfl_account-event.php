@@ -19,6 +19,8 @@ if (isset($_POST['add_event'])){
 	$team_name = get_the_title($_POST['host_team']);
 	$event_title = str_replace(" ", "-", $team_name)."_".SQLToDate($start_date, 'jMy');
 	
+	$open_date = $start_date;
+	
 	$event_post = array(
 			'post_parent'	=> $_POST['host_team'],
 			'post_title'    => $event_title,
@@ -26,7 +28,9 @@ if (isset($_POST['add_event'])){
 			'post_author'	=> $current_user->ID,
 			'post_type'		=> 'ukfl_event',
 			'meta_input'   => array(
+					'ukfl_event_open_date' => $open_date,
 					'ukfl_event_start_date' => $start_date,
+					'ukfl_event_end_date' => dateToSQL($_POST['ukfl_event_end_date']),
 					'ukfl_event_postcode' => $_POST['ukfl_event_postcode'],
 					'ukfl_event_lat' => $lookup->latitude,
 					'ukfl_event_long' => $lookup->longitude,
