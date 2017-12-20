@@ -37,16 +37,6 @@ if (isset($_POST['add_team'])){
 		}
 	}
 	
-/*	$admin_msg = 'New team registration on '.get_bloginfo('name').':<br /><br />
-	Team Captain: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
-	Email Address: <strong>'.$current_user->user_email.'</strong><br />
-	UKFL Number: <strong>'.$current_user->user_login.'</strong><br /><br />
-	Team Name: <strong>'.wp_strip_all_tags( $_POST['team_name'] ).'</strong><br /><br />
-	Secondary Team Names:<br />
-	<ul>'.implode("\n", $secondary_teams).'</ul>';
-	$headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
-	wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Team Registration', $admin_msg, $headers); */
-	
 	$content = do_shortcode("[gcp_redirect_flow ref=4]"); 
 	$js_for_footer = '
 <script type="text/javascript">
