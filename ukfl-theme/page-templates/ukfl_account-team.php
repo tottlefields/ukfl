@@ -69,7 +69,7 @@ include(locate_template('index-bannerstrip.php'))
                 					</div>
                 				</div>
                 				<h4>Secondary Team Names</h4>
-								<p>Please list up to 5 secondary team names that you wish to request as the same time as your team application. Once approved, you will have the option to add as many more secondary teams as you wish, subject to committee approval.</p>
+								<p>Please list up to 10 secondary team names that you wish to request as the same time as your team application. Once approved, you will have the option to add as many more secondary teams as you wish, subject to committee approval.</p>
 								<p>These names may or may not include the above requested team name but they will be your racing team names. Therefore, if you wish to race under the above Team Name, please include it below as well.</p>
 								<?php 
                 				for ($i=1; $i<=10; $i++){ ?>
