@@ -92,7 +92,10 @@ $events = get_events_for_teams($team_ids);
 	<div class="row">
 		<div class="col-md-12">
 			<table class="events-list table table-condensed"><tbody>
-	<?php foreach ( $events as $post ) : setup_postdata( $post ); 
+	<?php foreach ( $events as $post ) : setup_postdata( $post );
+		$status = ($post->post_status == 'publish') ? 'Approved' : 'Pending Approval';
+		$status_icon = ($post->post_status == 'publish') ? 'check' : 'hourglass-start';
+		$status_color = ($post->post_status == 'publish') ? 'forestgreen' : 'inherit';
 		$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $post->ID, 'ukfl_event_start_date', true ));
 	?>
 				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
@@ -102,7 +105,7 @@ $events = get_events_for_teams($team_ids);
 							<div class="event-month"><?php echo strtoupper($start_date->format('M')); ?></div>
 						</div>
 					</td>
-					<td><?php echo get_post_meta($post->ID, 'ukfl_event_title', true); //the_title(); ?></td>
+					<td><i class="fa fa-<?php echo $status_icon; ?> hidden-xs" title="<?php echo $status; ?>" style="color:<?php echo $status_color; ?>;padding-right:10px;"></i><?php echo get_post_meta($post->ID, 'ukfl_event_title', true); //the_title(); ?></td>
 					<td class="event-venue" nowrap><a href="https://www.google.co.uk/maps/preview?q=<?php echo get_post_meta( $post->ID, 'ukfl_event_lat', true); ?>,<?php echo get_post_meta( $post->ID, 'ukfl_event_long', true); ?>" target="_blank"><i class="fa fa-map-marker"></i><span class="hidden-xs"><?php echo get_post_meta( $post->ID, 'ukfl_event_postcode', true ) ?></span></a></td>
 				</tr>
 	<?php endforeach;
