@@ -36,12 +36,10 @@ function get_events_for_teams($team_ids){
 			'post_status'	=> array('publish', 'pending'),
 			'posts_per_page' => -1,
 			'order'			=> 'ASC',
-			'meta_key'		=> 'event_start_date',
+			'meta_key'		=> 'ukfl_event_start_date',
 			'orderby'   => 'meta_value_num',
-			'meta_query' => array(
-					array('key' => 'event_host_team', 'value' => $team_ids, 'compare' => 'IN'),
-					array('key' => 'event_start_date', 'value' => date('Ymd'), 'compare' => '>=')
-			)
+			'post_parent__in' => $team_ids,
+			'meta_query' => array('key' => 'ukfl_event_start_date', 'value' => date('Ymd'), 'compare' => '>=')
 	);
 	$events = get_posts($args);
 	return $events;
