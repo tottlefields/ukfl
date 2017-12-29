@@ -64,7 +64,7 @@ $team_ids = array();
 $teams = get_teams_for_user(); 
 foreach ( $teams as $post ) : setup_postdata( $post ); 
 	array_push($team_ids, $post->ID); ?>
-	<div class="col-sm-12 col-md-6">
+	<div class="col-xs-12 col-sm-6">
 <?php	if ( has_post_thumbnail() ) { 
 	if (get_post_status($post->ID) == 'publish'){ ?>
 		<a  href="<?php the_permalink(); ?>" class="post-thumbnail"><?php the_post_thumbnail(); ?></a>
@@ -93,7 +93,7 @@ $events = get_events_for_teams($team_ids);
 		<div class="col-md-12">
 			<table class="events-list table table-condensed"><tbody>
 	<?php foreach ( $events as $post ) : setup_postdata( $post ); 
-		$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $post->ID, 'event_start_date', true ));
+		$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $post->ID, 'ukfl_event_start_date', true ));
 	?>
 				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
 					<td>
@@ -102,8 +102,8 @@ $events = get_events_for_teams($team_ids);
 							<div class="event-month"><?php echo strtoupper($start_date->format('M')); ?></div>
 						</div>
 					</td>
-					<td><?php the_title(); ?></td>
-					<td class="event-venue hidden-xs"><a href="https://www.google.co.uk/maps/preview?q=<?php echo get_post_meta( $post->ID, 'event_lat', true); ?>,<?php echo get_post_meta( $post->ID, 'event_long', true); ?>" target="_blank"><i class="fa fa-map-marker"></i> <?php echo get_post_meta( $post->ID, 'event_postcode', true ) ?></a></td>
+					<td><?php echo get_post_meta($post->ID, 'ukfl_event_title', true); //the_title(); ?></td>
+					<td class="event-venue" nowrap><a href="https://www.google.co.uk/maps/preview?q=<?php echo get_post_meta( $post->ID, 'ukfl_event_lat', true); ?>,<?php echo get_post_meta( $post->ID, 'ukfl_event_long', true); ?>" target="_blank"><i class="fa fa-map-marker"></i><span class="hidden-xs"><?php echo get_post_meta( $post->ID, 'ukfl_event_postcode', true ) ?></span></a></td>
 				</tr>
 	<?php endforeach;
 	wp_reset_postdata(); ?>
