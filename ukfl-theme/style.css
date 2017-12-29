@@ -1,7 +1,7 @@
 /*
 Theme Name: UKFL
 Theme URI:
-Version: 1.0.6
+Version: 1.0.7
 Template: busiprof-pro
 */
 @import url('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css');
@@ -42,6 +42,7 @@ img.bordered { padding: 4px; border: 1px solid #ddd; }
 
 .tml { max-width: 100%; }
 .form-horizontal .control-label { padding-top:15px; font-weight: 700 }
+.form-horizontal .form-control-static { padding-top:12px; }
 .box {
     background-color: #f7f7f7;
     border: 1px solid #e4e8ea;

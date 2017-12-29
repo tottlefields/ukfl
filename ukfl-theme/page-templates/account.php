@@ -23,7 +23,18 @@ global $wpdb, $current_user;
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
 										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right" style="display:none;">Edit</a></h3></div>
-										<div class="panel-body"></div>
+										<div class="panel-body">
+											<form class="form-horizontal">
+												<div class="form-group" style="margin-bottom:0px;">
+													<label class="col-sm-3 control-label">UKFL No</label>
+													<div class="col-sm-9"><p class="form-control-static"><?php echo $current_user->user_login; ?></p></div>
+												</div>
+                                                                                                <div class="form-group" style="margin-bottom:0px;">
+                                                                                                        <label class="col-sm-3 control-label">Email</label>
+                                                                                                        <div class="col-sm-9"><p class="form-control-static"><?php echo $current_user->user_email; ?></p></div>
+                                                                                                </div>
+											</form>
+										</div>
 									</div>
 									<div class="panel panel-default">
 										<div class="panel-heading"><h3>Your Dogs<a class="btn btn-sm btn-default pull-right" href="/account/dogs">Add a Dog</a></h3></div>
