@@ -8,7 +8,7 @@ $args = array(
 	'post_type'		=> 'ukfl_event',
 	'orderby'       =>  'ID',
 	'order'         =>  'DESC',
-	'post_status'	=>  'draft',
+	'post_status'	=>  array('pending', 'draft'),
 	'posts_per_page'=> 1 
 );
 $events = get_posts( $args );
@@ -17,9 +17,11 @@ $event = $events[0];
 // Update the team into the database - payment setup so convert form draft to pending
 wp_update_post( array('ID' => $event->ID, 'post_status' => 'pending') );
 
-$event_dates = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_start_date', true ));
+$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_start_date', true ));
+$event_dates = $start_date->format('jS M Y');
 if (get_post_meta( $event->ID, 'ukfl_event_start_date', true ) != get_post_meta( $event->ID, 'ukfl_event_end_date', true )){
-	$event_dates .= '</strong> to <strong>'.DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_end_date', true ));
+	$end_date = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_end_date', true ));
+	$event_dates .= '</strong> to <strong>'.$end_date->format('jS M Y');
 }
 
 $admin_msg = 'New event registration on '.get_bloginfo('name').':<br /><br />
