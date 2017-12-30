@@ -23,12 +23,13 @@ if (isset($_REQUEST['add_junior'])){
 	update_user_meta($current_user->ID, "ukfl_juniors", $juniors_for_user);
 	
 	$updated_junior = get_user_by('id', $junior->ID);
-	
+	$dob = DateTime::createFromFormat('Ymd', get_user_meta( $updated_junior->ID, "ukfl_junior_dob", 1));
+
 	$admin_msg = 'New junior registration on '.get_bloginfo('name').':<br /><br />
 	Parent: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
 	Junior: <strong>'.$updated_junior->display_name.'</strong><br />
 	UKFL Number: <strong>'.$updated_junior->user_login.'</strong><br />
-	DOB: <strong>'.$updated_junior->user_login.'</strong><br /><br />';
+	DOB: <strong>'.$dob->format('jS M Y').'</strong><br /><br />';
 	if ($_REQUEST['junior_scheme'] == 'on' || $_REQUEST['junior_age'] >= 12){ $admin_msg .= 'Junior Award Scheme: <strong>YES</strong>'; }
 	else{ $admin_msg .= 'Junior Award Scheme: <strong>NO</strong>'; }
 	$headers = array('Content-Type: text/html; charset=UTF-8');
@@ -83,7 +84,7 @@ if (isset($_REQUEST['add_junior'])){
 				daysOfWeekHighlighted: "0,6",
 				autoclose: true,
 				todayHighlight: true,
-				orientation: "bottom auto"
+//				orientation: "bottom auto"
 			});
 			$("#junior_dob").datepicker().on("changeDate", function(e) {
         			// `e` here contains the extra attributes
@@ -144,7 +145,7 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 									</div>
 									<label class="col-sm-2 control-label" for="junior_dob">DOB</label>
 									<div class="col-sm-2">
-									        <input type="text" name="junior_dob" id="junior_dob" class="ukfl-datepicker input form-control" value="" />
+									        <input type="text" name="junior_dob" id="junior_dob" class="ukfl-datepicker input form-control" value="" placeholder="dd/mm/yyyy" />
 									</div>
 							    </div>
 								<div class="form-group">
@@ -154,7 +155,7 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 									</div>
 									<label class="col-sm-2 control-label" for="junior_dob">Age </label>
 									<div class="col-sm-2">
-									        <input type="text" name="junior_age" id="junior_age" class="ukfl-datepicker input form-control" value="" readonly />
+									        <input type="text" name="junior_age" id="junior_age" class="input form-control" value="" readonly />
 									</div>
 								</div>
 								
