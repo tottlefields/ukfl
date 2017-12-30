@@ -81,8 +81,10 @@ if (isset($_POST['add_dog'])){
 					if (juniorAge >= 16){ console.log("ERROR : Junior is over 16 yeard old and requires their own individual membership"); }
 					else if (juniorAge >= 12){ 
 						console.log("Junior is aged 12 or over and is required to join junior award scheme");
-						$("#register_junior").show();
 						$("#add_junior").hide();
+						$("#register_junior").show();
+						$("#junior_scheme").prop("checked", true);
+						$("#junior_scheme").attr("disabled", true);
 					}
 					else {
 						console.log("Junior age is "+juniorAge+" and they are allowed to join if they want");
@@ -90,6 +92,18 @@ if (isset($_POST['add_dog'])){
 						$("#add_junior").show();
 					}
     		});
+			
+			$("#junior_scheme").change(function() {
+    			if(this.checked) {
+					$("#add_junior").hide();
+					$("#register_junior").show();
+    			}
+				else{
+					$("#register_junior").hide();
+					$("#add_junior").show();
+				}
+			});
+});
 	 } );
 </script>';
 }
@@ -140,6 +154,18 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 									        <input type="text" name="junior_age" id="junior_age" class="ukfl-datepicker input form-control" value="" readonly />
 									</div>
 								</div>
+								
+								<div class="form_group">
+									<div class="col-sm-2 control-label">
+										<input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small" name="junior_scheme" id="junior_scheme"  />
+									</div>
+									<div class="col-sm-10">
+										<label>I would like to take part in the UKFL&copy; Junior Award Scheme (ticking this box will forward you to another GoCardless direct debit payment page).</label>
+									</div>
+								</div>
+								
+								
+								
 								<div class="form-group">
 									<div class="controls">
 										<input type="submit" name="register_junior" id="register_junior" value="Register Junior" class="btn btn-success btn-busiprof pull-right" />
