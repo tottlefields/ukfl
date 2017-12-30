@@ -103,7 +103,6 @@ if (isset($_POST['add_dog'])){
 					$("#add_junior").show();
 				}
 			});
-});
 	 } );
 </script>';
 }
