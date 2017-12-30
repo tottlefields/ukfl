@@ -79,57 +79,33 @@ foreach($breeds as $b) {
 						<div class="entry-content">
 							<?php if (isset($_POST['add_dog'])){ echo $content; } else {?>
 							<?php the_post(); the_content(); ?>
+							<div class="alert alert-info">Junior registration for under 12s if FOC, with the option of joining the Junior Award Scheme (&pound;5.00/yr). Registration for 12-16 year olds is &pound;5.00 per year (including access to the Junior Award Shceme). Please fill in the payment details requested after adding your dog to complete your dog's UKFL&copy; registration.<br/>
+							Please be aware that entering the dog's microchip number is not mandatory. You can always add this at a later stage if we require it.</div>
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="owner">Owner</label>
-									<div class="col-sm-2">
-										<input type="text" name="owner" id="owner" class="input form-control" value="<?php echo $current_user->user_firstname.' '.$current_user->user_lastname; ?>" readonly />
-										<input type="hidden" name="owner_id" id="owner_id" value="<?php echo $current_user->ID; ?>" />
-										<input type="hidden" name="owner_ukfl" id="owner_ukfl" value="<?php echo $current_user->user_login; ?>" />
+									<label class="col-sm-2 control-label" for="junior_name">Name</label>
+									<div class="col-sm-4">
+										<input type="text" name="junior_name" id="junior_name" class="input form-control" value="" />
+										<input type="hidden" name="parent_id" id="parent_id" value="<?php echo $current_user->ID; ?>" />
+										<input type="hidden" name="parent_ukfl" id="parent_ukfl" value="<?php echo $current_user->user_login; ?>" />
 									</div>
-									<label class="col-sm-2 control-label" for="ukfl_no">UKFL No.</label>
+									<label class="col-sm-2 control-label" for="junior_dob">DOB</label>
 									<div class="col-sm-2">
-										<input type="text" name="ukfl_no" id="ukfl_no" class="input form-control" value="<?php echo $ukfl_no; ?>" readonly />
-										<input type="hidden" name="dog_ukfl" id="dog_ukfl" value="<?php echo $dog_letter; ?>" />
-									</div>
-									<label class="col-sm-2 control-label" for="dog_name">Dog's Name</label>
-									<div class="col-sm-2">
-									        <input type="text" name="dog_name" id="dog_name" class="input form-control" value=""  />
+									        <input type="text" name="junior_dob" id="junior_dob" class="ukfl-datepicker input form-control" value="" />
 									</div>
 							    </div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="birth_date">Birth Date</label>
-									<div class="col-sm-2">
-									        <input type="text" name="birth_date" id="birth_date" class="ukfl-datepicker input form-control" value="" />
-									</div>
-									<label class="col-sm-2 control-label" for="microchip">Microchip</label>
-									<div class="col-sm-2">
-										<input type="text" name="microchip" id="microchip" class="input form-control" value=""  />
-									</div>
-									<label class="col-sm-2 control-label" for="sex">Sex</label>
-									<div class="col-sm-2">
-										<label class="radio-inline"><input type="radio" name="sex" value="Dog" <?php if($ukfl_dog['sex'] == 'Dog') { echo 'checked="checked"'; } ?>> Dog</label>
-										<label class="radio-inline"><input type="radio" name="sex" value="Bitch" <?php if($ukfl_dog['sex'] == 'Bitch') { echo 'checked="checked"'; } ?>> Bitch</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label" for="breed">Breed</label>
-									<div class="col-sm-4">
-										<select name="breed" class="form-control">
-											<option value="">Select Breed...</option>
-											<?php echo get_options_for_breeds('dog-breeds', $dogBreeds, $dog['breed']); ?>
-										</select>
-									</div>
-									<label class="col-sm-2 control-label" for="current_team">Flyball Club</label>
-									<div class="col-sm-4">
-										<?php echo get_club_dropdown_menu("current_team", "Select Current Team...", $dog->post_parent); ?>
+									<label class="col-sm-2 control-label" for="junior_email">Email</label>
+									<div class="col-sm-6">
+										<input type="text" name="junior_email" id="junior_email" class="input form-control" value="" placeholder="Optional as not all juniors will have this />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="controls">
-							                 	<input type="submit" name="add_dog" id="add_dog" value="Add Dog" class="btn btn-success btn-busiprof pull-right" />
-							                </div>
-							        </div>    
+										<input type="submit" name="register_junior" id="register_junior" value="Register Junior" class="btn btn-success btn-busiprof pull-right" />
+										<input type="submit" name="add_junior" id="add_junior" value="Add Junior" class="btn btn-success btn-busiprof pull-right" />
+									</div>
+								</div>    
 							</form>
 							<?php } ?>
 						</div>
