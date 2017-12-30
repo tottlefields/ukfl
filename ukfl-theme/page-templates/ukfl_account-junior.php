@@ -38,12 +38,31 @@ if (isset($_POST['add_dog'])){
 }else{
 	$js_for_footer = '
 <script type="text/javascript">
+	function dayOfYear(d){
+		var y = d.getFullYear();
+		var leapY = (y % 100 === 0) ? (y % 400 === 0) : (y % 4 === 0);
+		var jan1st = new Date(y, 0, 1, 12, 0, 0, 0);
+		d.setHours(12,0,0,0);
+		var dayOfYear = Math.abs(d.getTime() - jan1st.getTime());
+		if (dayOfYear >= 5097600000 && leapY){
+			dayOfYear -= (60*60*24*1000);
+		}
+		return dayOfYear;
+	}
+
         jQuery(function ($) {
+		var today = new Date();
+		today.setHours(0,0,0,0);
+		var pastDate = new Date();
+		pastDate.setFullYear(new Date().getFullYear() - 16);
+		pastDate.setDate(new Date().getDate() + 1);
+		var startDate = pastDate.getDate() + "/" + (pastDate.getMonth()+1) + "/" + pastDate.getFullYear();
+		var endDate = today.getDate() + "/" + (today.getMonth()+1) + "/" + today.getFullYear();
 			$(".ukfl-datepicker").datepicker({
 				format: "dd/mm/yyyy",
-				startDate: "30/12/2001",
-				endDate: "30/12/2017",
-    			startView: 2,
+				startDate: startDate,
+				endDate: endDate,
+    				startView: 2,
 				weekStart: 1,
 				daysOfWeekHighlighted: "0,6",
 				autoclose: true,
@@ -51,8 +70,19 @@ if (isset($_POST['add_dog'])){
 				orientation: "bottom auto"
 			});
 			$("#junior_dob").datepicker().on("changeDate", function(e) {
-        		// `e` here contains the extra attributes
-        		console.log(e.date);
+        			// `e` here contains the extra attributes
+		//		var today = new Date();
+		//		today.setHours(0,0,0,0);
+var y1 = today.getFullYear();
+var y2 = e.date.getFullYear();
+var juniorAge = y1 - y2;
+x1 = dayOfYear(today);
+x2 = dayOfYear(e.date);
+if (x1 - x2 < 0) juniorAge--;
+console.log(juniorAge);
+if (juniorAge >= 16){ console.log("ERROR : Junior is over 16 yeard old and requires their own individual membership"); }
+else if (juniorAge >= 12){ console.log("Junior is aged 12 or over and is required to join junior award scheme"); }
+else { console.log("Junior age is "+juniorAge+" and they are allowed to join if they want"); }
 				//$("#ukfl_event_end_date").datepicker("setDate", e.date);
     		});
 	 } );
@@ -79,8 +109,9 @@ include(locate_template('index-bannerstrip.php'));
 						<div class="entry-content">
 							<?php if (isset($_POST['add_dog'])){ echo $content; } else {?>
 							<?php the_post(); the_content(); ?>
-							<div class="alert alert-info">Junior registration for under 12s if FOC, with the option of joining the Junior Award Scheme (&pound;5.00/yr). Registration for 12-16 year olds is &pound;5.00 per year (including access to the Junior Award Shceme). Please fill in the payment details requested after adding your dog to complete your dog's UKFL&copy; registration.<br/>
-							Please be aware that entering the dog's microchip number is not mandatory. You can always add this at a later stage if we require it.</div>
+							<div class="alert alert-info">Registration for juniors under 12 if free of charge, with the option of joining the Junior Award Scheme (&pound;5.00/yr).<br />
+Registration for 12-16 year olds is &pound;5.00 per year (including access to the Junior Award Shceme).<br/>
+							</div>
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="junior_name">Name</label>
