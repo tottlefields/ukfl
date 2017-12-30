@@ -61,7 +61,7 @@ if (isset($_POST['add_dog'])){
 				format: "dd/mm/yyyy",
 				startDate: startDate,
 				endDate: endDate,
-			maxViewMode: 2
+			maxViewMode: 2,
     				startView: 2,
 				weekStart: 1,
 				daysOfWeekHighlighted: "0,6",
