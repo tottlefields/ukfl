@@ -70,6 +70,8 @@ if (isset($_POST['add_dog'])){
 			});
 			$("#junior_dob").datepicker().on("changeDate", function(e) {
         			// `e` here contains the extra attributes
+					$("#junior_scheme").bootstrapToggle("off");
+					$("#junior_scheme").bootstrapToggle("enable");
 					var y1 = today.getFullYear();
 					var y2 = e.date.getFullYear();
 					var juniorAge = y1 - y2;
@@ -83,8 +85,10 @@ if (isset($_POST['add_dog'])){
 						console.log("Junior is aged 12 or over and is required to join junior award scheme");
 						$("#add_junior").hide();
 						$("#register_junior").show();
-						$("#junior_scheme").prop("checked", true);
-						$("#junior_scheme").attr("disabled", true);
+						//$("#junior_scheme").prop("checked", true);
+						//$("#junior_scheme").attr("disabled", true);
+						$("#junior_scheme").bootstrapToggle("on");
+						$("#junior_scheme").bootstrapToggle("disable");
 					}
 					else {
 						console.log("Junior age is "+juniorAge+" and they are allowed to join if they want");
