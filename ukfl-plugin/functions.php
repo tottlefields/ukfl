@@ -17,7 +17,7 @@ require_once 'posttypes.php';
 require_once 'custom-metaboxes.php';
 require_once 'ukfl-gocardless.php';
 
-$MEMBERSHIPS = array('Membership - Individual' => 'individual', 'Membership - Joint' => 'joint');
+$MEMBERSHIPS = array('Membership - Individual' => 'individual', 'Membership - Joint' => 'joint', 'Membership - Junior' => 'junior');
 
 function generate_ukfl_number(){
 	global $wpdb;
@@ -47,6 +47,8 @@ function generate_ukfl_dog_number($owner_ukfl){
 function create_ukfl_member($first_name, $last_name, $email){
 	$password = wp_generate_password( 12, true );
 	$ukfl_no = generate_ukfl_number();
+	$send_email = 1;
+	if ($email = '' || $email = ' '){ $email = $ukfl_no.'@ukflyball.org.uk'; $send_email = 0; }
 	$user_id = wp_create_user ( $ukfl_no, $password, $email );
 	wp_update_user(
 			array(
@@ -73,13 +75,15 @@ Please feel free to <a href="'.esc_url( wp_login_url() ).'">login to your accoun
 <p>We look forward to seeing you in the lanes very soon.<br /><br />UK Flyball League</p>';
 	
 	$headers = array('Content-Type: text/html; charset=UTF-8');
-	wp_mail( $email, '['.get_bloginfo('name').'] Welcome to UKFL!', $msg, $headers );
+	if ($send_email) {
+		wp_mail( $email, '['.get_bloginfo('name').'] Welcome to UKFL!', $msg, $headers ); 
 	
-	$admin_msg = 'New user registration on '.get_bloginfo('name').':<br /><br />
-	UKFL Number: <strong>'.$ukfl_no.'</strong><br />
-	Name: <strong>'.$first_name.' '.$last_name.'</strong><br />
-	E-mail: <strong>'.$email.'</strong><br />';
-	wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New User Registration', $admin_msg, $headers);
+		$admin_msg = 'New user registration on '.get_bloginfo('name').':<br /><br />
+		UKFL Number: <strong>'.$ukfl_no.'</strong><br />
+		Name: <strong>'.$first_name.' '.$last_name.'</strong><br />
+		E-mail: <strong>'.$email.'</strong><br />';
+		wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New User Registration', $admin_msg, $headers);
+	}
 	
 	return $user;
 }
@@ -102,6 +106,12 @@ function add_roles_on_activation() {
                         'delete_posts' => true,
                         'edit_posts' => true
                 )
+	);
+	add_role('ukfl_junior', 'Junior',
+		array(
+			'read' => true,
+                        'level_0' => true,
+		)
 	);
 	add_role('ukfl_member', 'UKFL Member',
 		array(
