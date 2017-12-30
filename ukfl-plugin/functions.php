@@ -48,7 +48,7 @@ function create_ukfl_member($first_name, $last_name, $email){
 	$password = wp_generate_password( 12, true );
 	$ukfl_no = generate_ukfl_number();
 	$send_email = 1;
-	if ($email = ''){ $email = $ukfl_no.'@ukflyball.org.uk'; $send_email = 0; }
+	if ($email = '' || $email = ' '){ $email = $ukfl_no.'@ukflyball.org.uk'; $send_email = 0; }
 	$user_id = wp_create_user ( $ukfl_no, $password, $email );
 	wp_update_user(
 			array(
