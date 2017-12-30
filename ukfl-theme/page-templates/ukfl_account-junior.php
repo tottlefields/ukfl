@@ -159,7 +159,8 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 										<input type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-size="small" name="junior_scheme" id="junior_scheme"  />
 									</div>
 									<div class="col-sm-10">
-										<label>I would like to take part in the UKFL&copy; Junior Award Scheme (ticking this box will forward you to another GoCardless direct debit payment page).</label>
+										<label>I would like to take part in the UKFL&copy; Junior Award Scheme 
+										<small style="font-weight:normal;font-style:italic;">(ticking this box will forward you to another GoCardless direct debit payment page).</small></label>
 									</div>
 								</div>
 								
