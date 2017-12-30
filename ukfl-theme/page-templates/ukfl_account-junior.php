@@ -70,8 +70,8 @@ if (isset($_POST['add_dog'])){
 			});
 			$("#junior_dob").datepicker().on("changeDate", function(e) {
         			// `e` here contains the extra attributes
-					$("#junior_scheme").bootstrapToggle("off");
 					$("#junior_scheme").bootstrapToggle("enable");
+					$("#junior_scheme").bootstrapToggle("off");
 					var y1 = today.getFullYear();
 					var y2 = e.date.getFullYear();
 					var juniorAge = y1 - y2;
