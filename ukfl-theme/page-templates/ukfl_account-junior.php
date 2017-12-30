@@ -6,35 +6,17 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
-if (isset($_POST['add_dog'])){
-	$dog_post = array(
-			'post_title'  	=> $_POST['ukfl_no'],
-			'post_name'  	=> $_POST['ukfl_no'],
-			'post_status' 	=> 'draft',
-			'post_author' 	=> get_current_user_id(),
-			'post_parent'	=> $_POST['current_team'],
-			'post_type'		=> 'ukfl_dog',
-			'tax_input'		=> array(
-					'dog-breeds' => array(intval($_POST['breed'])),
-			),
-			'meta_input'   => array(
-					'ukfl_dog_owner'	=> $_POST['owner_ukfl'],
-					'ukfl_dog_name'		=> $_POST['dog_name'],
-					'ukfl_dog_letter'	=> $_POST['dog_ukfl'],
-					'ukfl_dog_dob'		=> dateToSQL($_POST['birth_date']),
-					'ukfl_dog_microchip'=> $_POST['microchip'],
-					'ukfl_dog_sex'		=> $_POST['sex'],
-			),
-	);
-	$dog_id = wp_insert_post( $dog_post );
+if (isset($_POST['register_junior']) || isset($_POST['add_junior'])){
+	
+	debug_array($_POST);
 
-	$content = do_shortcode("[gcp_redirect_flow ref=5]");
+/*	$content = do_shortcode("[gcp_redirect_flow ref=5]");
 	$js_for_footer = '
 <script type="text/javascript">
         jQuery(function ($) {
 		$("a.gcp_redirect_flow5")[0].click();
 	 } );
-</script>';
+</script>';*/
 }else{
 	$js_for_footer = '
 <script type="text/javascript">
