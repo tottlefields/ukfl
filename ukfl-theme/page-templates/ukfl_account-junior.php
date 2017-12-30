@@ -78,8 +78,7 @@ foreach($breeds as $b) {
 					<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 						<div class="entry-content">
 							<?php if (isset($_POST['add_dog'])){ echo $content; } else {?>
-							<div class="alert alert-info">Registration is &pound;2.50 per dog per year. Please fill in the payment details requested after adding your dog to complete your dog's UKFL&copy; registration.<br/>
-							Please be aware that entering the dog's microchip number is not mandatory. You can always add this at a later stage if we require it.</div>
+							<?php the_post(); the_content(); ?>
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="owner">Owner</label>
