@@ -77,7 +77,7 @@ if (isset($_POST['add_dog'])){
 					x2 = dayOfYear(e.date);
 					if (x1 - x2 < 0) juniorAge--;
 					//console.log(juniorAge);
-					$("#junior_age).val(juniorAge);
+					$("#junior_age").val(juniorAge);
 					if (juniorAge >= 16){ console.log("ERROR : Junior is over 16 yeard old and requires their own individual membership"); }
 					else if (juniorAge >= 12){ 
 						console.log("Junior is aged 12 or over and is required to join junior award scheme");
