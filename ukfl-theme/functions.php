@@ -54,6 +54,9 @@ function ukfl_enqueue_scripts() {
 	//JQuery Form Validator
 	wp_register_script ( 'form-validator-js', '//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.77/jquery.form-validator.min.js', array ('jquery'), '2.3.77', false );
 	wp_enqueue_script ( 'form-validator-js' );
+	//Bootstrap Toggle
+	wp_register_script ( 'bs-toggle-js', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js', array ('jquery'), '2.2.2', false );
+	wp_enqueue_script ( 'fbs-toggle-js' );
 }
 
 add_action( 'wp_enqueue_scripts', 'ukfl_enqueue_styles', 100);
