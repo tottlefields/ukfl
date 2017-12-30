@@ -44,20 +44,19 @@ if (isset($_POST['add_dog'])){
 		var jan1st = new Date(y, 0, 1, 12, 0, 0, 0);
 		d.setHours(12,0,0,0);
 		var dayOfYear = Math.abs(d.getTime() - jan1st.getTime());
-		if (dayOfYear >= 5097600000 && leapY){
-			dayOfYear -= (60*60*24*1000);
-		}
+		if (dayOfYear >= 5097600000 && leapY){ dayOfYear -= (60*60*24*1000); }
 		return dayOfYear;
 	}
 
         jQuery(function ($) {
-		var today = new Date();
-		today.setHours(0,0,0,0);
-		var pastDate = new Date();
-		pastDate.setFullYear(new Date().getFullYear() - 16);
-		pastDate.setDate(new Date().getDate() + 1);
-		var startDate = pastDate.getDate() + "/" + (pastDate.getMonth()+1) + "/" + pastDate.getFullYear();
-		var endDate = today.getDate() + "/" + (today.getMonth()+1) + "/" + today.getFullYear();
+			var today = new Date();
+			today.setHours(0,0,0,0);
+			var pastDate = new Date();
+			pastDate.setFullYear(new Date().getFullYear() - 16);
+			pastDate.setDate(new Date().getDate() + 1);
+			var startDate = pastDate.getDate() + "/" + (pastDate.getMonth()+1) + "/" + pastDate.getFullYear();
+			var endDate = today.getDate() + "/" + (today.getMonth()+1) + "/" + today.getFullYear();
+			
 			$(".ukfl-datepicker").datepicker({
 				format: "dd/mm/yyyy",
 				startDate: startDate,
@@ -71,19 +70,24 @@ if (isset($_POST['add_dog'])){
 			});
 			$("#junior_dob").datepicker().on("changeDate", function(e) {
         			// `e` here contains the extra attributes
-		//		var today = new Date();
-		//		today.setHours(0,0,0,0);
-var y1 = today.getFullYear();
-var y2 = e.date.getFullYear();
-var juniorAge = y1 - y2;
-x1 = dayOfYear(today);
-x2 = dayOfYear(e.date);
-if (x1 - x2 < 0) juniorAge--;
-console.log(juniorAge);
-if (juniorAge >= 16){ console.log("ERROR : Junior is over 16 yeard old and requires their own individual membership"); }
-else if (juniorAge >= 12){ console.log("Junior is aged 12 or over and is required to join junior award scheme"); }
-else { console.log("Junior age is "+juniorAge+" and they are allowed to join if they want"); }
-				//$("#ukfl_event_end_date").datepicker("setDate", e.date);
+					var y1 = today.getFullYear();
+					var y2 = e.date.getFullYear();
+					var juniorAge = y1 - y2;
+					x1 = dayOfYear(today);
+					x2 = dayOfYear(e.date);
+					if (x1 - x2 < 0) juniorAge--;
+					console.log(juniorAge);
+					if (juniorAge >= 16){ console.log("ERROR : Junior is over 16 yeard old and requires their own individual membership"); }
+					else if (juniorAge >= 12){ 
+						console.log("Junior is aged 12 or over and is required to join junior award scheme");
+						$("#register_junior").show();
+						$("#add_junior").hide();
+					}
+					else {
+						console.log("Junior age is "+juniorAge+" and they are allowed to join if they want");
+						$("#register_junior").hide();
+						$("#add_junior").show();
+					}
     		});
 	 } );
 </script>';
