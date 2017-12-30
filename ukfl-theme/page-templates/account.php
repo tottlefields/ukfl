@@ -29,10 +29,14 @@ global $wpdb, $current_user;
 													<label class="col-sm-3 control-label">UKFL No</label>
 													<div class="col-sm-9"><p class="form-control-static"><?php echo $current_user->user_login; ?></p></div>
 												</div>
-                                                                                                <div class="form-group" style="margin-bottom:0px;">
-                                                                                                        <label class="col-sm-3 control-label">Email</label>
-                                                                                                        <div class="col-sm-9"><p class="form-control-static"><?php echo $current_user->user_email; ?></p></div>
-                                                                                                </div>
+												<div class="form-group" style="margin-bottom:0px;">
+													<label class="col-sm-3 control-label">Email</label>
+													<div class="col-sm-9"><p class="form-control-static"><?php echo $current_user->user_email; ?></p></div>
+												</div>
+												<div class="form-group" style="margin-bottom:0px;">
+													<label class="col-sm-3 control-label">Juniors</label>
+													<div class="col-sm-9"><p class="form-control-static"><?php echo get_user_meta( $current_user->ID, "ukfl_juniors", 1); ?></p></div>
+												</div>
 											</form>
 										</div>
 									</div>

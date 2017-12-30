@@ -22,6 +22,18 @@ if (isset($_REQUEST['add_junior'])){
 	if(substr($juniors_for_user,0,1) == ",") { $juniors_for_user = substr($juniors_for_user,1,strlen($juniors_for_user)-1); }
 	update_user_meta($current_user->ID, "ukfl_juniors", $juniors_for_user);
 	
+	$updated_junior = get_user_by('id', $junior->ID);
+	
+	$admin_msg = 'New junior registration on '.get_bloginfo('name').':<br /><br />
+	Parent: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
+	Junior: <strong>'.$updated_junior->display_name.'</strong><br />
+	UKFL Number: <strong>'.$updated_junior->user_login.'</strong><br />
+	DOB: <strong>'.$updated_junior->user_login.'</strong><br /><br />';
+	if ($_REQUEST['junior_scheme'] == 'on' || $_REQUEST['junior_age'] >= 12){ $admin_msg .= 'Junior Award Scheme: <strong>YES</strong>'; }
+	else{ $admin_msg .= 'Junior Award Scheme: <strong>NO</strong>'; }
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+	wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New Junior Registration', $admin_msg, $headers);
+	
 	if ($_REQUEST['junior_scheme'] == 'on' || $_REQUEST['junior_age'] >= 12){
 		add_user_meta( $junior->ID, 'ukfl_junior_scheme', 'yes', 1 );
 		add_user_meta( $current_user->ID, 'ukfl_junior_scheme', $junior->user_login, 1 );
@@ -34,9 +46,8 @@ if (isset($_REQUEST['add_junior'])){
 		 } );
 	</script>';
 	}else{
-		$updated_junior = get_user_by('id', $junior->ID);
-		debug_array($updated_junior);
-		wp_exit();
+		wp_safe_redirect('/account/');
+		exit;
 	}
 }else{
 	$js_for_footer = '
