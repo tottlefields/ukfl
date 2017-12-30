@@ -49,6 +49,8 @@ if (isset($_POST['add_dog'])){
 	}
 
         jQuery(function ($) {
+			$.validate();
+			
 			var today = new Date();
 			today.setHours(0,0,0,0);
 			var pastDate = new Date();
@@ -132,7 +134,7 @@ include(locate_template('index-bannerstrip.php'));
 						<div class="entry-content">
 							<?php if (isset($_POST['add_dog'])){ echo $content; } else {?>
 							<?php the_post(); the_content(); ?>
-							<div class="alert alert-info">Registration for juniors under 12 if free of charge, with the option of joining the Junior Award Scheme (&pound;5.00/yr).<br />
+							<div class="alert alert-info">Registration for juniors under 12 is free of charge, with the option of joining the Junior Award Scheme (&pound;5.00/yr).<br />
 Registration for 12-16 year olds is &pound;5.00 per year (including access to the Junior Award Shceme).<br/>
 							</div>
 							<form method="post" class="form form-horizontal">
