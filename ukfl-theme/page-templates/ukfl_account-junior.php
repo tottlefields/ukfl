@@ -97,7 +97,7 @@ foreach($breeds as $b) {
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="junior_email">Email</label>
 									<div class="col-sm-6">
-										<input type="text" name="junior_email" id="junior_email" class="input form-control" value="" placeholder="Optional as not all juniors will have this />
+										<input type="text" name="junior_email" id="junior_email" class="input form-control" value="" placeholder="Optional as not all juniors will have this" />
 									</div>
 								</div>
 								<div class="form-group">
