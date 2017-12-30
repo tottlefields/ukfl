@@ -76,7 +76,8 @@ if (isset($_POST['add_dog'])){
 					x1 = dayOfYear(today);
 					x2 = dayOfYear(e.date);
 					if (x1 - x2 < 0) juniorAge--;
-					console.log(juniorAge);
+					//console.log(juniorAge);
+					$("#junior_age).val(juniorAge);
 					if (juniorAge >= 16){ console.log("ERROR : Junior is over 16 yeard old and requires their own individual membership"); }
 					else if (juniorAge >= 12){ 
 						console.log("Junior is aged 12 or over and is required to join junior award scheme");
@@ -119,7 +120,7 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="junior_name">Name</label>
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 										<input type="text" name="junior_name" id="junior_name" class="input form-control" value="" />
 										<input type="hidden" name="parent_id" id="parent_id" value="<?php echo $current_user->ID; ?>" />
 										<input type="hidden" name="parent_ukfl" id="parent_ukfl" value="<?php echo $current_user->user_login; ?>" />
@@ -133,6 +134,10 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 									<label class="col-sm-2 control-label" for="junior_email">Email</label>
 									<div class="col-sm-6">
 										<input type="text" name="junior_email" id="junior_email" class="input form-control" value="" placeholder="Optional as not all juniors will have this" />
+									</div>
+									<label class="col-sm-2 control-label" for="junior_dob">Age </label>
+									<div class="col-sm-2">
+									        <input type="text" name="junior_age" id="junior_age" class="ukfl-datepicker input form-control" value="" readonly />
 									</div>
 								</div>
 								<div class="form-group">
