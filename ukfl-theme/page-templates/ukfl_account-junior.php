@@ -6,9 +6,8 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
-if (isset($_REQUEST['register_junior']) || isset($_REQUEST['add_junior'])){
+if (isset($_REQUEST['add_junior'])){
 	
-	debug_array($_POST);
 	$junior = create_ukfl_member($_REQUEST['first_name'], $_REQUEST['last_name'], $_REQUEST['junior_email']);
 	add_user_meta( $junior->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
 	//add_user_meta( $user->ID, 'ukfl_mandate_membership', $rdf->links->mandate, 1 );
@@ -16,30 +15,29 @@ if (isset($_REQUEST['register_junior']) || isset($_REQUEST['add_junior'])){
 	add_user_meta( $junior->ID, 'ukfl_membership_type', 'Membership - Junior', 1 );
 	add_user_meta( $junior->ID, 'ukfl_parent_no', $_REQUEST['parent_ukfl'], 1 );
 	add_user_meta( $junior->ID, 'ukfl_junior_dob', dateToSQL($_REQUEST['junior_dob']), 1 );
-	$junior->add+role('ukfl_junior');
+	$junior->add_role('ukfl_junior');
 	
-	$juniors_for_user = get_user_meta( $current_user->ID, "ukfl_juniors" );
-	print_r( $juniors_for_user );
-	array_push($juniors_for_user, $junior->user_login);
-	print_r( $juniors_for_user );
+	$juniors_for_user = get_user_meta( $current_user->ID, "ukfl_juniors", 1);
+	$juniors_for_user .= ",".$junior->user_login;
+	if(substr($juniors_for_user,0,1) == ",") { $juniors_for_user = substr($juniors_for_user,1,strlen($juniors_for_user)-1); }
+	update_user_meta($current_user->ID, "ukfl_juniors", $juniors_for_user);
 	
 	if ($_REQUEST['junior_scheme'] == 'on' || $_REQUEST['junior_age'] >= 12){
 		add_user_meta( $junior->ID, 'ukfl_junior_scheme', 'yes', 1 );
 		add_user_meta( $current_user->ID, 'ukfl_junior_scheme', $junior->user_login, 1 );
-		
-		
 
-
-	/*	$content = do_shortcode("[gcp_redirect_flow ref=5]");
+		$content = do_shortcode("[gcp_redirect_flow ref=3]");
 		$js_for_footer = '
 	<script type="text/javascript">
 	        jQuery(function ($) {
-			$("a.gcp_redirect_flow5")[0].click();
+			$("a.gcp_redirect_flow3")[0].click();
 		 } );
-	</script>';*/
+	</script>';
+	}else{
+		$updated_junior = get_user_by('id', $junior->ID);
+		debug_array($updated_junior);
+		wp_exit();
 	}
-	$updated_junior = get_user_by('id', $junior->ID);
-	debug_array($updated_junior);
 }else{
 	$js_for_footer = '
 <script type="text/javascript">
@@ -90,31 +88,11 @@ if (isset($_REQUEST['register_junior']) || isset($_REQUEST['add_junior'])){
 					$("#junior_age").val(juniorAge);
 					if (juniorAge >= 16){ console.log("ERROR : Junior is over 16 yeard old and requires their own individual membership"); }
 					else if (juniorAge >= 12){ 
-						console.log("Junior is aged 12 or over and is required to join junior award scheme");
-						$("#add_junior").hide();
-						$("#register_junior").show();
-						//$("#junior_scheme").prop("checked", true);
-						//$("#junior_scheme").attr("disabled", true);
+						//console.log("Junior is aged 12 or over and is required to join junior award scheme");
 						$("#junior_scheme").bootstrapToggle("on");
 						$("#junior_scheme").bootstrapToggle("disable");
 					}
-					else {
-						console.log("Junior age is "+juniorAge+" and they are allowed to join if they want");
-						$("#register_junior").hide();
-						$("#add_junior").show();
-					}
     		});
-			
-			$("#junior_scheme").change(function() {
-    			if(this.checked) {
-					$("#add_junior").hide();
-					$("#register_junior").show();
-    			}
-				else{
-					$("#register_junior").hide();
-					$("#add_junior").show();
-				}
-			});
 	 } );
 </script>';
 }
@@ -137,7 +115,7 @@ include(locate_template('index-bannerstrip.php'));
 				<div class="page-content">
 					<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 						<div class="entry-content">
-							<?php if (isset($_POST['add_dog'])){ echo $content; } else {?>
+							<?php if (isset($_POST['add_junior'])){ echo $content; } else {?>
 							<?php the_post(); the_content(); ?>
 							<div class="alert alert-info">Registration for juniors under 12 is free of charge, with the option of joining the Junior Award Scheme (&pound;5.00/yr).<br />
 Registration for 12-16 year olds is &pound;5.00 per year (including access to the Junior Award Shceme).<br/>
@@ -178,13 +156,9 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 										<small style="font-weight:normal;font-style:italic;">(ticking this box will forward you to another GoCardless direct debit payment page).</small></label>
 									</div>
 								</div>
-								
-								
-								
 								<div class="form-group">
 									<div class="controls">
-										<input type="submit" name="register_junior" id="register_junior" value="Register Junior" class="btn btn-success btn-busiprof pull-right" />
-										<input type="submit" name="add_junior" id="add_junior" value="Add Junior" class="btn btn-success btn-busiprof pull-right" style="display:none;" />
+										<input type="submit" name="add_junior" id="add_junior" value="Add Junior" class="btn btn-success btn-busiprof pull-right" />
 									</div>
 								</div>    
 							</form>
