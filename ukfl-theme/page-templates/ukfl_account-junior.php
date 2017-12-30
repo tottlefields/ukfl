@@ -138,7 +138,7 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 								<div class="form-group">
 									<div class="controls">
 										<input type="submit" name="register_junior" id="register_junior" value="Register Junior" class="btn btn-success btn-busiprof pull-right" />
-										<input type="submit" name="add_junior" id="add_junior" value="Add Junior" class="btn btn-success btn-busiprof pull-right" />
+										<input type="submit" name="add_junior" id="add_junior" value="Add Junior" class="btn btn-success btn-busiprof pull-right" style="display:none;" />
 									</div>
 								</div>    
 							</form>
