@@ -44,6 +44,7 @@ if (isset($_POST['add_event'])){
 	);
 
 	$event_id = wp_insert_post( $event_post );
+	$user->add_role('tournament_organiser');
 	
 	$content = do_shortcode("[gcp_redirect_flow ref=6]"); 
 	$js_for_footer = '

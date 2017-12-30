@@ -6,17 +6,40 @@ global $wpdb, $current_user;
 if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
-if (isset($_POST['register_junior']) || isset($_POST['add_junior'])){
+if (isset($_REQUEST['register_junior']) || isset($_REQUEST['add_junior'])){
 	
 	debug_array($_POST);
+	$junior = create_ukfl_member($_REQUEST['first_name'], $_REQUEST['last_name'], $_REQUEST['junior_email']);
+	add_user_meta( $junior->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
+	//add_user_meta( $user->ID, 'ukfl_mandate_membership', $rdf->links->mandate, 1 );
+	add_user_meta( $junior->ID, 'ukfl_date_renewal', strtotime(date("Y-m-d"). " +1 year"), 1 );
+	add_user_meta( $junior->ID, 'ukfl_membership_type', 'Membership - Junior', 1 );
+	add_user_meta( $junior->ID, 'ukfl_parent_no', $_REQUEST['parent_ukfl'], 1 );
+	add_user_meta( $junior->ID, 'ukfl_junior_dob', dateToSQL($_REQUEST['junior_dob']), 1 );
+	$junior->add+role('ukfl_junior');
+	
+	$juniors_for_user = get_user_meta( $current_user->ID, "ukfl_juniors" );
+	print_r( $juniors_for_user );
+	array_push($juniors_for_user, $junior->user_login);
+	print_r( $juniors_for_user );
+	
+	if ($_REQUEST['junior_scheme'] == 'on' || $_REQUEST['junior_age'] >= 12){
+		add_user_meta( $junior->ID, 'ukfl_junior_scheme', 'yes', 1 );
+		add_user_meta( $current_user->ID, 'ukfl_junior_scheme', $junior->user_login, 1 );
+		
+		
 
-/*	$content = do_shortcode("[gcp_redirect_flow ref=5]");
-	$js_for_footer = '
-<script type="text/javascript">
-        jQuery(function ($) {
-		$("a.gcp_redirect_flow5")[0].click();
-	 } );
-</script>';*/
+
+	/*	$content = do_shortcode("[gcp_redirect_flow ref=5]");
+		$js_for_footer = '
+	<script type="text/javascript">
+	        jQuery(function ($) {
+			$("a.gcp_redirect_flow5")[0].click();
+		 } );
+	</script>';*/
+	}
+	$updated_junior = get_user_by('id', $junior->ID);
+	debug_array($updated_junior);
 }else{
 	$js_for_footer = '
 <script type="text/javascript">
@@ -121,11 +144,14 @@ Registration for 12-16 year olds is &pound;5.00 per year (including access to th
 							</div>
 							<form method="post" class="form form-horizontal">
 								<div class="form-group">
-									<label class="col-sm-2 control-label" for="junior_name">Name</label>
-									<div class="col-sm-6">
-										<input type="text" name="junior_name" id="junior_name" class="input form-control" value="" />
-										<input type="hidden" name="parent_id" id="parent_id" value="<?php echo $current_user->ID; ?>" />
-										<input type="hidden" name="parent_ukfl" id="parent_ukfl" value="<?php echo $current_user->user_login; ?>" />
+									<label class="col-sm-2 control-label" for="first_name">Name</label>
+									<input type="hidden" name="parent_id" id="parent_id" value="<?php echo $current_user->ID; ?>" />
+									<input type="hidden" name="parent_ukfl" id="parent_ukfl" value="<?php echo $current_user->user_login; ?>" />
+									<div class="col-sm-3">
+										<input type="text" placeholder="First Name" name="first_name" id="first_name" class="input form-control" value="" >
+									</div>
+									<div class="col-sm-3">
+										<input type="text" placeholder="Last Name" name="last_name" id="last_name" class="input form-control" value="">
 									</div>
 									<label class="col-sm-2 control-label" for="junior_dob">DOB</label>
 									<div class="col-sm-2">
