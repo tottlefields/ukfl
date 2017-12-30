@@ -41,31 +41,31 @@ if (isset($_POST['add_dog'])){
         jQuery(function ($) {
 			$(".ukfl-datepicker").datepicker({
 				format: "dd/mm/yyyy",
+				startDate: "30/12/2001",
+				endDate: "30/12/2017",
+    			startView: 2,
 				weekStart: 1,
 				daysOfWeekHighlighted: "0,6",
 				autoclose: true,
 				todayHighlight: true,
-				orientation: "bottom"
+				orientation: "bottom auto"
 			});
+			$("#junior_dob").datepicker().on("changeDate", function(e) {
+        		// `e` here contains the extra attributes
+        		console.log(e.date);
+				//$("#ukfl_event_end_date").datepicker("setDate", e.date);
+    		});
 	 } );
 </script>';
 }
 
 if(isset($_GET['edit']) && isset($_GET['dogID'])) { $TITLE = "Edit Dog"; }
 else{
-	$TITLE = "Add a New Dog";
-	$dog_letter = generate_ukfl_dog_number($current_user->user_login);
-	$ukfl_no = $current_user->user_login.$dog_letter;
+	$TITLE = "Junior UKFL Registration";
 }
 
 get_header();
 include(locate_template('index-bannerstrip.php'));
-
-$breeds = get_terms('dog-breeds', array('hide_empty' => false));
-$dogBreeds = array();
-foreach($breeds as $b) {
-	$dogBreeds[$b->term_id] = array('name' => $b->name, 'slug' => $b->slug);
-}
 
 ?>
 <!-- Blog & Sidebar Section -->
