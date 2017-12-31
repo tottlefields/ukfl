@@ -7,7 +7,7 @@ get_header();
 get_template_part('index', 'bannerstrip');
 
 $date_joined = DateTime::createFromFormat('Ymd', get_user_meta( $current_user->ID, "ukfl_date_joined", 1));
-$joined = $date_joined->format('jS M Y');
+$joined = ($date_joined) ? $date_joined->format('jS M Y') : '';
 ?>
 <?
 global $wpdb, $current_user;
@@ -52,7 +52,7 @@ global $wpdb, $current_user;
 													<div class="col-sm-9"><p class="form-control-static"><?php echo get_user_meta( $current_user->ID, "ukfl_juniors", 1); ?></p></div>
 												</div>
 											</form>
-											<small>Coming soon - junior details will appear here.</small>
+											<small class="col-sm-offset-3"><em>Coming soon - junior details will appear here.</em></small>
 										</div>
 									</div>
 									<div class="panel panel-default">
