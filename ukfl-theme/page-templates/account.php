@@ -5,6 +5,9 @@ if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 
 get_header();
 get_template_part('index', 'bannerstrip');
+
+$date_joined = DateTime::createFromFormat('Ymd', get_user_meta( $current_user->ID, "ukfl_date_joined", 1));
+$joined = $date_joined->format('jS M Y');
 ?>
 <?
 global $wpdb, $current_user;
@@ -22,7 +25,7 @@ global $wpdb, $current_user;
 							<div class="row">
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right" style="display:none;">Edit</a><a href="/account/juniors" class="btn btn-sm btn-default pull-right">Add Junior</a></h3></div>
+										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right" style="display:none;">Edit</a></h3></div>
 										<div class="panel-body">
 											<form class="form-horizontal">
 												<div class="form-group" style="margin-bottom:0px;">
@@ -34,10 +37,22 @@ global $wpdb, $current_user;
 													<div class="col-sm-9"><p class="form-control-static"><?php echo $current_user->user_email; ?></p></div>
 												</div>
 												<div class="form-group" style="margin-bottom:0px;">
+													<label class="col-sm-3 control-label">Joined</label>
+													<div class="col-sm-9"><p class="form-control-static"><?php echo $joined; ?></p></div>
+												</div>
+											</form>
+										</div>
+									</div>
+									<div class="panel panel-default">
+										<div class="panel-heading"><h3>Your Juniors<a href="/account/juniors" class="btn btn-sm btn-default pull-right">Add Junior</a></h3></div>
+										<div class="panel-body">
+											<form class="form-horizontal">
+												<div class="form-group" style="margin-bottom:0px;">
 													<label class="col-sm-3 control-label">Juniors</label>
 													<div class="col-sm-9"><p class="form-control-static"><?php echo get_user_meta( $current_user->ID, "ukfl_juniors", 1); ?></p></div>
 												</div>
 											</form>
+											<small>Coming soon - junior details will appear here.</small>
 										</div>
 									</div>
 									<div class="panel panel-default">
