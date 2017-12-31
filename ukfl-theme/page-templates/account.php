@@ -22,7 +22,7 @@ global $wpdb, $current_user;
 							<div class="row">
 								<div class="col-md-6 col-xs-12">
 									<div class="panel panel-default">
-										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right" style="display:none;">Edit</a></h3></div>
+										<div class="panel-heading"><h3>Your Details<a class="btn btn-sm btn-default pull-right" style="display:none;">Edit</a><a href="/account/juniors" class="btn btn-sm btn-default pull-right">Add Junior</a></h3></div>
 										<div class="panel-body">
 											<form class="form-horizontal">
 												<div class="form-group" style="margin-bottom:0px;">
