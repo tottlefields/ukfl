@@ -17,7 +17,7 @@ if (isset($_POST['add_team'])){
 			'post_type'		=> 'ukfl_team'
 	);
 	$team_id = wp_insert_post( $team_post );
-	$user->add_role('team_captain');
+	$current_user->add_role('team_captain');
 	
 	$secondary_teams = array();
 	for ($i=0; $i<10; $i++){
