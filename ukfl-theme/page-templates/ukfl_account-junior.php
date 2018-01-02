@@ -32,8 +32,8 @@ if (isset($_REQUEST['add_junior'])){
 	DOB: <strong>'.$dob->format('jS M Y').'</strong><br /><br />';
 	if ($_REQUEST['junior_scheme'] == 'on' || $_REQUEST['junior_age'] >= 12){ $admin_msg .= 'Junior Award Scheme: <strong>YES</strong>'; }
 	else{ $admin_msg .= 'Junior Award Scheme: <strong>NO</strong>'; }
-	$headers = array('Content-Type: text/html; charset=UTF-8');
-	wp_mail(get_option('admin_email'), '['.get_bloginfo('name').'] New Junior Registration', $admin_msg, $headers);
+	$headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
+	wp_mail('juniorliaison@ukflyball.org.uk', '['.get_bloginfo('name').'] New Junior Registration', $admin_msg, $headers);
 	
 	if ($_REQUEST['junior_scheme'] == 'on' || $_REQUEST['junior_age'] >= 12){
 		add_user_meta( $junior->ID, 'ukfl_junior_scheme', 'yes', 1 );
