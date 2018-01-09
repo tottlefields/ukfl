@@ -7,6 +7,7 @@ if (!is_user_logged_in()) { wp_safe_redirect('/login/'); exit; }
 if (!(current_user_can('ukfl_member'))){ wp_safe_redirect('/account/'); exit; }
 
 if (isset($_POST['add_dog'])){
+
 	$dog_post = array(
 			'post_title'  	=> $_POST['ukfl_no'],
 			'post_name'  	=> $_POST['ukfl_no'],
@@ -47,8 +48,27 @@ if (isset($_POST['add_dog'])){
 				todayHighlight: true,
 				orientation: "bottom"
 			});
+		$("#owner_ukfl").on("change", function() {
+			$("#dog_ukfl").val(juniors[$(this).val()]["dog_letter"]);
+			$("#owner_id").val(juniors[$(this).val()]["owner_ukfl"]);
+			$("#ukfl_no").val(juniors[$(this).val()]["ukfl_no"]);
+		});
 	 } );
 </script>';
+}
+
+$juniors = array();
+foreach (explode(',', get_user_meta( $current_user->ID, "ukfl_juniors", 1)) as $ukfl){
+	$junior = get_user_by('login', $ukfl);
+	$dog_letter = generate_ukfl_dog_number($ukfl);
+	$juniors[$ukfl] = array('name' => $junior->display_name, 'owner_ukfl' => $junior->ID, 'dog_letter' => $dog_letter, 'ukfl_no' => $ukfl.$dog_letter);
+}
+if (count($juniors) > 0){
+        $js_for_footer = '
+<script type="text/javascript">
+	var juniors = '.json_encode($juniors).'
+</script>'.$js_for_footer;
+
 }
 
 if(isset($_GET['edit']) && isset($_GET['dogID'])) { $TITLE = "Edit Dog"; }
@@ -84,9 +104,18 @@ foreach($breeds as $b) {
 								<div class="form-group">
 									<label class="col-sm-2 control-label" for="owner">Owner</label>
 									<div class="col-sm-2">
+									<?php if (count($juniors) == 0){ ?>
 										<input type="text" name="owner" id="owner" class="input form-control" value="<?php echo $current_user->user_firstname.' '.$current_user->user_lastname; ?>" readonly />
+                                                                                <input type="hidden" name="owner_ukfl" value="<?php echo $current_user->user_login; ?>" />
+									<?php } else { ?>
+										<select name="owner_ukfl" id="owner_ukfl" class="form-control">
+											<option value="<?php echo  $current_user->user_login; ?>"><?php echo $current_user->user_firstname.' '.$current_user->user_lastname; ?></option>
+									<?php foreach ($juniors as $jn => $j){ ?>
+											<option value="<?php echo $jn; ?>"><?php echo $j['name']; ?></option>
+									<?php } ?>
+										</select>
+									<?php } ?>
 										<input type="hidden" name="owner_id" id="owner_id" value="<?php echo $current_user->ID; ?>" />
-										<input type="hidden" name="owner_ukfl" id="owner_ukfl" value="<?php echo $current_user->user_login; ?>" />
 									</div>
 									<label class="col-sm-2 control-label" for="ukfl_no">UKFL No.</label>
 									<div class="col-sm-2">
