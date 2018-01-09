@@ -8,7 +8,7 @@ $args = array(
 	'post_type'		=> 'ukfl_event',
 	'orderby'       =>  'ID',
 	'order'         =>  'DESC',
-	'post_status'	=>  'draft',
+	'post_status'	=>  array('pending', 'draft'),
 	'posts_per_page'=> 1 
 );
 $events = get_posts( $args );
@@ -17,11 +17,19 @@ $event = $events[0];
 // Update the team into the database - payment setup so convert form draft to pending
 wp_update_post( array('ID' => $event->ID, 'post_status' => 'pending') );
 
+$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_start_date', true ));
+$event_dates = $start_date->format('jS M Y');
+if (get_post_meta( $event->ID, 'ukfl_event_start_date', true ) != get_post_meta( $event->ID, 'ukfl_event_end_date', true )){
+	$end_date = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_end_date', true ));
+	$event_dates .= '</strong> to <strong>'.$end_date->format('jS M Y');
+}
+
 $admin_msg = 'New event registration on '.get_bloginfo('name').':<br /><br />
 	Team Captain: <strong>'.$current_user->user_firstname.' '.$current_user->user_lastname.'</strong><br />
 	Email Address: <strong>'.$current_user->user_email.'</strong><br />
 	UKFL Number: <strong>'.$current_user->user_login.'</strong><br /><br />
-	Host Team: <strong>'.get_the_title(wp_get_post_parent_id($event->ID)).'</strong><br /><br />
+	Host Team: <strong>'.get_the_title(wp_get_post_parent_id($event->ID)).'</strong><br />
+	Dates: <strong>'.$event_dates.'</strong><br />
 	Venue: <strong>'.get_post_meta($event->ID, 'ukfl_event_venue', 1).', '.get_post_meta($event->ID, 'ukfl_event_postcode', 1).'</strong><br /><br />';
 $headers = array('Content-Type: text/html; charset=UTF-8', 'Cc:'.get_option('admin_email'));
 wp_mail('secretary@ukflyball.org.uk', '['.get_bloginfo('name').'] New Event Registration', $admin_msg, $headers);

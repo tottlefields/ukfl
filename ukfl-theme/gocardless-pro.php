@@ -1,6 +1,7 @@
 <?php
 
 function mandate_validator($input){
+
 	//$current_user = wp_get_current_user();
 	if (preg_match('/Junior/', $input->description)){
 		$current_user = wp_get_current_user();
@@ -25,27 +26,27 @@ function mandate_validator($input){
 
 function subscription_validator($input){
 	//wp_mail(get_option('admin_email'), 'gcp_successful_mandate_setup - subscription_validator', $input->description);
-	/*if (property_exists($input, 'name') && preg_match('/Membership/', $input->name)){
-	$mandate = cpg_ukfl_get_mandate($input->links->mandate);
-	$customer = cpg_ukfl_get_customer($mandate->links->customer);
-	$user = create_ukfl_member($customer->given_name, $customer->family_name, $customer->email);
-	add_user_meta( $user->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
-	//add_user_meta( $user->ID, 'ukfl_date_renewal', $input->upcoming_payments[1]->charge_date, 1 );
-	add_user_meta( $user->ID, 'ukfl_date_renewal', strtotime(date("Y-m-d"). " +1 year"), 1 );
-	add_user_meta( $user->ID, 'ukfl_mandate_membership', $input->links->mandate, 1 );
-	add_user_meta( $user->ID, 'ukfl_customer_membership', $customer->id, 1 );
-	add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
-	return;
-	}*/
-
-	if (property_exists($input, 'name') && preg_match('/Team/', $input->name)){
-		$current_user = wp_get_current_user();
-		$args = array(
-				'author'        =>  $current_user->ID,
-				'post_type'     => 'ukfl_team',
-				'orderby'       =>  'ID',
-				'order'         =>  'DESC',
-				'posts_per_page' => 1,
+        /*if (property_exists($input, 'name') && preg_match('/Membership/', $input->name)){
+        	$mandate = cpg_ukfl_get_mandate($input->links->mandate);
+        	$customer = cpg_ukfl_get_customer($mandate->links->customer);
+        	$user = create_ukfl_member($customer->given_name, $customer->family_name, $customer->email);
+			add_user_meta( $user->ID, 'ukfl_date_joined', date('Y-m-d'), 1 );
+			//add_user_meta( $user->ID, 'ukfl_date_renewal', $input->upcoming_payments[1]->charge_date, 1 );
+			add_user_meta( $user->ID, 'ukfl_date_renewal', strtotime(date("Y-m-d"). " +1 year"), 1 );
+			add_user_meta( $user->ID, 'ukfl_mandate_membership', $input->links->mandate, 1 );
+			add_user_meta( $user->ID, 'ukfl_customer_membership', $customer->id, 1 );
+			add_user_meta( $user->ID, 'ukfl_membership_type', $input->name, 1 );
+			return;
+        }*/
+        
+        if (property_exists($input, 'name') && preg_match('/Team/', $input->name)){
+        	$current_user = wp_get_current_user();
+        	$args = array(
+        			'author'        =>  $current_user->ID,
+        			'post_type'	=> 'ukfl_team',
+        			'orderby'       =>  'ID',
+        			'order'         =>  'DESC',
+        			'posts_per_page' => 1,
 				'post_status'   => 'pending'
 		);
 		$teams = get_posts( $args );
