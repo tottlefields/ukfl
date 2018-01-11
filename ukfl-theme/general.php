@@ -15,14 +15,31 @@ function get_teams_for_user(){
 	$teams = get_posts( $args );
 	return $teams;
 }
+function get_juniors_for_account(){
+	global $wpdb, $current_user;
+	$juniors = array();
+	$junior_ids = get_user_meta( $current_user->ID, "ukfl_juniors", 1);
+	if($junior_ids != ''){
+		foreach (explode(',', get_user_meta( $current_user->ID, "ukfl_juniors", 1)) as $ukfl){
+			$junior = get_user_by('login', $ukfl);
+			array_push($juniors, $junior);
+		}
+	}
+	return $juniors;
+}
 
 function get_dogs_for_account(){
 	global $wpdb, $current_user;
+	
+	$authors = array($current_user->ID);
+	$juniors = get_juniors_for_account();
+	foreach ($juniors as $j){ array_push($authors, $j->ID); }	
 	$args = array(
-			'author'        =>  $current_user->ID,
-			'post_type'		=> 'ukfl_dog',
-			'orderby'       =>  'post_date',
-			'order'         =>  'ASC',
+			//'author'        =>  $current_user->ID,
+			'author__in'	=> $authors,
+			'post_type'	=> 'ukfl_dog',
+			'orderby'       => 'post_date',
+			'order'         => 'ASC',
 			'post_status'	=> array('publish'),
 			'posts_per_page' => -1 // no limit
 	);
