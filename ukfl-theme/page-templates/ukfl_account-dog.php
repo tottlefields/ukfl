@@ -58,10 +58,13 @@ if (isset($_POST['add_dog'])){
 }
 
 $juniors = array();
-foreach (explode(',', get_user_meta( $current_user->ID, "ukfl_juniors", 1)) as $ukfl){
-	$junior = get_user_by('login', $ukfl);
-	$dog_letter = generate_ukfl_dog_number($ukfl);
-	$juniors[$ukfl] = array('name' => $junior->display_name, 'owner_ukfl' => $junior->ID, 'dog_letter' => $dog_letter, 'ukfl_no' => $ukfl.$dog_letter);
+$junior_ids = get_user_meta( $current_user->ID, "ukfl_juniors", 1);
+if($junior_ids != ''){
+	foreach (explode(',', get_user_meta( $current_user->ID, "ukfl_juniors", 1)) as $ukfl){
+		$junior = get_user_by('login', $ukfl);
+		$dog_letter = generate_ukfl_dog_number($ukfl);
+		$juniors[$ukfl] = array('name' => $junior->display_name, 'owner_ukfl' => $junior->ID, 'dog_letter' => $dog_letter, 'ukfl_no' => $ukfl.$dog_letter);
+	}
 }
 if (count($juniors) > 0){
         $js_for_footer = '
