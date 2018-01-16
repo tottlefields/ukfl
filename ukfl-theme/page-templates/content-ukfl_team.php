@@ -39,7 +39,8 @@ foreach($teams as $team){
 		</div>
 		<div class="col-md-6 col-xs-12">
 			<h4>Our Dogs</h4>
-                                <table class="table responsive table-striped table-condensed">
+                                <table id="table_team_dogs" class="table responsive table-striped table-condensed">
+					<thead><tr><th>Name</th><th>No.</th><th>Breed</th><th class="text-center">Points</th><th class="text-center">Height</th></tr></thead><tbody>
 <?php $dogs = get_dogs_for_team(get_the_ID());
 foreach ($dogs as $dog){
 	$breed_tags = get_the_terms($dog, 'dog-breeds');
@@ -54,8 +55,13 @@ foreach ($dogs as $dog){
 	</tr>';
 }
 ?>
-				</table>
+				</tbody></table>
 		</div>
         </div>
 </article>
 
+<script type="text/javascript">
+jQuery(function ($){
+//	$('#table_team_dogs').DataTable();
+});
+</script>
