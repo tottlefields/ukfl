@@ -47,7 +47,20 @@ function ukfl_enqueue_styles() {
 	);
 }
 
-function ukfl_enqueue_scripts() {	
+function ukfl_enqueue_scripts() {
+	/// PDF Make
+	wp_register_script ( 'pdfmake-js', '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js', false, '0.1.32', true );
+	wp_register_script ( 'pdfmake-fonts-js', get_stylesheet_directory_uri () . '/assets/js/vfs_fonts.js', array ('pdfmake-js' ), '0.1.32', true );
+	wp_enqueue_script ( 'pdfmake-js' );
+	wp_enqueue_script ( 'pdfmake-fonts-js' );
+
+	// DataTables
+	wp_register_script ( 'datatables-js', 'https://cdn.datatables.net/v/bs/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/sl-1.2.4/datatables.min.js', array ('jquery', 'pdfmake-js'), '1.10.16', false);
+	wp_enqueue_script ( 'datatables-js' );
+	
+	wp_register_script ( 'dt-ukdatesort-js', '//cdn.datatables.net/plug-ins/1.10.16/sorting/date-uk.js', array ('bootstrap-js'), '1.10.16', true);
+	wp_enqueue_script ( 'dt-ukdatesort-js' );
+
 	// BS DatePicker
 	wp_register_script ( 'datepicker-js', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js', array (), '1.7.1', false );
 	wp_enqueue_script ( 'datepicker-js' );

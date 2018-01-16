@@ -39,6 +39,9 @@ function get_dogs_for_team($team_id){
                 'post_status'   => 'publish',
                 'posts_per_page'=> -1,
                 'post_parent'   => $team_id,
+		'order'		=> 'ASC',
+		'orderby'	=> 'meta_value',
+		'meta_key'	=> 'ukfl_dog_name'
 
         );
         $dogs = get_posts($args);
