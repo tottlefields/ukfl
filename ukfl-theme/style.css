@@ -1,7 +1,7 @@
 /*
 Theme Name: UKFL
 Theme URI:
-Version: 1.0.8
+Version: 1.0.9
 Template: busiprof-pro
 */
 @import url('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css');
@@ -9,6 +9,7 @@ Template: busiprof-pro
 
 .comments-link { display: none; }
 table{ table-layout: auto; }
+.table-condensed td { font-size: 12px; }
 div.slide-caption { display:none; }
 p, .entry-content { margin-bottom: 20px; }
 .clickable-row { cursor: pointer; }

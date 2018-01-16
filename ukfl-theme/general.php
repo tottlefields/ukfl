@@ -15,6 +15,37 @@ function get_teams_for_user(){
 	$teams = get_posts( $args );
 	return $teams;
 }
+
+function get_sub_teams_for_team($team_id){
+	global $wpdb;
+	$args = array(
+		'post_type'	=> 'ukfl_sub-team',
+		'orderby'       =>  'post_title',
+                'order'         =>  'ASC',
+		'post_status'   => array('publish', 'pending'),
+                'posts_per_page'=> -1,
+		'post_parent'   => $team_id,
+
+	);
+	$teams = get_posts($args);
+
+	return $teams;
+}
+
+function get_dogs_for_team($team_id){
+        global $wpdb;
+        $args = array(
+                'post_type'     => 'ukfl_dog',
+                'post_status'   => 'publish',
+                'posts_per_page'=> -1,
+                'post_parent'   => $team_id,
+
+        );
+        $dogs = get_posts($args);
+
+        return $dogs;
+}
+
 function get_juniors_for_account(){
 	global $wpdb, $current_user;
 	$juniors = array();
