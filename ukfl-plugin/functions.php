@@ -119,6 +119,12 @@ function add_roles_on_activation() {
                         'level_0' => true,
 		)
 	);
+        add_role('ukfl_official', 'UKFL Official',
+                array(
+                        'read' => true,
+                        'level_0' => true,
+                )
+        );
 }
 function del_roles_on_uninstall() {
 	remove_role('team_captain');

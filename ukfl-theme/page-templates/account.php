@@ -67,7 +67,7 @@ if (count($dogs) > 0){ ?>
 <?php foreach ( $dogs as $post ) : setup_postdata( $post ); 
 	$ukfl_points = get_post_meta(get_the_ID(), 'ukfl_dog_points', true);
 	//$ukfl_height = get_post_meta(get_the_ID(), 'ukfl_dog_height', true);
-	$ukfl_height = get_ukfl_height_for_dog(get_the_ID());
+	$ukfl_height = get_ukfl_height_for_dog(get_the_title());
 	if ($ukfl_points == ''){ $ukfl_points = 0; }
 	//if ($ukfl_height == ''){ $ukfl_height = "FH"; }
 	?>
@@ -122,7 +122,7 @@ $events = get_events_for_teams($team_ids);
 	if (count($events) > 0){ ?>
 	<div class="row">
 		<div class="col-md-12">
-			<table class="events-list table table-condensed"><tbody>
+			<table class="events-list table"><tbody>
 	<?php foreach ( $events as $post ) : setup_postdata( $post );
 		$status = ($post->post_status == 'publish') ? 'Approved' : 'Pending Approval';
 		$status_icon = ($post->post_status == 'publish') ? 'check' : 'hourglass-start';

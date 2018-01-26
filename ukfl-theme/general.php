@@ -83,8 +83,8 @@ function get_dogs_for_account(){
 
 function get_ukfl_height_for_dog($dog_id){
 	global $wpdb;
-	
-	$ukfl_height = $wpdb->get_var( "select measure_final from ukfl_dog_measures where dog_id = ".$dog_id );
+
+	$ukfl_height = $wpdb->get_var( "select measure_final from ukfl_dog_measures where dog_ukfl = '".$dog_id."'" );
 	if ($ukfl_height > 0 && $ukfl_height < 12) { $ukfl_height = $ukfl_height.'"'; }
 	else { $ukfl_height = 'FH'; }
 

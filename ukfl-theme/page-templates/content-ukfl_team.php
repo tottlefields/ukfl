@@ -45,7 +45,7 @@ foreach($teams as $team){
 foreach ($dogs as $dog){
 	$breed_tags = get_the_terms($dog, 'dog-breeds');
 	$ukfl_points = 0;
-	$ukfl_height = get_ukfl_height_for_dog($dog->ID);
+	$ukfl_height = get_ukfl_height_for_dog($dog->post_title);
 	echo '<tr>
 		<td><a href="'.get_permalink($dog->ID).'">'.get_post_meta($dog->ID, 'ukfl_dog_name', 1).'</a></td>
 		<td>'.$dog->post_title.'</td>

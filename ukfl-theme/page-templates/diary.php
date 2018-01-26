@@ -27,9 +27,10 @@ get_template_part('index', 'bannerstrip');
 						<div class="entry-content">
 							<div class="row">
 								<div class="col-md-12">
-									<table class="events-list table table-condensed">
+									<table class="events-list table">
 <?php foreach($all_events as $event) : setup_postdata($event);
 	$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_start_date', true )); 
+	$end_date   = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_end_date', true )); 
 	$format_labels = '&nbsp;';
 //	if (get_post_meta( $event->ID, 'event_', true)
 ?>
@@ -40,7 +41,12 @@ get_template_part('index', 'bannerstrip');
 						    							<div class="event-month"><?php echo strtoupper($start_date->format('M')); ?></div>
 	    											</div>
 						    					</td>
-											<td></td>
+											<td><?php if (isset($end_date) && $end_date != '' && $start_date != $end_date){ ?>
+                                                                                                <div class="event-date" style="border:0px;">
+                                                                                                        <div class="event-day"><?php echo $end_date->format('j'); ?></div>
+                                                                                                        <div class="event-month"><?php echo strtoupper($end_date->format('M')); ?></div>
+                                                                                                </div>
+											<?php } ?></td>
 											<td><div class="img-div">
 												<?php echo get_the_post_thumbnail( $event->post_parent, array(175, 75) ); ?>
 											</div></td>

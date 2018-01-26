@@ -60,6 +60,10 @@
 <?php if ( is_user_logged_in() ) { ?>
     <li style="display:inline;"><i class="fa fa-user-circle"></i><a href="/account/">My Account</a></li>
     <span style="padding:0px 10px;font-size:150%">|</span>
+<?php if (current_user_can('ukfl_official')){ ?>
+    <li style="display:inline;"><i class="fa fa-lock"></i><a href="/administration/">Administration</a></li>
+    <span style="padding:0px 10px;font-size:150%">|</span>
+<?php } ?>
     <li style="display:inline;"><i class="fa fa-sign-out"></i><a href="<?php echo wp_logout_url(); ?>">Logout</a></li>
 <?php } else { ?>
     <li style="display:inline;"><i class="fa fa-sign-in"></i><a href="/login/">Login</a></li>

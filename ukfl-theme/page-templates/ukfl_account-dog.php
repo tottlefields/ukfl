@@ -12,7 +12,8 @@ if (isset($_POST['add_dog'])){
 			'post_title'  	=> $_POST['ukfl_no'],
 			'post_name'  	=> $_POST['ukfl_no'],
 			'post_status' 	=> 'draft',
-			'post_author' 	=> $_POST['owner_id'],
+			//'post_author' 	=> $_POST['owner_id'],
+			'post_author' 	=> $current_user->ID,
 			'post_parent'	=> $_POST['current_team'],
 			'post_type'		=> 'ukfl_dog',
 			'tax_input'		=> array(
