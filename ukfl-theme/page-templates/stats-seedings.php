@@ -37,10 +37,10 @@ if ( $seedings ) { ?>
 <?php 
 							$position = 1;
 							foreach ( $seedings as $team ){
-								echo '<tr>'.$position.'</tr>';
-								echo '<tr>'.$team->team_name.'</tr>';
-								echo '<tr>'.$team->fastest_time.'</tr>';
-								echo '<tr>'.$team->event_title.'</tr>';							
+								echo '<tr><td>'.$position.'</td>';
+								echo '<td>'.$team->team_name.'</td>';
+								echo '<td>'.$team->fastest_time.'</td>';
+								echo '<td>'.$team->event_title.'</td></tr>';							
 								$position++;
 							}?>
 								</tbody>
