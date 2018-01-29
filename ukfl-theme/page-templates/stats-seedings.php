@@ -30,8 +30,8 @@ if ( $seedings ) { ?>
 								<thead>
 									<th></th>
 									<th class="text-center">Position</th>
-									<th></th>
-									<th>Team Name</th>
+									<th style="border-right-width:0px;width:75px;"></th>
+									<th style="border-left-width:0px;">Team</th>
 									<th class="text-center">Time</th>
 									<th>Event</th>								
 								</thead>
