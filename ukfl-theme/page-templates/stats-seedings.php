@@ -29,9 +29,9 @@ if ( $seedings ) { ?>
 							<table class="table-responsive table-striped" id="seeding_list">
 								<thead>
 									<th></th>
-									<th>Position</th>
+									<th class="text-center">Position</th>
 									<th>Team Name</th>
-									<th>Time</th>
+									<th class="text-center">Time</th>
 									<th>Event</th>								
 								</thead>
 								<tbody>
@@ -39,11 +39,12 @@ if ( $seedings ) { ?>
 							$position = 1;
 							foreach ( $seedings as $team ){
 								$club = get_post($team->club_id);
+								$seed_date = new DateTime($team->event_date);
 								echo '<tr><td>'.$position.'</td>';
-								echo '<td>'.ordinal($position).'</td>';
+								echo '<td class="text-center">'.ordinal($position).'</td>';
 								echo '<td><a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
-								echo '<td>'.$team->fastest_time.'</td>';
-								echo '<td>'.$team->event_title.'</td></tr>';							
+								echo '<td class="text-center">'.$team->fastest_time.'</td>';
+								echo '<td>'.$team->event_title.' ('.$seed_date->format('d/m/Y').')</td></tr>';							
 								$position++;
 							}?>
 								</tbody>
@@ -73,8 +74,12 @@ jQuery(function ($) {
 	$('#seeding_list').DataTable({
 		"ordering": false,
 		"columnDefs": [
-		    { "visible": false, "targets": 0 }
-		 ]
+			{ "visible": false, "targets": 0 }
+		],
+		dom : '<"toolbar">frtip',
+		pageLength: 20,
+		paging : true,
+		lengthChange: false,
 	});
 });
 </script>
