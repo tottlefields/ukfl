@@ -13,6 +13,7 @@ inner join $wpdb->postmeta e on e.post_id=t1.event_id
 inner join $wpdb->posts t3 on t2.post_parent=t3.ID
 where team_type='".$list_type."' and t2.post_type='ukfl_sub-team' and fastest_time>0 and e.meta_key='ukfl_event_title' 
 order by fastest_time";
+debug_array($sql);
 $seedings = $wpdb->get_results($sql);
 debug_array($seedings);
 ?>
