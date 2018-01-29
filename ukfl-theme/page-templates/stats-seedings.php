@@ -5,7 +5,7 @@ get_header();
 get_template_part('index', 'bannerstrip');
 
 global $wpdb;
-$list_type = get_post_meta(the_ID(), "type", 1);
+$list_type = get_post_meta(get_the_ID(), "type", 1);
 
 $sql = "select team, event_date, fastest_time, t2.post_title, e.meta_value, t3.post_name 
 from ukfl_event_results t1 left outer join $wpdb->posts t2 on t1.team=t2.post_name 
@@ -24,7 +24,7 @@ debug_array($seedings);
 			<!--Blog Posts-->
 			<div class="col-md-12 col-xs-12">
 				<div class="page-content">
-					<article id="page-<?php get_the_ID(); ?>" <?php post_class('page'); ?> > 					
+					<article id="page-<?php the_ID(); ?>" <?php post_class('page'); ?> > 					
 						<div class="entry-content">
 							<?php the_post(); the_content(); ?>
 						</div>
