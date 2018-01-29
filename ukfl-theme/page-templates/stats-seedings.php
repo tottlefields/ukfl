@@ -42,7 +42,7 @@ if ( $seedings ) { ?>
 								$seed_date = new DateTime($team->event_date);
 								echo '<tr><td>'.$position.'</td>';
 								echo '<td class="text-center">'.ordinal($position).'</td>';
-								echo '<td>'.get_the_post_thumbnail($team->club_id).'<a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
+								echo '<td><div class="img-div">'.get_the_post_thumbnail( $team->club_id, array(175, 75) ).'</div><a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
 								echo '<td class="text-center">'.$team->fastest_time.'</td>';
 								echo '<td>'.$team->event_title.' ('.$seed_date->format('d/m/Y').')</td></tr>';							
 								$position++;
