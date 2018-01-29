@@ -7,7 +7,7 @@ get_template_part('index', 'bannerstrip');
 global $wpdb;
 $list_type = get_post_meta(get_the_ID(), "type", 1);
 
-$sql = "select t3.ID as club_id, event_date, fastest_time, t2.post_title as team_name, e.meta_value as event_title, t3.post_name as club
+$sql = "select t3.ID as club_id, team, event_date, fastest_time, t2.post_title as team_name, e.meta_value as event_title, t3.post_name as club
 from ukfl_event_results t1 left outer join $wpdb->posts t2 on t1.team=t2.post_name 
 inner join $wpdb->postmeta e on e.post_id=t1.event_id
 inner join $wpdb->posts t3 on t2.post_parent=t3.ID
@@ -31,10 +31,11 @@ if ( $seedings ) { ?>
 									<th>Rank</th>
 									<th class="text-center">Position</th>
 									<th style="border-right-width:0px;width:75px;"></th>
-									<th style="border-left-width:0px;">Team</th>
+									<th style="border-left-width:0px;">Team Name</th>
 									<th class="text-center">Time</th>
 									<th>Event</th>			
 									<th>Date</th>			
+									<th>Team</th>			
 								</thead>
 								<tbody>
 <?php 
@@ -48,7 +49,8 @@ if ( $seedings ) { ?>
 								echo '<td style="border-left-width:0px;"><a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
 								echo '<td class="text-center">'.$team->fastest_time.'</td>';
 								echo '<td>'.$team->event_title.' ('.$seed_date->format('jS F').')</td>';
-								echo '<td>'.$seed_date->format('d/m/Y').'</td></tr>';							
+								echo '<td>'.$seed_date->format('d/m/Y').'</td>';
+								echo '<td>'.$team->team.'</td></tr>';							
 								$position++;
 							}?>
 								</tbody>
@@ -78,7 +80,7 @@ jQuery(function ($) {
 	$('#seeding_list').DataTable({
 		"ordering": false,
 		"columnDefs": [
-			{ "visible": false, "targets": [0,6] }
+			{ "visible": false, "targets": [0,6,7] }
 		],
 		//dom : '<"toolbar">frtip',
         dom: 'Bfrtip',
@@ -86,13 +88,13 @@ jQuery(function ($) {
             {
                 extend: 'copyHtml5',
                 exportOptions: {
-                	columns: [ 0, 3, 4, 6 ]
+                	columns: [ 0, 3, 4, 6, 7 ]
                 }
             },
             {
                 extend: 'csvHtml5',
                 exportOptions: {
-                	columns: [ 0, 3, 4, 6 ]
+                	columns: [ 0, 3, 4, 6, 7 ]
                 }
             },
         ],
