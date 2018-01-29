@@ -12,7 +12,7 @@ function ordinal($number) {
 
 function get_seed_time_for_team($team){
 	global $wpdb;
-	$result = $wpdb->get_row( "SELECT * from ukfl_event_results where team='".$team->post_title."' and team_type ='League'" );
+	$result = $wpdb->get_row( "SELECT * from ukfl_event_results where team='".$team->post_name."' and team_type ='League'" );
 	return $result;	
 }
 
