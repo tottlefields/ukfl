@@ -38,11 +38,11 @@ if ( $seedings ) { ?>
 <?php 
 							$position = 1;
 							foreach ( $seedings as $team ){
-								$club = get_post($team->club_id);
+								//$club = get_post($team->club_id);
 								$seed_date = new DateTime($team->event_date);
 								echo '<tr><td>'.$position.'</td>';
 								echo '<td class="text-center">'.ordinal($position).'</td>';
-								echo '<td><a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
+								echo '<td>'.the_post_thumbnail($team->club_id).'<a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
 								echo '<td class="text-center">'.$team->fastest_time.'</td>';
 								echo '<td>'.$team->event_title.' ('.$seed_date->format('d/m/Y').')</td></tr>';							
 								$position++;
