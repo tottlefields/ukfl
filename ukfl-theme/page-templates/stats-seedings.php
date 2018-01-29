@@ -98,8 +98,7 @@ jQuery(function ($) {
                 }
             },
         ],
-		pageLength: 20,
-		paging : true,
+		paging : false,
 		lengthChange: false,
 	});
 	//$("div.toolbar").html('<button type="button" class="btn btn-default" id="exportPDFs" disabled="disabled"><i class="fa fa-file-pdf-o link"></i>&nbsp;Export PDFs</button>');
