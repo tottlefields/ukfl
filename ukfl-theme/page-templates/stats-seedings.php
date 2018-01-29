@@ -73,7 +73,7 @@ jQuery(function ($) {
 		"ordering": false,
 		"columnDefs": [
 		    { "visible": false, "targets": 0 }
-		  ]
+		 ],
 	);
 });
 </script>
