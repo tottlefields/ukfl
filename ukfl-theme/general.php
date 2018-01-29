@@ -10,6 +10,12 @@ function ordinal($number) {
 			return $number. $ends[$number % 10];
 }
 
+function get_seed_time_for_team($team){
+	global $wpdb;
+	$result = $wpdb->get_row( "SELECT * from ukfl_event_results where team='".$team->post_title."' and team_type ='League'" );
+	return $result;	
+}
+
 function get_teams_for_user(){
 	global $wpdb, $current_user;
 	$args = array(

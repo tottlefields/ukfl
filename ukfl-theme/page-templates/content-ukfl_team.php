@@ -32,7 +32,10 @@
 				<table class="table responsive table-striped">
 <?php $teams = get_sub_teams_for_team(get_the_ID());
 foreach($teams as $team){
-	echo '<tr><td>'.$team->post_title.'</td></tr>';
+	$result = get_seed_time_for_team($team);
+	$league_time = ($result) ? $result->fastest_time : '--';
+	echo '<tr><td>'.$team->post_title.'</td>';
+	echo '<td class="text-center">'.$league_time.'</td></tr>';
 }
 ?>
 				</table>
