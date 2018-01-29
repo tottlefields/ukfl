@@ -28,6 +28,7 @@ $seedings = $wpdb->get_results($sql);
 if ( $seedings ) { ?>
 							<table class="table-responsive table-striped" id="seeding_list">
 								<thead>
+									<th></th>
 									<th>Position</th>
 									<th>Team Name</th>
 									<th>Time</th>
