@@ -20,7 +20,7 @@ Template: busiprof-pro
 
 
 .comments-link { display: none; }
-table{ table-layout: auto; }
+table{ table-layout: auto; border-collapse: collapse !important; }
 .table-condensed td { font-size: 12px; }
 div.slide-caption { display:none; }
 p, .entry-content { margin-bottom: 20px; }
