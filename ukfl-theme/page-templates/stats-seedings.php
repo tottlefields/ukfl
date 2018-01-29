@@ -7,15 +7,13 @@ get_template_part('index', 'bannerstrip');
 global $wpdb;
 $list_type = get_post_meta(get_the_ID(), "type", 1);
 
-$sql = "select team, event_date, fastest_time, t2.post_title, e.meta_value, t3.post_name 
+$sql = "select event_date, fastest_time, t2.post_title as team_name, e.meta_value as event_title, t3.post_name as club
 from ukfl_event_results t1 left outer join $wpdb->posts t2 on t1.team=t2.post_name 
 inner join $wpdb->postmeta e on e.post_id=t1.event_id
 inner join $wpdb->posts t3 on t2.post_parent=t3.ID
 where team_type='".$list_type."' and t2.post_type='ukfl_sub-team' and fastest_time>0 and e.meta_key='ukfl_event_title' 
 order by fastest_time";
-debug_array($sql);
 $seedings = $wpdb->get_results($sql);
-debug_array($seedings);
 ?>
 <!-- Blog & Sidebar Section -->
 <section>		
@@ -26,7 +24,33 @@ debug_array($seedings);
 				<div class="page-content">
 					<article id="page-<?php the_ID(); ?>" <?php post_class('page'); ?> > 					
 						<div class="entry-content">
-							<?php the_post(); the_content(); ?>
+							<?php 
+if ( $seedings ) { ?>
+							<table class="table-responsive table-striped" id="seeding_list">
+								<thead>
+									<th>Position</th>
+									<th>Team Name</th>
+									<th>Time</th>
+									<th>Event</th>								
+								</thead>
+								<tbody>
+<?php 
+							$position = 1;
+							foreach ( $seedings as $team ){
+								echo '<tr>'.$position.'</tr>';
+								echo '<tr>'.$team->team_name.'</tr>';
+								echo '<tr>'.$team->fastest_time.'</tr>';
+								echo '<tr>'.$team->event_title.'</tr>';							
+								$position++;
+							}?>
+								</tbody>
+							</table>
+						
+<?php }
+else{
+	
+}
+							?>
 						</div>
 					</article>
 				</div>
