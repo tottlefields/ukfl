@@ -84,7 +84,7 @@ jQuery(function ($) {
             'copyHtml5',
             'excelHtml5',
             'csvHtml5'
-        ]
+        ],
 		pageLength: 20,
 		paging : true,
 		lengthChange: false,
