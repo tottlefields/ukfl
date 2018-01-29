@@ -28,12 +28,13 @@ $seedings = $wpdb->get_results($sql);
 if ( $seedings ) { ?>
 							<table class="table-responsive table-striped" id="seeding_list">
 								<thead>
-									<th></th>
+									<th>Rank</th>
 									<th class="text-center">Position</th>
 									<th style="border-right-width:0px;width:75px;"></th>
 									<th style="border-left-width:0px;">Team</th>
 									<th class="text-center">Time</th>
-									<th>Event</th>								
+									<th>Event</th>			
+									<th>Date</th>			
 								</thead>
 								<tbody>
 <?php 
@@ -46,7 +47,8 @@ if ( $seedings ) { ?>
 								echo '<td style="border-right-width:0px;width:75px;"><div class="img-div">'.get_the_post_thumbnail( $team->club_id, array(175, 75) ).'</div></td>';
 								echo '<td style="border-left-width:0px;"><a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
 								echo '<td class="text-center">'.$team->fastest_time.'</td>';
-								echo '<td>'.$team->event_title.' ('.$seed_date->format('d/m/Y').')</td></tr>';							
+								echo '<td>'.$team->event_title.' ('.$seed_date->format('jS F').')</td>';
+								echo '<td>'.$seed_date->format('d/m/Y').'</td></tr>';							
 								$position++;
 							}?>
 								</tbody>
@@ -76,14 +78,23 @@ jQuery(function ($) {
 	$('#seeding_list').DataTable({
 		"ordering": false,
 		"columnDefs": [
-			{ "visible": false, "targets": 0 }
+			{ "visible": false, "targets": [0,6] }
 		],
 		//dom : '<"toolbar">frtip',
         dom: 'Bfrtip',
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5'
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                	columns: [ 0, 3, 4, 6 ]
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                	columns: [ 0, 3, 4, 6 ]
+                }
+            },
         ],
 		pageLength: 20,
 		paging : true,
