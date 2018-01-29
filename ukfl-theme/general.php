@@ -2,6 +2,14 @@
 
 $team_types = array('league' => "League Team", 'multibreed' => 'Multibreed Team');
 
+function ordinal($number) {
+	$ends = array('th','st','nd','rd','th','th','th','th','th','th');
+	if ((($number % 100) >= 11) && (($number%100) <= 13))
+		return $number. 'th';
+		else
+			return $number. $ends[$number % 10];
+}
+
 function get_teams_for_user(){
 	global $wpdb, $current_user;
 	$args = array(

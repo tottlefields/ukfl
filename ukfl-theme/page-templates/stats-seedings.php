@@ -7,7 +7,7 @@ get_template_part('index', 'bannerstrip');
 global $wpdb;
 $list_type = get_post_meta(get_the_ID(), "type", 1);
 
-$sql = "select event_date, fastest_time, t2.post_title as team_name, e.meta_value as event_title, t3.post_name as club
+$sql = "select t3.ID as club_id, event_date, fastest_time, t2.post_title as team_name, e.meta_value as event_title, t3.post_name as club
 from ukfl_event_results t1 left outer join $wpdb->posts t2 on t1.team=t2.post_name 
 inner join $wpdb->postmeta e on e.post_id=t1.event_id
 inner join $wpdb->posts t3 on t2.post_parent=t3.ID
@@ -37,8 +37,9 @@ if ( $seedings ) { ?>
 <?php 
 							$position = 1;
 							foreach ( $seedings as $team ){
-								echo '<tr><td>'.$position.'</td>';
-								echo '<td>'.$team->team_name.'</td>';
+								$club = get_post($team->club_id);
+								echo '<tr><td>'.ordinal($position).'</td>';
+								echo '<td><a href="'.get_permalink($team->club_id).'">'.$team->team_name.'</a></td>';
 								echo '<td>'.$team->fastest_time.'</td>';
 								echo '<td>'.$team->event_title.'</td></tr>';							
 								$position++;
