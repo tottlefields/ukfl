@@ -70,12 +70,12 @@ else{
 if ( $seedings ) { ?>
 <script type="text/javascript">
 jQuery(function ($) {
-	$('#seeding_list').DataTable(
+	$('#seeding_list').DataTable({
 		"ordering": false,
 		"columnDefs": [
 		    { "visible": false, "targets": 0 }
-		 ],
-	);
+		 ]
+	});
 });
 </script>
 <?php } ?>
