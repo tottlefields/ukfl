@@ -38,7 +38,8 @@ if (isset($_POST['add_event'])){
 					'ukfl_event_postcode' => $_POST['ukfl_event_postcode'],
 					'ukfl_event_lat' => $lookup->latitude,
 					'ukfl_event_long' => $lookup->longitude,
-					'ukfl_event_title' => $team_name." - ".$_POST['ukfl_event_title'],
+					//'ukfl_event_title' => $team_name." - ".$_POST['ukfl_event_title'],
+					'ukfl_event_title' => $_POST['ukfl_event_title'],
 					'ukfl_event_venue' => $_POST['ukfl_event_venue'],
 					'ukfl_event_notes' => $_POST['tourn_notes']
 			)

@@ -65,16 +65,16 @@ if (count($dogs) > 0){ ?>
 		<div class="col-md-12">
 			<table class="events-list table table-condensed"><tbody>
 <?php foreach ( $dogs as $post ) : setup_postdata( $post ); 
-	$ukfl_points = get_post_meta(get_the_ID(), 'ukfl_dog_points', true);
-	//$ukfl_height = get_post_meta(get_the_ID(), 'ukfl_dog_height', true);
+	$ukfl_points = get_ukfl_points_for_dog(get_the_title());
 	$ukfl_height = get_ukfl_height_for_dog(get_the_title());
 	if ($ukfl_points == ''){ $ukfl_points = 0; }
-	//if ($ukfl_height == ''){ $ukfl_height = "FH"; }
+        $star = $ukfl_points < 300 ? 'fa-star-o' : 'fa-star';
+        $award = $ukfl_points < 300 ? '' : get_ukfl_award($ukfl_points);
 	?>
 				<tr class='clickable-row' data-href='<?php the_permalink(); ?>'>
 					<td><?php echo get_post_meta(get_the_ID(), 'ukfl_dog_name', true); ?></td>
 					<td><?php the_title(); ?></td>
-					<td><i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;<?php echo $ukfl_points; ?></td>
+					<td><i class="fa <?php echo $star.' '.str_replace(' ', '-', strtolower($award)); ?>"  title="<?php echo $award; ?>" aria-hidden="true" data-toggle="tooltip" data-placement="top"></i>&nbsp;<?php echo $ukfl_points; ?></td>
 					<td><?php echo $ukfl_height; ?></td>
 				</tr>
 <?php endforeach;

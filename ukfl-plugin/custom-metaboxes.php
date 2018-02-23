@@ -89,6 +89,34 @@ function add_sub_team_custom_meta_box($post){
     add_meta_box("sub-team-meta-box", "Parent Team", "custom_sub_team_meta_box_markup", "ukfl_sub-team", "side", "core", null);
 }
 
+function custom_sub_event_meta_box_markup($post) {
+        wp_nonce_field(basename(__FILE__), "meta-box-nonce");
+
+        $events = get_posts(
+                array(
+                        'post_type'   => 'ukfl_event',
+		        'post_status' => array('publish', 'pending'),
+                        'orderby'     => 'title',
+                	'order'       => 'ASC',
+	                'numberposts' => -1
+                )
+        );
+
+        if ( !empty( $events ) ) {
+                echo '<select name="parent_id" class="widefat">'; // !Important! Don't change the 'parent_id' name attribute.
+                echo '<option value="0">None</option>';
+                foreach ( $events as $event ) {
+                        printf( '<option value="%s"%s>%s</option>', esc_attr( $event->ID ), selected( $event->ID, $post->post_parent, false ), esc_html( $event->post_title ) );
+                }
+                echo '</select>';
+        }
+}
+
+function add_sub_event_custom_meta_box($post){
+    add_meta_box("sub-event-meta-box", "Event", "custom_sub_event_meta_box_markup", "ukfl_sub-event", "side", "core", null);
+}
+
+
 function custom_event_meta_box_markup($post){	
         wp_nonce_field(basename(__FILE__), "meta-box-nonce");
 

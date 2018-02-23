@@ -12,7 +12,7 @@ function ordinal($number) {
 
 function get_seed_time_for_team($team){
 	global $wpdb;
-	$result = $wpdb->get_row( "SELECT * from ukfl_event_results where team='".$team->post_name."' and team_type ='League'" );
+	$result = $wpdb->get_row( "SELECT * from ukfl_event_results where team='".$team->post_name."' and team_type ='League' and current_seed_time=1" );
 	return $result;	
 }
 
@@ -103,6 +103,41 @@ function get_ukfl_height_for_dog($dog_id){
 	else { $ukfl_height = 'FH'; }
 
 	return $ukfl_height;
+}
+
+function get_ukfl_points_for_dog($dog_id){
+	global $wpdb;
+
+	$ukfl_points = $wpdb->get_var( "select sum(points) as total_points from ukfl_dog_points where dog_ukfl = '".$dog_id."'" );
+	if (!$ukfl_points){ $ukfl_points = 0; }	
+
+	return $ukfl_points;
+}
+
+function get_ukfl_award($points){
+	switch (true) {
+		case $points >= 100000 : return 'Marshall of the UKFL';
+		case $points >= 90000 : return 'Air Chief Marshall';
+                case $points >= 80000  : return 'Air Marshall';
+                case $points >= 75000  : return 'Air Vice Marshall';
+                case $points >= 70000  : return 'Air Commodore';
+                case $points >= 65000  : return 'Group Captain Superior';
+                case $points >= 55000  : return 'Group Captain Advanced';
+                case $points >= 45000  : return 'Group Captain';
+                case $points >= 40000  : return 'Wing Commander';
+                case $points >= 35000  : return 'Squadron Leader Superior';
+                case $points >= 30000  : return 'Squadron Leader Advanced';
+                case $points >= 25000  : return 'Squadron Leader';
+                case $points >= 20000  : return 'Flight Lieutenant';
+                case $points >= 17000  : return 'Flying Officer Superior';
+                case $points >= 15000  : return 'Flying Officer Advanced';
+                case $points >= 13000  : return 'Flying Officer';
+                case $points >= 10000  : return 'Pilot Officer';
+                case $points >= 5000   : return 'Cadet Superior';
+                case $points >= 1000   : return 'Cadet Advanced';
+                case $points >= 300    : return 'Cadet';
+                default : return '';
+	}
 }
 
 function get_events_for_teams($team_ids){

@@ -26,7 +26,7 @@ function register_custom_posttypes() {
 			'exclude_from_search' 	=> false,
 			'hierarchical'			=> false,
 			'rewrite'				=> array( 'slug' => get_option('ukfl_team_slug','teams') ),
-			'supports' 				=> array( 'title', 'author', 'thumbnail' ),
+			'supports' 				=> array( 'title', 'author', 'thumbnail', 'custom-fields' ),
 			'has_archive' 			=> false,
 			'show_in_nav_menus' 	=> true,
 			'menu_icon' 			=> 'dashicons-shield',
@@ -52,7 +52,7 @@ function register_custom_posttypes() {
 			'exclude_from_search'   => true,
 			'hierarchical'          => false,
 			'rewrite'               => array( 'slug' => get_option('ukfl_sub_team_slug','sub-teams') ),
-			'supports'              => array( 'title', 'author' ),
+			'supports'              => array( 'title', 'author', 'custom-fields' ),
 			'has_archive'           => false,
 			'menu_icon'             => 'dashicons-shield-alt',
 			'menu_position'			=> 31,
@@ -65,7 +65,7 @@ function register_custom_posttypes() {
                         'add_new_item'          => __( 'Add New Event', 'ukfl' ),
                         'edit_item'             => __( 'Edit Event', 'ukfl' ),
                         'new_item'              => __( 'New', 'ukfl' ),
-                        'view_item'             => __( 'View Team', 'ukfl' ),
+                        'view_item'             => __( 'View Event', 'ukfl' ),
                         'search_items'          => __( 'Search', 'ukfl' ),
                         'not_found'             => __( 'No results found.', 'ukfl' ),
                         'not_found_in_trash'    => __( 'No results found.', 'ukfl' ),
@@ -80,6 +80,31 @@ function register_custom_posttypes() {
                 'menu_icon'             => 'dashicons-location-alt',
 				'menu_position'			=> 33,
 	);
+	
+	$sub_event_args = array(
+                'labels' => array(
+                        'name'                  => __( 'Event Parts', 'ukfl' ),
+                        'singular_name'         => __( 'Event Part', 'ukfl' ),
+                        'add_new_item'          => __( 'Add New Event Part', 'ukfl' ),
+                        'edit_item'             => __( 'Edit Event Part', 'ukfl' ),
+                        'new_item'              => __( 'New', 'ukfl' ),
+                        'view_item'             => __( 'View Event Part', 'ukfl' ),
+                        'search_items'          => __( 'Search', 'ukfl' ),
+                        'not_found'             => __( 'No results found.', 'ukfl' ),
+                        'not_found_in_trash'    => __( 'No results found.', 'ukfl' ),
+                ),
+                        'public'                => true,
+                        'show_ui'               => true,
+                        'publicly_queryable'    => false,
+                        'exclude_from_search'   => true,
+                        'hierarchical'          => false,
+                        'rewrite'               => array( 'slug' => get_option('ukfl_sub_event_slug','sub-events') ),
+                        'supports'              => array( 'title', 'author' ),
+                        'has_archive'           => false,
+                        'menu_icon'             => 'dashicons-location-alt',
+                        'menu_position'                 => 35,
+        );
+
 	
 	$dog_args = array(
 		'labels' => array(
@@ -99,7 +124,7 @@ function register_custom_posttypes() {
                 'exclude_from_search'   => false,
                 'hierarchical'          => false,
                 'rewrite'               => array( 'slug' => get_option('ukfl_dog_slug','dogs') ),
-				'supports' 				=> array( 'title', 'author', 'thumbnail' ),
+				'supports' 				=> array( 'title', 'author', 'thumbnail', 'custom-fields' ),
                 'has_archive'           => false,
 				'menu_position'			=> 32,
 	);
@@ -107,6 +132,7 @@ function register_custom_posttypes() {
 	register_post_type('ukfl_team',  $team_args);
 	register_post_type('ukfl_sub-team',  $sub_team_args);
 	register_post_type('ukfl_event', $event_args);
+	register_post_type('ukfl_sub-event', $sub_event_args);
 	register_post_type('ukfl_dog', $dog_args);
 	
 	register_taxonomy('dog-breeds', array('ukfl_dog'),
@@ -120,6 +146,18 @@ function register_custom_posttypes() {
 					)
 			)
 	);
+	
+	register_taxonomy('event-tags', array('ukfl_event', 'ukfl_sub-event'),
+		array(
+                                        'hierarchical' => true,
+                                        'label' => 'Event Tags',
+                                       'singular_label' => 'Event Tag',
+                                        'rewrite' => true,
+                                        'capabilities' => array(
+                                                        'assign_terms' => 'read'
+                                        )
+                        )
+        );
 	
 	register_taxonomy('team-regions', array('ukfl_team'),
 			array(

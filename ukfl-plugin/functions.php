@@ -19,6 +19,92 @@ require_once 'ukfl-gocardless.php';
 
 $MEMBERSHIPS = array('Membership - Individual' => 'individual', 'Membership - Joint' => 'joint', 'Membership - Junior' => 'junior');
 
+function add_calendar_feed(){
+	add_feed('calendar', 'export_events');
+}
+add_action('init', 'add_calendar_feed');
+
+
+function export_events(){
+	global $wpdb;
+
+	$all_events = get_posts(array(
+                'post_status'   => 'publish',
+                'post_type'      => 'ukfl_event',
+                'posts_per_page' => -1,
+                'order'          => 'ASC',
+                'meta_key'       => 'ukfl_event_start_date',
+                'orderby'       => 'meta_value_num',
+                'meta_query'    => array(
+                                array('key' => 'ukfl_event_start_date', 'value' => date('Ymd'), 'compare' => '>=')
+                )
+	));
+
+	//Give the iCal export a filename
+        $filename = urlencode( 'UKFL-events-ical-' . date('Y-m-d') . '.ics' );
+	$timestamp = date_i18n('Ymd\THis',time(), true);
+        $eol = "\r\n";
+        //Collect output
+        ob_start();
+        // Set the correct headers for this file
+//        header("Content-Description: File Transfer");
+//	header("Content-Disposition: attachment; filename=".$filename);
+        header('Content-type: text/calendar; charset=utf-8');
+        header("Pragma: 0");
+        header("Expires: 0");
+
+?>
+BEGIN:VCALENDAR<?php echo $eol; ?>
+VERSION:2.0<?php echo $eol; ?>
+X-WR-TIMEZONE:Europe/London<?php echo $eol; ?>
+METHOD:PUBLISH<?php echo $eol; ?>
+PRODID:-//<?php echo get_bloginfo('name'); ?> //Event Dates//EN<?php echo $eol; ?>
+CALSCALE:GREGORIAN<?php echo $eol; ?>
+X-WR-CALNAME:<?php echo get_bloginfo('name').$eol;?>
+<?php
+	foreach($all_events as $event) : setup_postdata($event);
+                $start_date = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_start_date', true ));
+                $end_date   = DateTime::createFromFormat('Ymd', get_post_meta( $event->ID, 'ukfl_event_end_date', true ));
+		$end_date->add(new DateInterval('P1D'));
+		$created_date = get_post_time('Ymd\THis\Z', true, $event->ID );
+		$post_modified = get_the_modified_date('Ymd\THis\Z', $event->ID );
+		$open_date = DateTime::createFromFormat('Ymd H:i:s', get_post_meta( $event->ID, 'ukfl_event_open_date', true )." 20:00:00");
+
+//A - The actual event... ?>
+BEGIN:VEVENT<?php echo $eol; ?>
+SUMMARY:<?php echo get_post_meta($event->ID, 'ukfl_event_title', true)." (".get_the_title($event->post_parent).")".$eol; ?>
+ORGANIZER:<?php echo get_the_title($event->post_parent).$eol; ?>
+UID:<?php echo $event->post_title."_A".$eol; ?>
+CREATED:<?php echo $created_date.$eol; ?>
+DTSTAMP:<?php echo $timestamp.$eol; ?>
+DTSTART:<?php echo $start_date->format('Ymd').$eol; ?>
+DTEND:<?php echo $end_date->format('Ymd').$eol; ?>
+LAST-MODIFIED:<?php echo $post_modified.$eol; ?>
+LOCATION:<?php echo get_post_meta($event->ID, 'ukfl_event_venue', true).", ".get_post_meta( $event->ID, 'ukfl_event_postcode', true ).$eol; ?>
+GEO:<?php echo get_post_meta( $event->ID, 'ukfl_event_lat', true).",".get_post_meta( $event->ID, 'ukfl_event_long', true).$eol; ?>
+END:VEVENT<?php echo $eol; ?>
+<?php
+//B - Open date... ?>
+BEGIN:VEVENT<?php echo $eol; ?>
+SUMMARY:SCHEDULE OUT - <?php echo get_post_meta($event->ID, 'ukfl_event_title', true)." (".$start_date->format('jS M').")".$eol; ?>
+UID:<?php echo $event->post_title."_B".$eol; ?>
+CREATED:<?php echo $created_date.$eol; ?>
+DTSTAMP:<?php echo $timestamp.$eol; ?>
+DTSTART:<?php echo $open_date->format('Ymd\THis').$eol; ?>
+<?php $open_date->add(new DateInterval('PT1H')); ?>
+DTEND:<?php echo $open_date->format('Ymd\THis').$eol; ?>
+LAST-MODIFIED:<?php echo $post_modified.$eol; ?>
+END:VEVENT<?php echo $eol; ?>
+<?php endforeach;?>
+END:VCALENDAR<?php echo $eol; ?>
+<?php
+	$eventsical = ob_get_contents();
+        ob_end_clean();
+        echo $eventsical;
+        exit();
+
+}
+
 function generate_ukfl_number(){
 	global $wpdb;
 	$year = date('y');
@@ -153,3 +239,9 @@ function set_default_display_name( $user_id ) {
 }
 add_action( 'user_register', 'set_default_display_name' );
 
+
+function my_acf_google_map_api ($api){
+	$api['key'] = 'AIzaSyADYSpYgbtKJB37J-zeheWeglwHPsUQ3jw';
+	return $qpi;
+}
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');

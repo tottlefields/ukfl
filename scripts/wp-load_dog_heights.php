@@ -12,6 +12,8 @@ $FILE	= $args[0];
 $EVENT	= $args[1];
 $DATE	= $args[2];
 
+$wpdb->delete('ukfl_dog_measures', array('event_id' => $EVENT, 'event_date' => $DATE));
+
 
 #Dog No,Dog Name,Height
 
