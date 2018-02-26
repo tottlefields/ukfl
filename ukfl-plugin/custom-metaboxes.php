@@ -1,77 +1,15 @@
 <?php
 
-function custom_team_meta_box_markup($object){
-wp_nonce_field(basename(__FILE__), "meta-box-nonce");
-
-    ?>
-        <div>
-            <label for="meta-box-text">Text</label>
-            <input name="meta-box-text" type="text" value="<?php echo get_post_meta($object->ID, "meta-box-text", true); ?>">
-
-            <br>
-
-            <label for="meta-box-dropdown">Dropdown</label>
-            <select name="meta-box-dropdown">
-                <?php 
-                    $option_values = array(1, 2, 3);
-
-                    foreach($option_values as $key => $value) 
-                    {
-                        if($value == get_post_meta($object->ID, "meta-box-dropdown", true))
-                        {
-                            ?>
-                                <option selected><?php echo $value; ?></option>
-                            <?php    
-                        }
-                        else
-                        {
-                            ?>
-                                <option><?php echo $value; ?></option>
-                            <?php
-                        }
-                    }
-                ?>
-            </select>
-
-            <br>
-
-            <label for="meta-box-checkbox">Check Box</label>
-            <?php
-                $checkbox_value = get_post_meta($object->ID, "meta-box-checkbox", true);
-
-                if($checkbox_value == "")
-                {
-                    ?>
-                        <input name="meta-box-checkbox" type="checkbox" value="true">
-                    <?php
-                }
-                else if($checkbox_value == "true")
-                {
-                    ?>  
-                        <input name="meta-box-checkbox" type="checkbox" value="true" checked>
-                    <?php
-                }
-            ?>
-        </div>
-    <?php  
-    
-}
-
-function add_team_custom_meta_box(){
-    add_meta_box("team-meta-box", "Team Details", "custom_team_meta_box_markup", "ukfl_team", "side", "default", null);
-}
-
-
-function custom_sub_team_meta_box_markup($post) {
+function custom_team_meta_box_markup($post) {
 	wp_nonce_field(basename(__FILE__), "meta-box-nonce");
 	
 	$teams = get_posts(
 		array(
 			'post_type'   => 'ukfl_team',
-            'post_status' => array('publish', 'pending'),
+	        	'post_status' => array('publish', 'pending'),
 			'orderby'     => 'title',
-        	'order'       => 'ASC',
-        	'numberposts' => -1
+        		'order'       => 'ASC',
+        		'numberposts' => -1
 		)
 	);
 	
@@ -86,7 +24,11 @@ function custom_sub_team_meta_box_markup($post) {
 }
 
 function add_sub_team_custom_meta_box($post){
-    add_meta_box("sub-team-meta-box", "Parent Team", "custom_sub_team_meta_box_markup", "ukfl_sub-team", "side", "core", null);
+    add_meta_box("sub-team-meta-box", "Parent Team", "custom_team_meta_box_markup", "ukfl_sub-team", "side", "core", null);
+}
+
+function add_dog_team_custom_meta_box($post){
+    add_meta_box("dog-team-meta-box", "Team", "custom_team_meta_box_markup", "ukfl_dog", "side", "core", null);
 }
 
 function custom_sub_event_meta_box_markup($post) {
@@ -156,7 +98,7 @@ function save_event_custom_meta_box($post_id){
 }
 
 function add_event_custom_meta_box($post){
-    add_meta_box("event-host-meta-box", "Host Team", "custom_event_host_meta_box_markup", "ukfl_event", "side", "high", null);
+    add_meta_box("event-host-meta-box", "Host Team", "custom_team_meta_box_markup", "ukfl_event", "side", "high", null);
     add_meta_box("event-meta-box", "Event Details", "custom_event_meta_box_markup", "ukfl_event", "normal", "high", null);
 }
 
@@ -187,6 +129,7 @@ function custom_event_host_meta_box_markup($post){
 
 add_action("add_meta_boxes", "add_team_custom_meta_box");
 add_action("add_meta_boxes", "add_sub_team_custom_meta_box");
+add_action("add_meta_boxes", "add_dog_team_custom_meta_box");
 add_action("add_meta_boxes", "add_event_custom_meta_box");
 
 add_action("save_post", "save_event_custom_meta_box");
