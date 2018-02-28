@@ -99,7 +99,7 @@ function save_event_custom_meta_box($post_id){
 
 function add_event_custom_meta_box($post){
     add_meta_box("event-host-meta-box", "Host Team", "custom_team_meta_box_markup", "ukfl_event", "side", "high", null);
-    add_meta_box("event-meta-box", "Event Details", "custom_event_meta_box_markup", "ukfl_event", "normal", "high", null);
+    //add_meta_box("event-meta-box", "Event Details", "custom_event_meta_box_markup", "ukfl_event", "normal", "high", null);
 }
 
 function custom_event_host_meta_box_markup($post){
@@ -127,10 +127,11 @@ function custom_event_host_meta_box_markup($post){
 
 
 
-add_action("add_meta_boxes", "add_team_custom_meta_box");
+//add_action("add_meta_boxes", "add_team_custom_meta_box");
 add_action("add_meta_boxes", "add_sub_team_custom_meta_box");
 add_action("add_meta_boxes", "add_dog_team_custom_meta_box");
 add_action("add_meta_boxes", "add_event_custom_meta_box");
+add_action("add_meta_boxes", "add_sub_event_custom_meta_box");
 
 add_action("save_post", "save_event_custom_meta_box");
 

@@ -210,6 +210,12 @@ function is_ukfl_event(){
         return false;
 }
 
+function is_ukfl_event_part(){
+        global $wp_query;
+        if ($wp_query->query_vars['post_type'] == 'ukfl_sub-event') return true;
+        return false;
+}
+
 
 // List Clubs/Teams alphabetically
 add_filter('posts_orderby', 'club_team_orderby');
@@ -242,6 +248,18 @@ function ukfl_team_custom_columns($defaults) {
                 $defaults['author'] = 'Owner';
                 $defaults['team_name'] = 'Team';
 	}
+	if (is_ukfl_event_part()){
+		$defaults['author'] = 'Event Host';
+		$author = $defaults['author'];
+		unset($defaults['date']);
+		unset($defaults['author']);
+		$defaults['title'] = 'Event Part';
+		$defaults['host_team'] = 'Host Team';		
+		$defaults['parent_event'] = 'Main Event';
+		$defaults['author'] = $author;
+		return $defaults;
+
+	}
 	return $defaults;
 }
 function ukfl_team_show_columns($column, $post_id){
@@ -259,6 +277,17 @@ function ukfl_team_show_columns($column, $post_id){
 			$club_id = wp_get_post_parent_id($post_id);
 			echo get_the_title( $club_id );
 			break;	
+		case 'host_team':
+                        $event_id = wp_get_post_parent_id($post_id);
+                        $team = get_the_title( wp_get_post_parent_id($event_id));
+			echo $team;
+			break;
+		case 'parent_event':
+			$event_id = wp_get_post_parent_id($post_id);
+			$event = get_post_meta($event_id, 'ukfl_event_title', true);
+			$start_date = DateTime::createFromFormat('Ymd', get_post_meta( $event_id, 'ukfl_event_start_date', true ));
+			echo $event.' ('.$start_date->format('jS F Y').')';
+			break;
 	}
 }
 

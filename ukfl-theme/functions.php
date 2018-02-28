@@ -70,6 +70,10 @@ function ukfl_enqueue_scripts() {
 	//Bootstrap Toggle
 	wp_register_script ( 'bs-toggle-js', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js', array ('jquery'), '2.2.2', false );
 	wp_enqueue_script ( 'bs-toggle-js' );
+
+	// Main functions js file
+	wp_register_script ( 'js-functions', get_stylesheet_directory_uri () . '/assets/js/functions.js', array ('jquery'), '0.0.1', false );
+	wp_enqueue_script ( 'js-functions' );
 }
 
 add_action( 'wp_enqueue_scripts', 'ukfl_enqueue_styles', 100);
