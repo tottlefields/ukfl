@@ -34,7 +34,7 @@ get_template_part('index', 'bannerstrip');
 		                                                                        <label class="input-group-btn">
         		                                                                        <span class="btn btn-primary" style="height:40px; padding:8px 12px;">Browse&hellip;<input type="file" name="portal_file" style="display:none;"></span>
                 		                                                        </label>
-                        		                                                <input type="text" class="form-control" readonly />
+                        		                                                <input type="text" class="form-control" style="font-size:0.8em" readonly />
                                 		                                </div>
 										<p class="small"><em>Please select a comma separated value (CSV) file with columns for : Dog No. / Team / Team_Type / Points.</em></p>
                                         	                        	<button type="submit" class="btn btn-default btn-block" name="submit" id="submitBtn">GO!</button>
