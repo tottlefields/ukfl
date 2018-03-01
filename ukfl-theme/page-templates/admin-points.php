@@ -18,7 +18,7 @@ get_template_part('index', 'bannerstrip');
 				<article id="post-<?php the_ID(); ?>" <?php post_class('post'); ?> > 					
 					<form method="post" class="form" enctype="multipart/form-data" id="pointsForm">
 						<div class="entry-content">
-							<div class="col-md-4 col-xs-12">
+							<div class="col-md-5 col-xs-12">
 								<div class="well">
 									<div class="form-group">
 										<label class="control-label" for="event_date">Event Date</label>
@@ -42,7 +42,7 @@ get_template_part('index', 'bannerstrip');
 									</div>
 								</div>
 							</div>
-							<div class="col-md-8 col-xs-12">
+							<div class="col-md-7 col-xs-12">
 								<span class="statusMsg"></span>
 							</div>
 						</div>
